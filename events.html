@@ -1,12 +1,933 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Events | Yorkseed</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Yorkseed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            height: 110px;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 1000;
+            align-items: center;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo img {
+            max-height: 100px;
+            height: auto;
+            width: auto;
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #dc2626;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #dc2626;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: #f8fafc;
+            padding: 40px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            background: white;
+            font-size: 0.9rem;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #dc2626;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            color: #555;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-tab.active {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            border-color: #dc2626;
+        }
+
+        .filter-tab:hover {
+            border-color: #dc2626;
+            color: #dc2626;
+        }
+
+        .filter-tab.active:hover {
+            color: white;
+        }
+
+        /* Spotlight Events */
+        .spotlight-events {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+        }
+
+        .spotlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .spotlight-card {
+            background: linear-gradient(135deg, #991b1b 0%, #dc2626 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .spotlight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.3);
+        }
+
+        .spotlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .spotlight-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .spotlight-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .spotlight-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .spotlight-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .spotlight-description {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .spotlight-btn {
+            background: white;
+            color: #dc2626;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .spotlight-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Upcoming Events Calendar */
+        .upcoming-events {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-image {
+            height: 200px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .event-date-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #dc2626;
+            padding: 0.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .event-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .event-type {
+            background: #f0f0f0;
+            color: #666;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .event-attendees {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* Action Sections */
+        .action-sections {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .action-card {
+            text-align: center;
+            padding: 2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .action-card:hover {
+            border-color: #dc2626;
+            transform: translateY(-5px);
+        }
+
+        .action-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .action-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .action-card p {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Photo & Video Recaps */
+        .recaps-section {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .recaps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .recap-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .recap-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .recap-image {
+            height: 200px;
+            background: linear-gradient(135deg, #991b1b 0%, #dc2626 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .play-button {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #dc2626;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+
+        .recap-content {
+            padding: 1.5rem;
+        }
+
+        .recap-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .recap-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .recap-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #dc2626;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
+            color: #999;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-tabs {
+                justify-content: center;
+            }
+
+            .spotlight-grid,
+            .events-grid,
+            .action-grid,
+            .recaps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Events Yorkseed</h1>
-  <p>This is the Events page.</p>
-</body>
-</html>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG" alt="Yorkseed Logo">
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="hubs.html">Hubs</a></li>
+                    <li><a href="events.html" class="active">Events</a></li>
+                    <li><a href="platforms.html">Platform</a></li>
+                    <li><a href="#membership">Membership</a></li>
+                    <li><a href="#login" class="login-btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Connect. Learn. Scale.</h1>
+            <p>Join exclusive startup events in 50+ cities worldwide. From intimate founder dinners to major pitch competitions, find your next breakthrough moment.</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-container">
+                <div class="filter-group">
+                    <span class="filter-label">City:</span>
+                    <select class="filter-select" id="cityFilter">
+                        <option value="all">All Cities</option>
+                        <option value="new-york">New York</option>
+                        <option value="london">London</option>
+                        <option value="paris">Paris</option>
+                        <option value="berlin">Berlin</option>
+                        <option value="singapore">Singapore</option>
+                        <option value="tokyo">Tokyo</option>
+                    </select>
+                </div>
+                <div class="filter-tabs">
+                    <div class="filter-tab active" data-type="all">All Events</div>
+                    <div class="filter-tab" data-type="networking">Networking</div>
+                    <div class="filter-tab" data-type="pitch">Pitch Events</div>
+                    <div class="filter-tab" data-type="workshop">Workshops</div>
+                    <div class="filter-tab" data-type="social">Social</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spotlight Events -->
+    <section class="spotlight-events">
+        <div class="container">
+            <h2 class="section-title">Spotlight Events</h2>
+            <div class="spotlight-grid">
+                <div class="spotlight-card">
+                    <div class="spotlight-badge">FLAGSHIP EVENT</div>
+                    <div class="spotlight-title">Midnight in Paris</div>
+                    <div class="spotlight-details">
+                        <div class="spotlight-detail">📅 March 15, 2025</div>
+                        <div class="spotlight-detail">📍 Le Marais, Paris</div>
+                        <div class="spotlight-detail">👥 200+ Attendees Expected</div>
+                    </div>
+                    <div class="spotlight-description">
+                        An exclusive evening of networking, pitch sessions, and startup showcases in the City of Light. Connect with European VCs, serial entrepreneurs, and rising stars.
+                    </div>
+                    <button class="spotlight-btn">Reserve Your Spot</button>
+                </div>
+                
+                <div class="spotlight-card">
+                    <div class="spotlight-badge">UNICORN SUMMIT</div>
+                    <div class="spotlight-title">Unicorn Founders Roundtable</div>
+                    <div class="spotlight-details">
+                        <div class="spotlight-detail">📅 April 22, 2025</div>
+                        <div class="spotlight-detail">📍 Silicon Valley, CA</div>
+                        <div class="spotlight-detail">👥 50 Selected Founders</div>
+                    </div>
+                    <div class="spotlight-description">
+                        Intimate discussions with billion-dollar company founders. Application-only event for scaling startups ready for their next breakthrough.
+                    </div>
+                    <button class="spotlight-btn">Apply Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Calendar -->
+    <section class="upcoming-events">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="events-grid">
+                <div class="event-card" data-city="new-york" data-type="networking">
+                    <div class="event-image">🗽
+                        <div class="event-date-badge">
+                            <div>MAR</div>
+                            <div>08</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-title">NYC Founder Breakfast</div>
+                        <div class="event-meta">
+                            <div>📍 SoHo, New York</div>
+                            <div>⏰ 8:00 AM - 10:00 AM</div>
+                        </div>
+                        <div class="event-description">
+                            Start your day networking with fellow founders over coffee and pastries in the heart of Manhattan.
+                        </div>
+                        <div class="event-footer">
+                            <div class="event-type">Networking</div>
+                            <div class="event-attendees">45 attending</div>
+                            <!-- Luma Integration Button -->
+                            <button 
+                                class="luma-checkout--button"
+                                type="button"
+                                data-luma-action="checkout"
+                                data-luma-event-id="evt-NYC-BREAKFAST-ID"
+                                style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: white; border: none; padding: 0.5rem 1rem; border-radius: 15px; font-size: 0.8rem; cursor: pointer;"
+                            >
+                                Register
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-city="london" data-type="pitch">
+                    <div class="event-image">🇬🇧
+                        <div class="event-date-badge">
+                            <div>MAR</div>
+                            <div>12</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-title">London Pitch Night</div>
+                        <div class="event-meta">
+                            <div>📍 Shoreditch, London</div>
+                            <div>⏰ 6:00 PM - 9:00 PM</div>
+                        </div>
+                        <div class="event-description">
+                            8 startups pitch to a panel of top UK investors. €100K in funding up for grabs.
+                        </div>
+                        <div class="event-footer">
+                            <div class="event-type">Pitch Competition</div>
+                            <div class="event-attendees">120 attending</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-city="singapore" data-type="workshop">
+                    <div class="event-image">🇸🇬
+                        <div class="event-date-badge">
+                            <div>MAR</div>
+                            <div>18</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-title">Growth Hacking Workshop</div>
+                        <div class="event-meta">
+                            <div>📍 Marina Bay, Singapore</div>
+                            <div>⏰ 2:00 PM - 6:00 PM</div>
+                        </div>
+                        <div class="event-description">
+                            Learn proven growth strategies from Southeast Asia's fastest-growing startups.
+                        </div>
+                        <div class="event-footer">
+                            <div class="event-type">Workshop</div>
+                            <div class="event-attendees">60 attending</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-city="berlin" data-type="social">
+                    <div class="event-image">🇩🇪
+                        <div class="event-date-badge">
+                            <div>MAR</div>
+                            <div>25</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-title">Berlin Startup Social</div>
+                        <div class="event-meta">
+                            <div>📍 Kreuzberg, Berlin</div>
+                            <div>⏰ 7:00 PM - 11:00 PM</div>
+                        </div>
+                        <div class="event-description">
+                            Casual networking with Berlin's vibrant startup community. Food, drinks, and great conversations.
+                        </div>
+                        <div class="event-footer">
+                            <div class="event-type">Social</div>
+                            <div class="event-attendees">85 attending</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-city="tokyo" data-type="networking">
+                    <div class="event-image">🇯🇵
+                        <div class="event-date-badge">
+                            <div>APR</div>
+                            <div>02</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-title">Tokyo Tech Meetup</div>
+                        <div class="event-meta">
+                            <div>📍 Shibuya, Tokyo</div>
+                            <div>⏰ 6:30 PM - 9:30 PM</div>
+                        </div>
+                        <div class="event-description">
+                            Connect with Japan's leading tech entrepreneurs and explore cross-border opportunities.
+                        </div>
+                        <div class="event-footer">
+                            <div class="event-type">Networking</div>
+                            <div class="event-attendees">95 attending</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card" data-city="paris" data-type="workshop">
+                    <div class="event-image">🇫🇷
+                        <div class="event-date-badge">
+                            <div>APR</div>
+                            <div>10</div>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-title">AI & Machine Learning Summit</div>
+                        <div class="event-meta">
+                            <div>📍 Station F,
