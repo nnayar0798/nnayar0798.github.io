@@ -1,12 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>About | Yorkseed</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Yorkseed</title>
+    <link rel="stylesheet" href="styles.css"> <!-- optional: if separating CSS -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        section {
+            padding: 100px 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .section-light {
+            background: #f8fafc;
+        }
+
+        .section-dark {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .section-dark h2.section-title {
+            color: white;
+        }
+
+        .mission-text, .story-text, .beliefs-text, .bio-text {
+            max-width: 800px;
+            margin: auto;
+            font-size: 1.1rem;
+        }
+
+        .beliefs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .beliefs-grid div {
+            padding: 1rem;
+        }
+
+        .founder-section {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .founder-section img {
+            width: 200px;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        .differentiators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .diff-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item span {
+            display: block;
+            font-size: 2rem;
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 80px 2rem;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+    </style>
 </head>
 <body>
-  <h1>About Yorkseed</h1>
-  <p>This is the About page.</p>
+    <!-- Mission Statement -->
+    <section>
+        <h2 class="section-title">Our Mission</h2>
+        <p class="mission-text">To build the world’s most connected startup community — where ambition meets access, and ideas turn into impact.</p>
+    </section>
+
+    <!-- Yorkseed Story -->
+    <section class="section-light">
+        <h2 class="section-title">The Yorkseed Story</h2>
+        <p class="story-text">It all started on a train ride from NYC to DC — a viral list of SXSW events, a QR code on the streets of Austin, and a wildly successful founder-investor mixer planned in under an hour. Yorkseed was born from hustle, curiosity, and a founder-first spirit that hasn’t stopped since.</p>
+    </section>
+
+    <!-- What We Believe -->
+    <section>
+        <h2 class="section-title">What We Believe</h2>
+        <div class="beliefs-grid">
+            <div><strong>🌱 Community</strong><br>Our strength lies in connection, not size.</div>
+            <div><strong>🎯 Curation</strong><br>We prioritize meaningful matches over mass reach.</div>
+            <div><strong>🌍 Global-First</strong><br>We’re locally rooted, globally wired.</div>
+        </div>
+    </section>
+
+    <!-- Meet the Founder -->
+    <section class="section-light">
+        <h2 class="section-title">Meet the Founder</h2>
+        <div class="founder-section">
+            <img src="founder-headshot.jpg" alt="Jessica - Founder of Yorkseed">
+            <p class="bio-text">Jessica is the founder of Yorkseed and the creator of the original SXSW Unofficial Events List that sparked a global movement. With a background in venture, events, and founder advocacy, she’s committed to building spaces where startups don’t just survive — they thrive.</p>
+        </div>
+    </section>
+
+    <!-- What Makes Us Different -->
+    <section>
+        <h2 class="section-title">What Makes Us Different</h2>
+        <div class="differentiators-grid">
+            <div class="diff-card">🔐 Invite-only hubs for high-quality dealflow</div>
+            <div class="diff-card">🧠 Founder-focused programs</div>
+            <div class="diff-card">🤝 Global mixers & local support</div>
+            <div class="diff-card">⚡ Pop-up events that actually convert</div>
+            <div class="diff-card">🎙️ Real stories, real humans — no fluff</div>
+            <div class="diff-card">🚀 Built by founders, for founders</div>
+        </div>
+    </section>
+
+    <!-- Yorkseed by the Numbers -->
+    <section class="section-light">
+        <h2 class="section-title">Yorkseed by the Numbers</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span>50+</span>
+                Global Hubs
+            </div>
+            <div class="stat-item">
+                <span>10K+</span>
+                Members Worldwide
+            </div>
+            <div class="stat-item">
+                <span>$250M+</span>
+                Capital Facilitated
+            </div>
+            <div class="stat-item">
+                <span>500+</span>
+                Startups Launched
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2 class="section-title">Ready to Build With Us?</h2>
+        <a href="hubs.html" class="cta-btn">Join Our Hubs</a>
+    </section>
 </body>
 </html>
