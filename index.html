@@ -41,8 +41,24 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
             font-size: 1.5rem;
             font-weight: 700;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -538,7 +554,10 @@
     <!-- Header -->
     <header class="header">
         <div class="nav-container">
-            <div class="logo">YORKSEED</div>
+            <div class="logo">
+                <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG" alt="Yorkseed Logo">
+                <span class="logo-text">YORKSEED</span>
+            </div>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#hubs">Hubs</a></li>
