@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yorkseed Insider</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1a1a1a;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .section {
+      padding: 100px 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .tagline {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 4rem;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .plan {
+      border: 2px solid #e0e0e0;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .plan h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #dc2626;
+    }
+
+    .plan ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+      color: #555;
+    }
+
+    .plan ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .subscribe-form {
+      display: flex;
+      max-width: 600px;
+      margin: 2rem auto;
+      gap: 1rem;
+    }
+
+    .subscribe-input {
+      flex: 1;
+      padding: 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 25px;
+      font-size: 1rem;
+    }
+
+    .subscribe-btn {
+      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 25px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .feature-card {
+      background: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .feature-card h4 {
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    .footer-section a {
+      color: #dc2626;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .subscribe-form {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG" alt="Yorkseed Logo">
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="hubs.html">Hubs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="insider.html" class="active">Insider</a></li>
+          <li><a href="platform.html">Platform</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="login.html" class="login-btn">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>Yorkseed Insider</h1>
+      <p>Startup insights, dealflow, and top jobs — straight to your inbox.</p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="section">
+    <h2 class="section-title">Stay Ahead of the Curve</h2>
+    <p class="tagline">Get insights, job leads, and founder spotlights — every Tuesday and Friday.</p>
+
+    <div class="plans">
+      <div class="plan">
+        <h3>Free</h3>
+        <ul>
+          <li>2x Weekly Newsletter</li>
+          <li>Top Startup Jobs</li>
+          <li>Event Highlights</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <h3>Insider+ (₹499/mo)</h3>
+        <ul>
+          <li>All Free Features</li>
+          <li>Investor Dealflow</li>
+          <li>Exit & Fundraising Reports</li>
+          <li>Beta Product Access</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section section-light">
+    <h2 class="section-title">What You’ll Get</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h4>🚀 Startup Spotlights</h4>
+        <p>Stories & traction of early-stage ventures.</p>
+      </div>
+      <div class="feature-card">
+        <h4>💼 Job Board Picks</h4>
+        <p>Handpicked open roles in the Yorkseed network.</p>
+      </div>
+      <div class="feature-card">
+        <h4>📈 Exit Reports</h4>
+        <p>Funding rounds, acquisitions & market movement.</p>
+      </div>
+      <div class="feature-card">
+        <h4>📬 Investor Dealflow</h4>
+        <p>Premium: early access to decks and lead lists.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Subscribe -->
+  <section class="section" style="text-align: center;">
+    <h2 class="section-title">Subscribe to Yorkseed Insider</h2>
+    <form class="subscribe-form">
+      <input type="email" placeholder="Enter your email address" class="subscribe-input" required />
+      <button type="submit" class="subscribe-btn">Subscribe</button>
+    </form>
+    <p style="margin-top: 1rem; color: #888;">Want full access? <a href="https://buy.stripe.com" target="_blank">Upgrade to Insider+</a></p>
+  </section>
+
+  <!-- Submit & Archives -->
+  <section class="section section-light" style="text-align:center;">
+    <h2 class="section-title">Want to Share?</h2>
+    <p>Submit a startup, job or resource to be featured.</p>
+    <p>Email us: <a href="mailto:insider@yorkseed.co">insider@yorkseed.co</a></p>
+    <br>
+    <p style="color: #888;">Past editions archive coming soon.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-section">
+        <h3>Community</h3>
+        <ul>
+          <li><a href="hubs.html">Global Hubs</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="jobs.html">Job Board</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="insider.html">Yorkseed Insider</a></li>
+          <li><a href="platform.html">Platform</a></li>
+          <li><a href="partners.html">For Partners</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="mailto:contact@yorkseed.co">Contact Us</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Yorkseed</h3>
+        <p style="color: #ccc;">Building the world’s most connected startup community, one city at a time.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Yorkseed. All rights reserved. | Privacy Policy | Terms of Service</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelector('.subscribe-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert("Thanks for subscribing! You're now on the Yorkseed Insider list.");
+      this.reset();
+    });
+  </script>
+</body>
+</html>
