@@ -21,25 +21,25 @@
         /* Header */
         .header {
             position: fixed;
-            height: 110px;
+            height: 80px;
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid #e0e0e0;
             z-index: 1000;
+            display: flex;
             align-items: center;
-            padding: 1rem 0;
             transition: all 0.3s ease;
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 100%;
+            width: 100%;
             padding: 0 2rem;
         }
 
@@ -51,7 +51,7 @@
         }
 
         .logo img {
-            max-height: 100px; /* keep logo within header */
+            max-height: 50px;
             height: auto;
             width: auto;
             margin-right: 0.5rem;
@@ -119,14 +119,21 @@
             box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
         }
 
-        /* Hero Section */
+        /* Hero Section with Background Image */
         .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
+            background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(220, 38, 38, 0.8)), 
+                        url('https://images.unsplash.com/photo-1560472355-536de3962603?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: white;
-            padding: 150px 0 100px;
+            padding: 150px 0 120px;
             text-align: center;
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
         .hero::before {
@@ -136,7 +143,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             animation: float 20s ease-in-out infinite;
         }
 
@@ -146,7 +153,7 @@
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 2rem;
             position: relative;
@@ -154,20 +161,23 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            line-height: 1.2;
+            line-height: 1.1;
             opacity: 0;
             animation: slideUp 1s ease 0.3s forwards;
         }
 
         .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
             opacity: 0;
             animation: slideUp 1s ease 0.6s forwards;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         @keyframes slideUp {
@@ -183,7 +193,7 @@
 
         .cta-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
             opacity: 0;
@@ -193,11 +203,11 @@
         .cta-btn {
             background: white;
             color: #dc2626;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             border: none;
             border-radius: 30px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -220,167 +230,307 @@
             color: #dc2626;
         }
 
-        /* Stats Section */
+        /* Stats Section with Visual Elements */
         .stats {
-            background: #f8fafc;
-            padding: 80px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23dc2626' fill-opacity='0.05'%3E%3Cpath d='M20 20c0-8.837 7.163-16 16-16v16H20z'/%3E%3C/g%3E%3C/svg%3E");
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
             text-align: center;
         }
 
         .stat-item {
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
         }
 
         .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(220, 38, 38, 0.15);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             color: #dc2626;
             display: block;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
             color: #666;
-            font-weight: 500;
-            margin-top: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
 
-        /* Why Yorkseed Section */
+        /* Why Yorkseed Section with Images */
         .why-yorkseed {
-            padding: 100px 0;
+            padding: 120px 0;
             background: white;
+            position: relative;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             color: #1a1a1a;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+            margin-top: 5rem;
         }
 
         .feature-card {
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
             transition: all 0.3s ease;
+            border-radius: 20px;
+            background: #f8fafc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(153, 27, 27, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.1);
         }
 
         .feature-icon {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: #1a1a1a;
+            position: relative;
+            z-index: 2;
         }
 
         .feature-card p {
             color: #666;
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Featured Event Section */
+        /* Featured Event Section with Background */
         .featured-event {
-            background: linear-gradient(135deg, #991b1b 0%, #dc2626 100%);
+            background: linear-gradient(rgba(153, 27, 27, 0.9), rgba(220, 38, 38, 0.9)), 
+                        url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: white;
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
+            position: relative;
         }
 
         .event-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 3rem;
-            max-width: 600px;
+            border-radius: 25px;
+            padding: 4rem 3rem;
+            max-width: 700px;
             margin: 0 auto;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .event-date {
-            font-size: 1rem;
+            font-size: 1.1rem;
             opacity: 0.9;
             margin-bottom: 1rem;
+            font-weight: 500;
         }
 
         .event-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
         }
 
         .event-location {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
             opacity: 0.9;
         }
 
-        /* Newsletter Section */
-        .newsletter {
-            background: #1a1a1a;
-            color: white;
-            padding: 80px 0;
+        .event-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Global Hubs Section Enhanced */
+        .global-hubs {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+        }
+
+        .global-hubs::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.03;
+        }
+
+        .hubs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hub-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
-        .newsletter-form {
-            max-width: 500px;
-            margin: 2rem auto 0;
-            display: flex;
-            gap: 1rem;
+        .hub-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(153, 27, 27, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .newsletter-input {
-            flex: 1;
-            padding: 1rem;
-            border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            outline: none;
+        .hub-card:hover::before {
+            opacity: 1;
         }
 
-        .newsletter-btn {
+        .hub-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(220, 38, 38, 0.15);
+        }
+
+        .hub-flag {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hub-city {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hub-members {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hub-btn {
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
             color: white;
             border: none;
@@ -388,6 +538,64 @@
             border-radius: 25px;
             cursor: pointer;
             font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hub-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Newsletter Section Enhanced */
+        .newsletter {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23dc2626' fill-opacity='0.1'%3E%3Cpath d='M0 0h80v80H0V0zm20 20v40h40V20H20zm20 35a15 15 0 1 1 0-30 15 15 0 0 1 0 30z' fill-rule='evenodd'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            display: flex;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1.2rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            outline: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .newsletter-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
         }
 
@@ -396,85 +604,35 @@
             box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
         }
 
-        /* Global Hubs Section */
-        .global-hubs {
-            padding: 100px 0;
-            background: #f8fafc;
-        }
-
-        .hubs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .hub-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .hub-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .hub-flag {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .hub-city {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #1a1a1a;
-        }
-
-        .hub-members {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .hub-btn {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .hub-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
-        }
-
-        /* Footer */
+        /* Footer Enhanced */
         .footer {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
             color: white;
-            padding: 60px 0 30px;
+            padding: 80px 0 40px;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #dc2626 50%, transparent 100%);
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: white;
         }
 
@@ -483,13 +641,14 @@
         }
 
         .footer-section ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         .footer-section ul li a {
             color: #ccc;
             text-decoration: none;
             transition: color 0.3s ease;
+            font-size: 1rem;
         }
 
         .footer-section ul li a:hover {
@@ -507,13 +666,13 @@
         .social-icons {
             display: flex;
             gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
+            justify-content: flex-start;
+            margin-top: 1.5rem;
         }
 
         .social-icon {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             background: #333;
             border-radius: 50%;
             display: flex;
@@ -522,6 +681,7 @@
             color: white;
             text-decoration: none;
             transition: all 0.3s ease;
+            font-size: 1.2rem;
         }
 
         .social-icon:hover {
@@ -539,6 +699,10 @@
                 font-size: 2.5rem;
             }
 
+            .hero p {
+                font-size: 1.1rem;
+            }
+
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -548,9 +712,36 @@
                 flex-direction: column;
             }
 
-            .stats-grid {
+            .stats-grid, .features-grid, .hubs-grid {
                 grid-template-columns: 1fr;
             }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .hero {
+                background-attachment: scroll;
+            }
+
+            .featured-event {
+                background-attachment: scroll;
+            }
+        }
+
+        /* Additional Visual Enhancements */
+        .parallax-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .parallax-element:nth-child(2) {
+            animation-delay: -5s;
+        }
+
+        .parallax-element:nth-child(3) {
+            animation-delay: -10s;
         }
     </style>
 </head>
@@ -560,6 +751,7 @@
         <div class="nav-container">
             <div class="logo">
                 <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG" alt="Yorkseed Logo">
+                <span class="logo-text">Yorkseed</span>
             </div>
             <nav>
                 <ul class="nav-links">
@@ -615,21 +807,22 @@
     <section class="why-yorkseed">
         <div class="container">
             <h2 class="section-title">Why Yorkseed?</h2>
+            <p class="section-subtitle">Join the world's most connected startup community and accelerate your entrepreneurial journey</p>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🚀</div>
                     <h3>Founder-First</h3>
-                    <p>Built by founders, for founders. Every feature, event, and connection is designed to accelerate your startup journey with authentic peer support.</p>
+                    <p>Built by founders, for founders. Every feature, event, and connection is designed to accelerate your startup journey with authentic peer support and real-world experience.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🌍</div>
                     <h3>City-Based Community</h3>
-                    <p>Local presence, global reach. Connect with your city's startup ecosystem while accessing opportunities across our worldwide network.</p>
+                    <p>Local presence, global reach. Connect with your city's startup ecosystem while accessing opportunities across our worldwide network of innovation hubs.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">✨</div>
                     <h3>Curated Connections</h3>
-                    <p>Quality over quantity. Our community is carefully curated to ensure every connection has the potential to transform your business.</p>
+                    <p>Quality over quantity. Our community is carefully curated to ensure every connection has the potential to transform your business and create lasting partnerships.</p>
                 </div>
             </div>
         </div>
@@ -643,7 +836,7 @@
                 <div class="event-date">March 15, 2025</div>
                 <div class="event-title">Midnight in Paris</div>
                 <div class="event-location">📍 Paris, France</div>
-                <p>Join 200+ founders and investors for an exclusive evening of networking, pitch sessions, and startup showcases in the City of Light.</p>
+                <p>Join 200+ founders and investors for an exclusive evening of networking, pitch sessions, and startup showcases in the City of Light. Experience the magic of European innovation.</p>
                 <a href="#events" class="cta-btn" style="margin-top: 1.5rem;">Learn More</a>
             </div>
         </div>
@@ -653,7 +846,7 @@
     <section class="global-hubs">
         <div class="container">
             <h2 class="section-title">Global Hubs</h2>
-            <p style="text-align: center; color: #666; font-size: 1.1rem;">Connect with startup communities in major cities worldwide</p>
+            <p style="text-align: center; color: #666; font-size: 1.2rem; margin-bottom: 2rem;">Connect with startup communities in major cities worldwide</p>
             <div class="hubs-grid">
                 <div class="hub-card">
                     <div class="hub-flag">🇺🇸</div>
@@ -678,155 +871,3 @@
                     <div class="hub-city">Berlin</div>
                     <div class="hub-members">650+ members</div>
                     <button class="hub-btn">Join Hub</button>
-                </div>
-                <div class="hub-card">
-                    <div class="hub-flag">🇸🇬</div>
-                    <div class="hub-city">Singapore</div>
-                    <div class="hub-members">750+ members</div>
-                    <button class="hub-btn">Join Hub</button>
-                </div>
-                <div class="hub-card">
-                    <div class="hub-flag">🇯🇵</div>
-                    <div class="hub-city">Tokyo</div>
-                    <div class="hub-members">600+ members</div>
-                    <button class="hub-btn">Join Hub</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Stay in the Loop</h2>
-            <p style="font-size: 1.1rem; opacity: 0.9;">Get insights, job leads, dealflow, and startup stories delivered twice weekly</p>
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
-                <button type="submit" class="newsletter-btn">Subscribe to Insider</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Community</h3>
-                    <ul>
-                        <li><a href="#hubs">Global Hubs</a></li>
-                        <li><a href="#events">Events</a></li>
-                        <li><a href="#membership">Membership</a></li>
-                        <li><a href="#jobs">Job Board</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#insider">Yorkseed Insider</a></li>
-                        <li><a href="#platform">Platform</a></li>
-                        <li><a href="#partners">For Partners</a></li>
-                        <li><a href="#about">About Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <ul>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="#press">Press</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                    </ul>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon">𝕏</a>
-                        <a href="#" class="social-icon">📧</a>
-                        <a href="#" class="social-icon">💼</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Yorkseed</h3>
-                    <p style="color: #ccc; line-height: 1.6;">Building the world's most connected startup community, one city at a time.</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Yorkseed. All rights reserved. | Privacy Policy | Terms of Service</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
-            }
-        });
-
-        // Newsletter form submission
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('.newsletter-input').value;
-            alert('Thanks for subscribing! We\'ll send you the latest startup insights and opportunities.');
-            this.querySelector('.newsletter-input').value = '';
-        });
-
-        // Hub card interactions
-        document.querySelectorAll('.hub-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const city = this.querySelector('.hub-city').textContent;
-                alert(`Joining ${city} hub! You'll be redirected to the application form.`);
-            });
-        });
-
-        // Animated counters for stats
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number');
-            counters.forEach(counter => {
-                const target = parseInt(counter.textContent.replace(/\D/g, ''));
-                const increment = target / 100;
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        counter.textContent = counter.textContent.replace(/\d+/, target);
-                        clearInterval(timer);
-                    } else {
-                        counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
-                    }
-                }, 20);
-            });
-        }
-
-        // Trigger counter animation when stats section is visible
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-
-        observer.observe(document.querySelector('.stats'));
-    </script>
-</body>
-</html>
