@@ -21,25 +21,25 @@
         /* Header */
         .header {
             position: fixed;
-            height: 80px;
+            height: 110px;
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid #e0e0e0;
             z-index: 1000;
-            display: flex;
             align-items: center;
+            padding: 1rem 0;
             transition: all 0.3s ease;
         }
 
         .nav-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            height: 100%;
             padding: 0 2rem;
         }
 
@@ -51,7 +51,7 @@
         }
 
         .logo img {
-            max-height: 50px;
+            max-height: 100px;
             height: auto;
             width: auto;
             margin-right: 0.5rem;
@@ -121,19 +121,16 @@
 
         /* Hero Section with Background Image */
         .hero {
-            background: linear-gradient(rgba(26, 26, 26, 0.8), rgba(220, 38, 38, 0.8)), 
+            background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(220, 38, 38, 0.8)), 
                         url('https://images.unsplash.com/photo-1560472355-536de3962603?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: white;
-            padding: 150px 0 120px;
+            padding: 150px 0 100px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
         }
 
         .hero::before {
@@ -143,7 +140,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             animation: float 20s ease-in-out infinite;
         }
 
@@ -153,7 +150,7 @@
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 0 2rem;
             position: relative;
@@ -161,23 +158,20 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            line-height: 1.1;
+            line-height: 1.2;
             opacity: 0;
             animation: slideUp 1s ease 0.3s forwards;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            opacity: 0.95;
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
             opacity: 0;
             animation: slideUp 1s ease 0.6s forwards;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         @keyframes slideUp {
@@ -193,7 +187,7 @@
 
         .cta-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
             opacity: 0;
@@ -203,11 +197,11 @@
         .cta-btn {
             background: white;
             color: #dc2626;
-            padding: 1.2rem 2.5rem;
+            padding: 1rem 2rem;
             border: none;
             border-radius: 30px;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -230,10 +224,10 @@
             color: #dc2626;
         }
 
-        /* Stats Section with Visual Elements */
+        /* Stats Section */
         .stats {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            padding: 100px 0;
+            background: #f8fafc;
+            padding: 80px 0;
             position: relative;
         }
 
@@ -244,11 +238,15 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23dc2626' fill-opacity='0.05'%3E%3Cpath d='M20 20c0-8.837 7.163-16 16-16v16H20z'/%3E%3C/g%3E%3C/svg%3E");
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: 1;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
             position: relative;
@@ -257,16 +255,16 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
             text-align: center;
         }
 
         .stat-item {
             background: white;
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -278,124 +276,108 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
         }
 
         .stat-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(220, 38, 38, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: #dc2626;
             display: block;
-            margin-bottom: 0.5rem;
         }
 
         .stat-label {
             color: #666;
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
         }
 
-        /* Why Yorkseed Section with Images */
+        /* Why Yorkseed Section */
         .why-yorkseed {
-            padding: 120px 0;
+            padding: 100px 0;
             background: white;
             position: relative;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 4rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 4rem;
-            margin-top: 5rem;
-        }
-
-        .feature-card {
-            text-align: center;
-            padding: 3rem 2rem;
-            transition: all 0.3s ease;
-            border-radius: 20px;
-            background: #f8fafc;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
+        .why-yorkseed::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(153, 27, 27, 0.05) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.03;
+            z-index: 1;
         }
 
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.1);
-        }
-
-        .feature-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
+        .section-title {
+            text-align: center;
             font-size: 2.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .feature-card h3 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
             color: #1a1a1a;
             position: relative;
             z-index: 2;
         }
 
-        .feature-card p {
-            color: #666;
-            line-height: 1.7;
-            font-size: 1.1rem;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
             position: relative;
             z-index: 2;
         }
 
-        /* Featured Event Section with Background */
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(220, 38, 38, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.1);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Featured Event Section */
         .featured-event {
             background: linear-gradient(rgba(153, 27, 27, 0.9), rgba(220, 38, 38, 0.9)), 
                         url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
@@ -403,51 +385,102 @@
             background-position: center;
             background-attachment: fixed;
             color: white;
-            padding: 100px 0;
+            padding: 80px 0;
             text-align: center;
-            position: relative;
         }
 
         .event-card {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 4rem 3rem;
-            max-width: 700px;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
             margin: 0 auto;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .event-date {
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0.9;
             margin-bottom: 1rem;
-            font-weight: 500;
         }
 
         .event-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             margin-bottom: 1rem;
         }
 
         .event-location {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 2rem;
             opacity: 0.9;
         }
 
-        .event-card p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
         }
 
-        /* Global Hubs Section Enhanced */
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .newsletter-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Global Hubs Section */
         .global-hubs {
-            padding: 120px 0;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 100px 0;
+            background: #f8fafc;
             position: relative;
         }
 
@@ -461,24 +494,25 @@
             background: url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
-            opacity: 0.03;
+            opacity: 0.05;
+            z-index: 1;
         }
 
         .hubs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
             position: relative;
             z-index: 2;
         }
 
         .hub-card {
             background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
+            border-radius: 15px;
+            padding: 2rem;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
@@ -491,57 +525,47 @@
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(153, 27, 27, 0.05) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            height: 3px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
         .hub-card:hover::before {
-            opacity: 1;
+            transform: scaleX(1);
         }
 
         .hub-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(220, 38, 38, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
         .hub-flag {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
         .hub-city {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: #1a1a1a;
-            position: relative;
-            z-index: 2;
         }
 
         .hub-members {
             color: #666;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 1rem;
         }
 
         .hub-btn {
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
             color: white;
             border: none;
-            padding: 1rem 2rem;
-            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 20px;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
+            font-weight: 500;
             transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
         }
 
         .hub-btn:hover {
@@ -549,90 +573,73 @@
             box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
         }
 
-        /* Newsletter Section Enhanced */
-        .newsletter {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: white;
-            padding: 100px 0;
+        /* Social Proof Section */
+        .social-proof {
+            padding: 80px 0;
+            background: white;
             text-align: center;
             position: relative;
         }
 
-        .newsletter::before {
+        .social-proof::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23dc2626' fill-opacity='0.1'%3E%3Cpath d='M0 0h80v80H0V0zm20 20v40h40V20H20zm20 35a15 15 0 1 1 0-30 15 15 0 0 1 0 30z' fill-rule='evenodd'/%3E%3C/g%3E%3C/svg%3E");
+            background: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.03;
+            z-index: 1;
         }
 
-        .newsletter-form {
-            max-width: 600px;
-            margin: 3rem auto 0;
+        .press-mentions {
             display: flex;
-            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
             position: relative;
             z-index: 2;
         }
 
-        .newsletter-input {
-            flex: 1;
-            padding: 1.2rem 1.5rem;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            outline: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .newsletter-btn {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            color: white;
-            border: none;
-            padding: 1.2rem 2.5rem;
-            border-radius: 30px;
-            cursor: pointer;
+        .press-logo {
+            font-size: 1.5rem;
             font-weight: 600;
-            font-size: 1.1rem;
+            color: #666;
+            padding: 1rem 2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
             transition: all 0.3s ease;
         }
 
-        .newsletter-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        .press-logo:hover {
+            color: #dc2626;
+            border-color: #dc2626;
+            transform: translateY(-3px);
         }
 
-        /* Footer Enhanced */
+        /* Footer */
         .footer {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            background: #1a1a1a;
             color: white;
-            padding: 80px 0 40px;
-            position: relative;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, #dc2626 50%, transparent 100%);
+            padding: 60px 0 30px;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 4rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
         }
 
         .footer-section h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: white;
         }
 
@@ -641,14 +648,13 @@
         }
 
         .footer-section ul li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
 
         .footer-section ul li a {
             color: #ccc;
             text-decoration: none;
             transition: color 0.3s ease;
-            font-size: 1rem;
         }
 
         .footer-section ul li a:hover {
@@ -666,13 +672,13 @@
         .social-icons {
             display: flex;
             gap: 1rem;
-            justify-content: flex-start;
-            margin-top: 1.5rem;
+            justify-content: center;
+            margin-top: 1rem;
         }
 
         .social-icon {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background: #333;
             border-radius: 50%;
             display: flex;
@@ -681,7 +687,6 @@
             color: white;
             text-decoration: none;
             transition: all 0.3s ease;
-            font-size: 1.2rem;
         }
 
         .social-icon:hover {
@@ -699,10 +704,6 @@
                 font-size: 2.5rem;
             }
 
-            .hero p {
-                font-size: 1.1rem;
-            }
-
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -712,36 +713,22 @@
                 flex-direction: column;
             }
 
-            .stats-grid, .features-grid, .hubs-grid {
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
 
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            .hero {
+            .hero, .featured-event {
                 background-attachment: scroll;
             }
 
-            .featured-event {
-                background-attachment: scroll;
+            .press-mentions {
+                gap: 1rem;
             }
-        }
 
-        /* Additional Visual Enhancements */
-        .parallax-element {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 15s ease-in-out infinite;
-        }
-
-        .parallax-element:nth-child(2) {
-            animation-delay: -5s;
-        }
-
-        .parallax-element:nth-child(3) {
-            animation-delay: -10s;
+            .press-logo {
+                font-size: 1.2rem;
+                padding: 0.75rem 1.5rem;
+            }
         }
     </style>
 </head>
@@ -751,13 +738,12 @@
         <div class="nav-container">
             <div class="logo">
                 <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG" alt="Yorkseed Logo">
-                <span class="logo-text">Yorkseed</span>
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="about.html">About</a></li>
                     <li><a href="hubs.html">Hubs</a></li>
                     <li><a href="events.html">Events</a></li>
+                    <li><a href="insider.html">Insider</a></li>
                     <li><a href="platforms.html">Platform</a></li>
                     <li><a href="#membership">Membership</a></li>
                     <li><a href="#login" class="login-btn">Login</a></li>
@@ -779,7 +765,7 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Snapshot Stats Section -->
     <section class="stats">
         <div class="container">
             <div class="stats-grid">
@@ -807,22 +793,21 @@
     <section class="why-yorkseed">
         <div class="container">
             <h2 class="section-title">Why Yorkseed?</h2>
-            <p class="section-subtitle">Join the world's most connected startup community and accelerate your entrepreneurial journey</p>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🚀</div>
                     <h3>Founder-First</h3>
-                    <p>Built by founders, for founders. Every feature, event, and connection is designed to accelerate your startup journey with authentic peer support and real-world experience.</p>
+                    <p>Built by founders, for founders. Every feature, event, and connection is designed to accelerate your startup journey with authentic peer support.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🌍</div>
                     <h3>City-Based Community</h3>
-                    <p>Local presence, global reach. Connect with your city's startup ecosystem while accessing opportunities across our worldwide network of innovation hubs.</p>
+                    <p>Local presence, global reach. Connect with your city's startup ecosystem while accessing opportunities across our worldwide network.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">✨</div>
-                    <h3>Curated Connections</h3>
-                    <p>Quality over quantity. Our community is carefully curated to ensure every connection has the potential to transform your business and create lasting partnerships.</p>
+                    <h3>Curated Community</h3>
+                    <p>Quality over quantity. Our community is carefully curated to ensure every connection has the potential to transform your business.</p>
                 </div>
             </div>
         </div>
@@ -836,17 +821,17 @@
                 <div class="event-date">March 15, 2025</div>
                 <div class="event-title">Midnight in Paris</div>
                 <div class="event-location">📍 Paris, France</div>
-                <p>Join 200+ founders and investors for an exclusive evening of networking, pitch sessions, and startup showcases in the City of Light. Experience the magic of European innovation.</p>
+                <p>Join 200+ founders and investors for an exclusive evening of networking, pitch sessions, and startup showcases in the City of Light.</p>
                 <a href="#events" class="cta-btn" style="margin-top: 1.5rem;">Learn More</a>
             </div>
         </div>
     </section>
 
     <!-- Global Hubs Section -->
-    <section class="global-hubs">
+    <section class="global-hubs" id="hubs">
         <div class="container">
             <h2 class="section-title">Global Hubs</h2>
-            <p style="text-align: center; color: #666; font-size: 1.2rem; margin-bottom: 2rem;">Connect with startup communities in major cities worldwide</p>
+            <p style="text-align: center; color: #666; font-size: 1.1rem;">Connect with startup communities in major cities worldwide</p>
             <div class="hubs-grid">
                 <div class="hub-card">
                     <div class="hub-flag">🇺🇸</div>
@@ -871,3 +856,43 @@
                     <div class="hub-city">Berlin</div>
                     <div class="hub-members">650+ members</div>
                     <button class="hub-btn">Join Hub</button>
+                </div>
+                <div class="hub-card">
+                    <div class="hub-flag">🇸🇬</div>
+                    <div class="hub-city">Singapore</div>
+                    <div class="hub-members">750+ members</div>
+                    <button class="hub-btn">Join Hub</button>
+                </div>
+                <div class="hub-card">
+                    <div class="hub-flag">🇯🇵</div>
+                    <div class="hub-city">Tokyo</div>
+                    <div class="hub-members">600+ members</div>
+                    <button class="hub-btn">Join Hub</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section (Yorkseed Insider) -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 class="section-title" style="color: white;">Yorkseed Insider</h2>
+                <p style="font-size: 1.1rem; opacity: 0.9;">Get insights, job leads, dealflow, and startup stories delivered twice weekly</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                    <button type="submit" class="newsletter-btn">Subscribe to Insider</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="container">
+            <h2 class="section-title">Trusted by Leading Organizations</h2>
+            <div class="press-mentions">
+                <div class="press-logo">TechCrunch</div>
+                <div class="press-logo">Forbes</div>
+                <div class="press-logo">Venture Beat</div>
+                <div class="press-logo">The Information</div>
