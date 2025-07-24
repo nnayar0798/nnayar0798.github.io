@@ -109,7 +109,8 @@
 
         /* Page Hero */
         .page-hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(220, 38, 38, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&auto=format&fit=crop&w=2044&q=80') center/cover;
             color: white;
             padding: 150px 0 100px;
             text-align: center;
@@ -151,6 +152,31 @@
         .page-hero p {
             font-size: 1.2rem;
             opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fbbf24;
+            display: block;
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
 
         /* Container */
@@ -300,66 +326,31 @@
             margin-bottom: 1.5rem;
         }
 
-        .hub-ambassador {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background: #f8fafc;
-            border-radius: 10px;
-        }
-
-        .ambassador-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .ambassador-info h4 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 0.2rem;
-        }
-
-        .ambassador-info p {
-            font-size: 0.8rem;
+        .hub-description {
             color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
         }
 
-        .next-event {
-            background: #fef3f2;
-            border: 1px solid #fed7d7;
-            border-radius: 10px;
-            padding: 1rem;
+        .hub-features {
+            list-style: none;
             margin-bottom: 1.5rem;
         }
 
-        .event-date {
-            font-size: 0.8rem;
-            color: #dc2626;
-            font-weight: 600;
+        .hub-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             margin-bottom: 0.5rem;
-        }
-
-        .event-title {
             font-size: 0.9rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 0.25rem;
+            color: #666;
         }
 
-        .event-location {
-            font-size: 0.8rem;
-            color: #666;
+        .hub-features li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
         }
 
         .join-hub-btn {
@@ -372,6 +363,9 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
 
         .join-hub-btn:hover {
@@ -386,9 +380,14 @@
             box-shadow: none;
         }
 
+        .join-hub-btn.coming-soon {
+            background: #f59e0b;
+        }
+
         /* Launch New Hub Section */
         .launch-hub-section {
-            background: #f8fafc;
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
             padding: 80px 0;
         }
 
@@ -471,7 +470,8 @@
 
         /* Passport Section */
         .passport-section {
-            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(220, 38, 38, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80') center/cover;
             color: white;
             padding: 80px 0;
             text-align: center;
@@ -552,7 +552,8 @@
 
         /* Footer */
         .footer {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
             color: white;
             padding: 60px 0 30px;
         }
@@ -605,6 +606,10 @@
                 font-size: 2.5rem;
             }
 
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
             .filters-container {
                 flex-direction: column;
                 align-items: stretch;
@@ -634,7 +639,7 @@
     <header class="header">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG" alt="Yorkseed Logo">
+                <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG">
             </a>
             <nav>
                 <ul class="nav-links">
@@ -655,7 +660,23 @@
     <section class="page-hero">
         <div class="page-hero-content">
             <h1>Global Hubs</h1>
-            <p>Connect with startup communities in 50+ cities worldwide</p>
+            <p>Connect with startup communities across 23+ cities worldwide</p>
+            <p>Exclusive venture network for founders, investors, VCs, and executives</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">6K+</span>
+                    <span class="hero-stat-label">Active Members</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">23+</span>
+                    <span class="hero-stat-label">Global Cities</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">5</span>
+                    <span class="hero-stat-label">Countries with Events</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -669,18 +690,14 @@
                     <button class="filter-btn" data-filter="north-america">North America</button>
                     <button class="filter-btn" data-filter="europe">Europe</button>
                     <button class="filter-btn" data-filter="asia">Asia</button>
-                    <button class="filter-btn" data-filter="other">Other</button>
+                    <button class="filter-btn" data-filter="oceania">Oceania</button>
+                    <button class="filter-btn" data-filter="south-america">South America</button>
                 </div>
                 <div class="filter-group">
-                    <span class="filter-label">Role:</span>
-                    <button class="filter-btn active" data-role="all">All</button>
-                    <button class="filter-btn" data-role="founder">Founder</button>
-                    <button class="filter-btn" data-role="investor">Investor</button>
-                    <button class="filter-btn" data-role="alumni">Alumni</button>
-                </div>
-                <div class="view-toggle">
-                    <button class="view-btn active" data-view="cards">Cards</button>
-                    <button class="view-btn" data-view="map">Map</button>
+                    <span class="filter-label">Status:</span>
+                    <button class="filter-btn active" data-status="all">All</button>
+                    <button class="filter-btn" data-status="active">Active</button>
+                    <button class="filter-btn" data-status="coming-soon">Coming Soon</button>
                 </div>
             </div>
         </div>
@@ -691,209 +708,106 @@
         <div class="container">
             <div class="hubs-grid" id="hubsGrid">
                 <!-- New York Hub -->
-                <div class="hub-card" data-region="north-america">
+                <div class="hub-card" data-region="north-america" data-status="active">
                     <div class="hub-header">
                         <div class="hub-flag">🇺🇸</div>
                         <div class="hub-status">Active</div>
                     </div>
-                    <div class="hub-city">New York</div>
-                    <div class="hub-members">1,247 members • 23 events this year</div>
-                    
-                    <div class="hub-ambassador">
-                        <div class="ambassador-avatar">SM</div>
-                        <div class="ambassador-info">
-                            <h4>Sarah Martinez</h4>
-                            <p>Local Ambassador • Ex-Stripe, Current Founder</p>
-                        </div>
-                    </div>
-
-                    <div class="next-event">
-                        <div class="event-date">March 28, 2025 • 6:00 PM</div>
-                        <div class="event-title">Fintech Founders Mixer</div>
-                        <div class="event-location">📍 WeWork Flatiron</div>
-                    </div>
-
-                    <button class="join-hub-btn">Join This Hub</button>
+                    <div class="hub-city">New York City</div>
+                    <div class="hub-members">1,000+ vetted investors and founders</div>
+                    <div class="hub-description">The flagship hub where Yorkseed's journey began. Connect with top-tier VCs, angels, family offices, and successful founders in the world's financial capital.</div>
+                    <ul class="hub-features">
+                        <li>Weekly founder-investor mixers</li>
+                        <li>Access to exclusive deal flow</li>
+                        <li>Networking at major tech conferences</li>
+                        <li>WhatsApp community for real-time connections</li>
+                    </ul>
+                    <a href="https://chat.whatsapp.com/NYC" class="join-hub-btn">Join NYC Hub</a>
                 </div>
 
                 <!-- Paris Hub -->
-                <div class="hub-card" data-region="europe">
+                <div class="hub-card" data-region="europe" data-status="active">
                     <div class="hub-header">
                         <div class="hub-flag">🇫🇷</div>
                         <div class="hub-status">Active</div>
                     </div>
                     <div class="hub-city">Paris</div>
-                    <div class="hub-members">892 members • 18 events this year</div>
-                    
-                    <div class="hub-ambassador">
-                        <div class="ambassador-avatar">AL</div>
-                        <div class="ambassador-info">
-                            <h4>Antoine Leclerc</h4>
-                            <p>Local Ambassador • Ex-BlaBlaCar, Current VC</p>
-                        </div>
-                    </div>
-
-                    <div class="next-event">
-                        <div class="event-date">April 2, 2025 • 7:00 PM</div>
-                        <div class="event-title">Midnight in Paris</div>
-                        <div class="event-location">📍 Station F</div>
-                    </div>
-
-                    <button class="join-hub-btn">Join This Hub</button>
+                    <div class="hub-members">500+ members in Europe's startup capital</div>
+                    <div class="hub-description">Connect with France's thriving startup ecosystem including entrepreneurs from Station F, VCs, and tech executives driving European innovation.</div>
+                    <ul class="hub-features">
+                        <li>Monthly startup showcases</li>
+                        <li>Access to European funding networks</li>
+                        <li>Cross-border collaboration opportunities</li>
+                        <li>Bilingual community (French/English)</li>
+                    </ul>
+                    <a href="https://chat.whatsapp.com/PARIS" class="join-hub-btn">Join Paris Hub</a>
                 </div>
 
                 <!-- London Hub -->
-                <div class="hub-card" data-region="europe">
+                <div class="hub-card" data-region="europe" data-status="active">
                     <div class="hub-header">
                         <div class="hub-flag">🇬🇧</div>
                         <div class="hub-status">Active</div>
                     </div>
                     <div class="hub-city">London</div>
-                    <div class="hub-members">1,156 members • 21 events this year</div>
-                    
-                    <div class="hub-ambassador">
-                        <div class="ambassador-avatar">RJ</div>
-                        <div class="ambassador-info">
-                            <h4>Rebecca Johnson</h4>
-                            <p>Local Ambassador • Ex-Monzo, Angel Investor</p>
-                        </div>
-                    </div>
-
-                    <div class="next-event">
-                        <div class="event-date">March 30, 2025 • 6:30 PM</div>
-                        <div class="event-title">AI Startup Showcase</div>
-                        <div class="event-location">📍 Google Campus</div>
-                    </div>
-
-                    <button class="join-hub-btn">Join This Hub</button>
+                    <div class="hub-members">600+ fintech & startup professionals</div>
+                    <div class="hub-description">Tap into London's powerful fintech and startup scene with connections to leading VCs, angels, and unicorn founders in Europe's financial hub.</div>
+                    <ul class="hub-features">
+                        <li>Fintech-focused networking events</li>
+                        <li>Connection to London's VC ecosystem</li>
+                        <li>Access to government innovation programs</li>
+                        <li>Cross-European startup partnerships</li>
+                    </ul>
+                    <a href="https://chat.whatsapp.com/LONDON" class="join-hub-btn">Join London Hub</a>
                 </div>
 
-                <!-- Singapore Hub -->
-                <div class="hub-card" data-region="asia">
+                <!-- Hong Kong Hub -->
+                <div class="hub-card" data-region="asia" data-status="active">
                     <div class="hub-header">
-                        <div class="hub-flag">🇸🇬</div>
+                        <div class="hub-flag">🇭🇰</div>
                         <div class="hub-status">Active</div>
                     </div>
-                    <div class="hub-city">Singapore</div>
-                    <div class="hub-members">734 members • 15 events this year</div>
-                    
-                    <div class="hub-ambassador">
-                        <div class="ambassador-avatar">LW</div>
-                        <div class="ambassador-info">
-                            <h4>Li Wei</h4>
-                            <p>Local Ambassador • Ex-Grab, Current Founder</p>
-                        </div>
-                    </div>
-
-                    <div class="next-event">
-                        <div class="event-date">April 5, 2025 • 7:00 PM</div>
-                        <div class="event-title">SEA Founders Roundtable</div>
-                        <div class="event-location">📍 BLOCK71</div>
-                    </div>
-
-                    <button class="join-hub-btn">Join This Hub</button>
+                    <div class="hub-city">Hong Kong</div>
+                    <div class="hub-members">300+ Asia-Pacific innovators</div>
+                    <div class="hub-description">Gateway to Asian markets with connections to Hong Kong's vibrant startup ecosystem, Cyberport, and Hong Kong Science & Technology Parks.</div>
+                    <ul class="hub-features">
+                        <li>Asia market entry support</li>
+                        <li>Connection to Cyberport & HKSTPC</li>
+                        <li>Cross-border funding opportunities</li>
+                        <li>Access to regional accelerators</li>
+                    </ul>
+                    <a href="https://chat.whatsapp.com/JWS3SA22Di52uZhfkS8fVI" class="join-hub-btn">Join Hong Kong Hub</a>
                 </div>
 
-                <!-- Berlin Hub -->
-                <div class="hub-card" data-region="europe">
+                <!-- Austin Hub -->
+                <div class="hub-card" data-region="north-america" data-status="active">
                     <div class="hub-header">
-                        <div class="hub-flag">🇩🇪</div>
+                        <div class="hub-flag">🇺🇸</div>
                         <div class="hub-status">Active</div>
                     </div>
-                    <div class="hub-city">Berlin</div>
-                    <div class="hub-members">623 members • 12 events this year</div>
-                    
-                    <div class="hub-ambassador">
-                        <div class="ambassador-avatar">MS</div>
-                        <div class="ambassador-info">
-                            <h4>Max Schmidt</h4>
-                            <p>Local Ambassador • Ex-Zalando, Current VC</p>
-                        </div>
-                    </div>
-
-                    <div class="next-event">
-                        <div class="event-date">April 8, 2025 • 6:00 PM</div>
-                        <div class="event-title">Deep Tech Demo Day</div>
-                        <div class="event-location">📍 Rocket Internet</div>
-                    </div>
-
-                    <button class="join-hub-btn">Join This Hub</button>
+                    <div class="hub-city">Austin</div>
+                    <div class="hub-members">400+ SXSW alumni & tech founders</div>
+                    <div class="hub-description">Where Yorkseed was born! Connect with Austin's booming tech scene and exclusive SXSW networking opportunities.</div>
+                    <ul class="hub-features">
+                        <li>SXSW exclusive events</li>
+                        <li>Texas startup ecosystem access</li>
+                        <li>Music & tech crossover events</li>
+                        <li>Year-round festival networking</li>
+                    </ul>
+                    <a href="https://chat.whatsapp.com/AUSTIN" class="join-hub-btn">Join Austin Hub</a>
                 </div>
 
-                <!-- Tokyo Hub -->
-                <div class="hub-card" data-region="asia">
+                <!-- Bay Area Hub -->
+                <div class="hub-card" data-region="north-america" data-status="active">
                     <div class="hub-header">
-                        <div class="hub-flag">🇯🇵</div>
-                        <div class="hub-status">Coming Soon</div>
+                        <div class="hub-flag">🇺🇸</div>
+                        <div class="hub-status">Active</div>
                     </div>
-                    <div class="hub-city">Tokyo</div>
-                    <div class="hub-members">Launching Q2 2025</div>
-                    
-                    <div class="hub-ambassador">
-                        <div class="ambassador-avatar">YT</div>
-                        <div class="ambassador-info">
-                            <h4>Yuki Tanaka</h4>
-                            <p>Local Ambassador • Ex-SoftBank, Current Founder</p>
-                        </div>
-                    </div>
-
-                    <div class="next-event">
-                        <div class="event-date">Coming Soon</div>
-                        <div class="event-title">Launch Event TBA</div>
-                        <div class="event-location">📍 Location TBA</div>
-                    </div>
-
-                    <button class="join-hub-btn" disabled>Notify Me</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Launch New Hub -->
-    <section class="launch-hub-section">
-        <div class="container">
-            <div class="launch-hub-card">
-                <h2>Launch a New Hub</h2>
-                <p>Don't see your city? Help us bring the Yorkseed community to your region.</p>
-                
-                <form class="launch-form" id="launchForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" id="city" name="city" required placeholder="e.g., Austin">
-                        </div>
-                        <div class="form-group">
-                            <label for="country">Country</label>
-                            <input type="text" id="country" name="country" required placeholder="e.g., United States">
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="experience">Your Background</label>
-                        <select id="experience" name="experience" required>
-                            <option value="">Select your role</option>
-                            <option value="founder">Founder</option>
-                            <option value="investor">Investor</option>
-                            <option value="operator">Startup Operator</option>
-                            <option value="ecosystem">Ecosystem Builder</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="why">Why do you want to launch a hub in your city?</label>
-                        <textarea id="why" name="why" rows="4" placeholder="Tell us about your local startup ecosystem and vision..."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Submit Application</button>
-                </form
+                    <div class="hub-city">Bay Area</div>
+                    <div class="hub-members">800+ Silicon Valley professionals</div>
+                    <div class="hub-description">Connect with Silicon Valley's elite startup ecosystem including Sand Hill Road VCs, unicorn founders, and tech executives.</div>
+                    <ul class="hub-features">
+                        <li>Sand Hill Road VC connections</li>
+                        <li>Big Tech partnership opportunities</li>
+                        <li>Unicorn founder mentorship</li>
+                        <li>Deep tech startup focus</li>
