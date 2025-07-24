@@ -21,12 +21,14 @@
         /* Header */
         .header {
             position: fixed;
+            height: 110px;
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid #e0e0e0;
             z-index: 1000;
+            align-items: center;
             padding: 1rem 0;
             transition: all 0.3s ease;
         }
@@ -37,6 +39,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 100%;
             padding: 0 2rem;
         }
 
@@ -45,14 +48,18 @@
             align-items: center;
             font-size: 1.5rem;
             font-weight: 700;
-            text-decoration: none;
         }
 
         .logo img {
-            height: 40px;
+            max-height: 100px; /* keep logo within header */
+            height: auto;
             width: auto;
             margin-right: 0.5rem;
             transition: all 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
         }
 
         .logo-text {
