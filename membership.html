@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership | Yorkseed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            height: 110px;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .logo img {
+            max-height: 100px;
+            height: auto;
+            width: auto;
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #dc2626;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .page-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            background: white;
+            color: #dc2626;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+        }
+
+        .section-light {
+            background: #f8fafc;
+        }
+
+        .section-dark {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .section-dark .section-title {
+            color: white;
+        }
+
+        /* Who Can Join Section */
+        .member-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid #dc2626;
+            position: relative;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .member-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .member-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .member-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .member-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .member-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .member-features li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.75rem;
+            width: 16px;
+        }
+
+        /* Membership Tiers */
+        .tiers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .tier-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: all 0.3s ease;
+            border-top: 4px solid #e5e5e5;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .tier-card.featured {
+            border-top: 4px solid #dc2626;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.15);
+            transform: scale(1.05);
+        }
+
+        .tier-card.featured::before {
+            content: "Most Popular";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #dc2626;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .tier-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tier-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .tier-header .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-header .period {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .tier-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .tier-features li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .tier-features li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.75rem;
+            width: 16px;
+            margin-top: 2px;
+        }
+
+        .tier-cta {
+            width: 100%;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .tier-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        .tier-cta.secondary {
+            background: transparent;
+            color: #dc2626;
+            border: 2px solid #dc2626;
+        }
+
+        .tier-cta.secondary:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+        }
+
+        /* Access Features */
+        .access-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .access-card {
+            background: #374151;
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .access-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .access-card::before {
+            content: attr(data-icon);
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        .access-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .access-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Application Form */
+        .application-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #dc2626;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #dc2626;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
+            color: #999;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .member-types,
+            .tiers-container,
+            .access-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tier-card.featured {
+                transform: none;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG" alt="Yorkseed Logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="hubs.html">Hubs</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="insider.html">Insider</a></li>
+                    <li><a href="platform.html">Platform</a></li>
+                    <li><a href="membership.html" class="active">Membership</a></li>
+                    <li><a href="login.html" class="login-btn">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1>Join Yorkseed</h1>
+            <p>Connect with the world's most ambitious founders, investors, and operators</p>
+            <a href="#apply" class="hero-cta">Apply for Membership</a>
+        </div>
+    </section>
+
+    <!-- Who Can Join -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Who Can Join?</h2>
+            <div class="member-types">
+                <div class="member-card">
+                    <span class="member-icon">🚀</span>
+                    <h3>Founders</h3>
+                    <p>Visionary entrepreneurs building the next generation of game-changing startups</p>
+                    <ul class="member-features">
+                        <li>Early-stage to Series A+ founders</li>
+                        <li>Serial entrepreneurs</li>
+                        <li>First-time builders with traction</li>
+                        <li>Startup studio partners</li>
+                    </ul>
+                </div>
+
+                <div class="member-card">
+                    <span class="member-icon">💼</span>
+                    <h3>Investors</h3>
+                    <p>Active capital providers seeking high-quality dealflow and co-investment opportunities</p>
+                    <ul class="member-features">
+                        <li>Angel investors (£25K+ annual)</li>
+                        <li>VC partners and principals</li>
+                        <li>Family office representatives</li>
+                        <li>Corporate venture arms</li>
+                    </ul>
+                </div>
+
+                <div class="member-card">
+                    <span class="member-icon">⚡</span>
+                    <h3>Operators</h3>
+                    <p>Senior executives and specialists driving growth at high-impact companies</p>
+                    <ul class="member-features">
+                        <li>C-suite executives</li>
+                        <li>VP+ at growth companies</li>
+                        <li>Strategic advisors & consultants</li>
+                        <li>Industry domain experts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Tiers -->
+    <section class="section-light">
+        <div class="container">
+            <h2 class="section-title">Membership Tiers & Benefits</h2>
+            <div class="tiers-container">
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <h3>Basic</h3>
+                        <div class="price">Free</div>
+                        <div class="period">Community Access</div>
+                    </div>
+                    <ul class="tier-features">
+                        <li>Basic directory access</li>
+                        <li>Public event invitations</li>
+                        <li>Community forum access</li>
+                        <li>Monthly newsletter</li>
+                        <li>Job board viewing</li>
+                    </ul>
+                    <button class="tier-cta secondary">Join Free</button>
+                </div>
+
+                <div class="tier-card featured">
+                    <div class="tier-header">
+                        <h3>Pro</h3>
+                        <div class="price">£99<span style="font-size: 1rem; font-weight: 400;">/month</span></div>
+                        <div class="period">Full Access</div>
+                    </div>
+                    <ul class="tier-features">
+                        <li>Everything in Basic</li>
+                        <li>Smart directory with filters</li>
+                        <li>Priority event access & discounts</li>
+                        <li>Direct messaging capabilities</li>
+                        <li>Yorkseed Insider premium</li>
+                        <li>Monthly virtual networking</li>
+                        <li>Resource library access</li>
+                        <li>Job posting credits (3/month)</li>
+                    </ul>
+                    <button class="tier-cta">Upgrade to Pro</button>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <h3>VIP</h3>
+                        <div class="price">£299<span style="font-size: 1rem; font-weight: 400;">/month</span></div>
+                        <div class="period">Executive Access</div>
+                    </div>
+                    <ul class="tier-features">
+                        <li>Everything in Pro</li>
+                        <li>VIP-only events & dinners</li>
+                        <li>1-on-1 intro facilitation</li>
+                        <li>Partner program access</li>
+                        <li>Quarterly founder/investor summits</li>
+                        <li>Direct access to Yorkseed team</li>
+                        <li>Custom deal sourcing</li>
+                        <li>Unlimited job postings</li>
+                        <li>Speaking opportunity priority</li>
+                    </ul>
+                    <button class="tier-cta">Apply for VIP</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Get Access To -->
+    <section class="section-dark">
+        <div class="container">
+            <h2 class="section-title">What You Get Access To</h2>
+            <div class="access-grid">
+                <div class="access-card" data-icon="🌍">
+                    <h4>Global Hubs</h4>
+                    <p>Connect with startup communities across 50+ cities worldwide, from London to Singapore to New York.</p>
+                </div>
+
+                <div class="access-card" data-icon="🎯">
+                    <h4>Curated Events</h4>
+                    <p>Exclusive mixers, pitch nights, and intimate dinners designed for meaningful connections and deal-making.</p>
+                </div>
+
+                <div class="access-card" data-icon="📊">
+                    <h4>Smart Directory</h4>
+                    <p>AI-powered member directory with advanced filters to find exactly the right founders, investors, or operators.</p>
+                </div>
+
+                <div class="access-card" data-icon="📚">
+                    <h4>Resource Library</h4>
+                    <p>Exclusive guides, templates, and insights from successful exits, fundraising decks, and growth strategies.</p>
+                </div>
+
+                <div class="access-card" data-icon="📧">
+                    <h4>Yorkseed Insider</h4>
+                    <p>Premium newsletter with insider dealflow, market insights, and opportunities not available anywhere else.</p>
+                </div>
+
+                <div class="access-card" data-icon="🤝">
+                    <h4>Partner Network</h4>
+                    <p>Direct access to our ecosystem of legal, accounting, HR, and other service providers with member discounts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="section-light" id="apply">
+        <div class="container">
+            <h2 class="section-title">Apply for Membership</h2>
+            <form class="application-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="memberType">I am a *</label>
+                        <select id="memberType" name="memberType" required>
+                            <option value="">Select your role</option>
+                            <option value="founder">Founder</option>
+                            <option value="investor">Investor</option>
+                            <option value="operator">Operator</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location *</label>
+                        <input type="text" id="location" name="location" placeholder="City, Country" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Current Company *</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Job Title *</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="linkedin">LinkedIn Profile *</label>
+                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Tell us about yourself and why you want to join Yorkseed *</label>
+                    <textarea id="bio" name="bio" placeholder="Share your background, what you're working on, and what you hope to get from the Yorkseed community..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="referral">How did you hear about us?</label>
+                    <select id="referral" name="referral">
+                        <option value="">Select an option</option>
+                        <option value="member">Referred by a member</option>
+                        <option value="event">At a Yorkseed event</option>
+                        <option value="social">Social media</option>
+                        <option value="newsletter">Newsletter/Blog</option>
+                        <option value="search">Google search</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Application</button>
+                
+                <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 1rem;">
+                    Applications are reviewed within 48 hours. We'll be in touch soon!
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="hubs.html">Global Hubs</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="membership.html">Membership</a></li>
+                        <li><a href="jobs.html">Job Board</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="insider.html">Yorkseed Insider</a></li>
+                        <li><a href="platform.html">Platform</a></li>
+                        <li><a href="partners.html">For Partners</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Yorkseed</h3>
+                    <p style="color: #ccc; line-height: 1.6;">Building the world's most connected startup community, one city at a time.</p>
+                </div>
+            </div>
