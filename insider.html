@@ -1,219 +1,961 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Insider | Yorkseed</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yorkseed Insider - The Global Venture Newsletter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.6;
-      color: #1a1a1a;
-      overflow-x: hidden;
-    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
 
-    /* Header */
-    .header {
-      position: fixed;
-      height: 110px;
-      top: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid #e0e0e0;
-      z-index: 1000;
-      padding: 1rem 0;
-      transition: all 0.3s ease;
-    }
+        /* Header - Same as other pages */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
 
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 100%;
-      padding: 0 2rem;
-    }
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-decoration: none;
-    }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #dc2626;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
 
-    .logo img {
-      max-height: 100px;
-      height: auto;
-      width: auto;
-      margin-right: 0.5rem;
-      transition: all 0.3s ease;
-    }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
 
-    .logo img:hover {
-      transform: scale(1.05);
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
 
-    .logo-text {
-      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+        .nav-links a:hover, .nav-links a.active {
+            color: #dc2626;
+        }
 
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-      align-items: center;
-    }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #dc2626;
+            transition: width 0.3s ease;
+        }
 
-    .nav-links a {
-      text-decoration: none;
-      color: #555;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      position: relative;
-    }
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
 
-    .nav-links a:hover {
-      color: #dc2626;
-    }
+        .login-btn {
+            background: #dc2626;
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: 1px solid #dc2626;
+        }
 
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 50%;
-      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
+        .login-btn:hover {
+            background: #b91c1c;
+            border-color: #b91c1c;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
 
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
+        /* Page Layout */
+        .page-container {
+            margin-top: 72px;
+        }
 
-    .nav-links a.active {
-      color: #dc2626;
-    }
+        .section {
+            padding: 6rem 0;
+        }
 
-    .login-btn {
-      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-      color: white !important;
-      padding: 0.5rem 1.5rem;
-      border-radius: 25px;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    .login-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
-    }
+        /* Hero Section */
+        .hero-insider {
+            background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+            padding: 8rem 0 6rem;
+            text-align: center;
+        }
 
-    .page-hero {
-      background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
-      color: white;
-      padding: 150px 0 100px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+        .insider-badge {
+            display: inline-block;
+            background: #dc2626;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-    .page-hero-content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      position: relative;
-      z-index: 2;
-    }
+        .hero-insider h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
 
-    .page-hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
+        .hero-insider .highlight {
+            color: #dc2626;
+        }
 
-    .page-hero p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
+        .hero-insider .subtitle {
+            font-size: 1.5rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
 
-    section {
-      padding: 100px 0;
-    }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+        .hero-stat {
+            text-align: center;
+        }
 
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      color: #1a1a1a;
-    }
+        .hero-stat .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #dc2626;
+            display: block;
+        }
 
-    .placeholder {
-      text-align: center;
-      font-size: 1.2rem;
-      color: #555;
-    }
-  </style>
+        .hero-stat .label {
+            font-size: 0.95rem;
+            color: #6b7280;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-cta {
+            background: #dc2626;
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Intro Section */
+        .intro {
+            background: #ffffff;
+        }
+
+        .intro-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .intro-text p {
+            font-size: 1.2rem;
+            color: #374151;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .intro-text .highlight-text {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .intro-features {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid #f3f4f6;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #dc2626;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .feature-item h4 {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-item p {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Table */
+        .pricing {
+            background: #fafafa;
+        }
+
+        .pricing h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .pricing .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-table {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #f3f4f6;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .pricing-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .pricing-header div {
+            padding: 2rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .pricing-header .feature-col {
+            text-align: left;
+            font-size: 1.2rem;
+        }
+
+        .pricing-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .pricing-row:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-row div {
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-name {
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+
+        .feature-description {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-top: 0.3rem;
+        }
+
+        .check-icon {
+            color: #dc2626;
+            font-size: 1.2rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .cross-icon {
+            color: #9ca3af;
+            font-size: 1.2rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .pricing-cta {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            background: #f9fafb;
+            border-top: 2px solid #dc2626;
+        }
+
+        .pricing-cta div {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .pricing-cta .empty {
+            background: transparent;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-free {
+            background: #f3f4f6;
+            color: #1a1a1a;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-free:hover {
+            background: #e5e7eb;
+            transform: translateY(-1px);
+        }
+
+        .btn-premium {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-premium:hover {
+            background: #b91c1c;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Subscribe Section */
+        .subscribe {
+            background: #dc2626;
+            color: white;
+            text-align: center;
+        }
+
+        .subscribe h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subscribe p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .subscribe-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .subscription-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .subscription-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .subscription-option:hover, .subscription-option.selected {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .option-price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .option-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #374151;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Past Editions */
+        .past-editions {
+            background: #ffffff;
+        }
+
+        .past-editions h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+        }
+
+        .editions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .edition-card {
+            background: white;
+            border: 1px solid #f3f4f6;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .edition-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border-color: #dc2626;
+        }
+
+        .edition-header {
+            background: #fafafa;
+            padding: 1.5rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .edition-date {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .edition-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .edition-content {
+            padding: 1.5rem;
+        }
+
+        .edition-preview {
+            color: #374151;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .edition-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .topic-tag {
+            background: #f3f4f6;
+            color: #6b7280;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Submit Section */
+        .submit-section {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .submit-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .submit-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .submit-text p {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .submit-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .submit-category {
+            background: #374151;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .submit-category:hover {
+            background: #dc2626;
+            transform: translateY(-3px);
+        }
+
+        .submit-category .icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .submit-category h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .submit-category p {
+            font-size: 0.9rem;
+            color: #d1d5db;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .intro-content, .submit-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+            
+            .hero-stats {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-insider h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .pricing-header, .pricing-row, .pricing-cta {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-header .feature-col {
+                display: none;
+            }
+
+            .subscription-options {
+                grid-template-columns: 1fr;
+            }
+
+            .editions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-insider h1 {
+                font-size: 2.2rem;
+            }
+            
+            .intro-text h2, .pricing h2, .past-editions h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG" alt="Yorkseed Logo">
-      </a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="hubs.html">Hubs</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="insider.html" class="active">Insider</a></li>
-          <li><a href="platform.html">Platform</a></li>
-          <li><a href="membership.html">Membership</a></li>
-          <li><a href="login.html" class="login-btn">Login</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Yorkseed™</a>
+            <ul class="nav-links">
+              <li><a href="index">Home</a></li>  
+              <li><a href="about">About</a></li>
+              <li><a href="hubs">Hubs</a></li>
+                <li><a href="events">Events</a></li>
+                <li><a href="insider" class="active">Insider</a></li>
+                <li><a href="platform">Platform</a></li>
+                <li><a href="membership">Membership</a></li>
+                <li><a href="#" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- Hero Section -->
-  <section class="page-hero">
-    <div class="page-hero-content">
-      <h1>Yorkseed Insider</h1>
-      <p>Insights, job leads, and dealflow delivered twice weekly.</p>
-    </div>
-  </section>
+    <div class="page-container">
+        <!-- Hero Section -->
+        <section class="hero-insider section">
+            <div class="container">
+                <div class="insider-badge">Yorkseed Insider</div>
+                <h1>The <span class="highlight">Global</span> Venture Newsletter</h1>
+                <div class="subtitle">Get insights, job leads, dealflow, and more — twice weekly.</div>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="number">25K+</span>
+                        <span class="label">Subscribers</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">98</span>
+                        <span class="label">Issues Published</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">45%</span>
+                        <span class="label">Open Rate</span>
+                    </div>
+                </div>
+                
+                <a href="#subscribe" class="hero-cta">Subscribe Now</a>
+            </div>
+        </section>
 
-  <!-- Coming Soon Section -->
-  <section>
-    <div class="container">
-      <h2 class="section-title">Coming Soon</h2>
-      <p class="placeholder">We're working on exciting things for Yorkseed Insider. Stay tuned!</p>
-    </div>
-  </section>
-</body>
-</html>
+        <!-- Intro Section -->
+        <section class="intro section">
+            <div class="container">
+                <div class="intro-content">
+                    <div class="intro-text">
+                        <h2>Stay Ahead of the Curve</h2>
+                        <p>Yorkseed Insider isn't just another startup newsletter. It's your <span class="highlight-text">direct line to the global venture ecosystem</span> — curated by founders, for founders.</p>
+                        
+                        <p>Every Tuesday and Friday, we deliver actionable insights from our network of 10,000+ founders, investors, and operators across 50+ global hubs.</p>
+                        
+                        <p>From exclusive job opportunities at YC-backed startups to insider analysis of the latest funding rounds, <span class="highlight-text">Yorkseed Insider gives you the intelligence you need to make your next move</span>.</p>
+                    </div>
+                    
+                    <div class="intro-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">💼</div>
+                            <div>
+                                <h4>Exclusive Job Board</h4>
+                                <p>Hidden opportunities at top startups and VCs</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">💰</div>
+                            <div>
+                                <h4>Dealflow Insights</h4>
+                                <p>Who's raising, who's investing, what's hot</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🎯</div>
+                            <div>
+                                <h4>Investor Spotlights</h4>
+                                <p>Deep dives into thesis, portfolio, and preferences</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🚀</div>
+                            <div>
+                                <h4>Exit Analysis</h4>
+                                <p>Learn from successful acquisitions and IPOs</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">📊</div>
+                            <div>
+                                <h4>Market Intelligence</h4>
+                                <p>Trends, data, and insights you can't find elsewhere</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Table -->
+        <section class="pricing section">
+            <div class="container">
+                <h2>Choose Your Access Level</h2>
+                <div class="subtitle">Both tiers deliver value. Premium gets you the competitive edge.</div>
+                
+                <div class="pricing-table">
+                    <div class="pricing-header">
+                        <div class="feature-col">What You Get</div>
+                        <div>Free<br><span style="font-size: 0.9rem; opacity: 0.8;">$0/month</span></div>
+                        <div>Premium<br><span style="font-size: 0.9rem; opacity: 0.8;">$29/month</span></div>
+                    </div>
+                    
+                    <div class="pricing-row">
+                        <div>
+                            <div>
+                                <div class="feature-name">Newsletter (2x/week)</div>
+                                <div class="feature-description">Curated startup news and insights</div>
+                            </div>
+                        </div>
+                        <div><span class="check-icon">✓</span></div>
+                        <div><span class="check-icon">✓</span></div>
+                    </div>
+                    
+                    <div class="pricing-row">
+                        <div>
+                            <div>
+                                <div class="feature-name">Job Board Access</div>
+                                <div class="feature-description">Open positions at portfolio companies</div>
+                            </div>
+                        </div>
+                        <div><span class="check-icon">✓</span></div>
+                        <div><span class="check-icon">✓</span></div>
+                    </div>
+                    
+                    <div class="pricing-row">
+                        <div>
+                            <div>
+                                <div class="feature-name">Conference Guides</div>
+                                <div class="feature-description">Free survival guides for major events</div>
+                            </div>
+                        </div>
+                        <div><span class="check-icon">✓</span></div>
+                        <div><span class="check-icon">✓</span></div>
+                    </div>
+                    
+                    <div class="pricing-row">
+                        <div>
+                            <div>
+                                <div class="feature-name">Investor Database</div>
+                                <div class="feature-description">Searchable directory of 1,000+ VCs</div>
+                            </div>
+                        </div>
+                        <div><span class="cross-icon">✗</span></div>
+                        <div><span class="check-icon">✓</span></div>
+                    </div>
+                    
+                    <div class="pricing-row">
+                        <div>
+                            <div>
+                                <div class="feature-name">Dealflow Analysis</div>
+                                <div class="feature-description">Weekly funding round breakdowns</div>
+                            </div>
+                        </div>
+                        <div><span class="cross-icon">✗</span></div>
+                        <div><span class="check-icon">✓</span></div>
+                    </div>
+                    
+                    <div class="pricing-row">
+                        <div>
+                            <div>
+                                <div class="feature-name">Exit Spotlights</div>
+                                <div class="feature-description">Deep dives into successful exits</div>
+                            </div>
+                        </div>
+                        <div><span class="cross-icon">✗</span></div>
+                        <div><span class="check-icon">✓</span></div>
+                    </div>
+                    
+                    <div class="pricing-row">
+                        <div>
+                            <div>
+                                <div class="feature-name">Premium Job Alerts</div>
+                                <div class="feature-description">First access to exclusive opportunities</div>
+                            </div>
+                        </div>
+                        <div><span class="cross-icon">✗</span></div>
+                        <div><span class="check-icon">✓</span></div>
+                    </div>
+                    
+                    <div class="pricing-row">
+                        <div>
+                            <div>
+                                <div class="feature-name">Investor Intros</div>
+                                <div class="feature-description">Quarterly warm introductions</div>
+                            </div>
+                        </div>
+                        <div><span class="cross-icon">✗</span></div>
+                        <div><span class="check-icon">✓</span></div>
+                    </div>
+                    
+                    <div class="pricing-cta">
+                        <div class="empty"></div>
+                        <div>
+                            <button class="cta-button btn-free">Start Free</button>
+                        </div>
+                        <div>
+                            <button class="cta-button btn-premium">Go Premium</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subscribe Section -->
+        <section class="subscribe section" id="subscribe">
+            <div class="container">
+                <h2>Subscribe to Yorkseed Insider</h2>
+                <p>Join 25,000+ founders and investors who start their week with us.</p>
+                
+                <form class="subscribe-form">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="role">Your Role</label>
+                        <select id="role" required>
+                            <option value="">Select your role</option>
+                            <option value="founder">Founder/CEO</option>
+                            <option value="investor">Investor/VC</option>
+                            <option value="employee">Startup Employee</option>
+                            <option value="executive">Corporate Executive</option>
+                            <option value="student">Student</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="subscription-options">
+                        <div class="subscription-option selected" data-plan="free">
+                            <div class="option-price">Free</div>
