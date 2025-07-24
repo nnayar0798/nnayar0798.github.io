@@ -121,7 +121,8 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(220, 38, 38, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
             color: white;
             padding: 150px 0 100px;
             text-align: center;
@@ -224,12 +225,27 @@
         .stats {
             background: #f8fafc;
             padding: 80px 0;
+            position: relative;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2015&q=80') center/cover;
+            opacity: 0.05;
+            z-index: 1;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .stats-grid {
@@ -290,6 +306,40 @@
             text-align: center;
             padding: 2rem;
             transition: all 0.3s ease;
+            position: relative;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.9) 100%);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .feature-card:nth-child(1)::before {
+            background-image: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?ixlib=rb-4.0.3&auto=format&fit=crop&w=2076&q=80');
+        }
+
+        .feature-card:nth-child(2)::before {
+            background-image: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+
+        .feature-card:nth-child(3)::before {
+            background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+
+        .feature-card > * {
+            position: relative;
+            z-index: 2;
         }
 
         .feature-card:hover {
@@ -322,7 +372,8 @@
 
         /* Featured Event Section */
         .featured-event {
-            background: linear-gradient(135deg, #991b1b 0%, #dc2626 100%);
+            background: linear-gradient(135deg, rgba(153, 27, 27, 0.9) 0%, rgba(220, 38, 38, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80') center/cover;
             color: white;
             padding: 80px 0;
             text-align: center;
@@ -358,7 +409,8 @@
 
         /* Newsletter Section */
         .newsletter {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
             color: white;
             padding: 80px 0;
             text-align: center;
@@ -399,7 +451,8 @@
         /* Global Hubs Section */
         .global-hubs {
             padding: 100px 0;
-            background: #f8fafc;
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&auto=format&fit=crop&w=2044&q=80') center/cover;
         }
 
         .hubs-grid {
@@ -417,11 +470,59 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hub-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            transition: opacity 0.3s ease;
+        }
+
+        .hub-card:nth-child(1)::before {
+            background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+
+        .hub-card:nth-child(2)::before {
+            background-image: url('https://images.unsplash.com/photo-1502602898536-47ad22581b52?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80');
+        }
+
+        .hub-card:nth-child(3)::before {
+            background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+
+        .hub-card:nth-child(4)::before {
+            background-image: url('https://images.unsplash.com/photo-1587564471511-c0478e5b45cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80');
+        }
+
+        .hub-card:nth-child(5)::before {
+            background-image: url('https://images.unsplash.com/photo-1525625293386-3f8f99389edd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2052&q=80');
+        }
+
+        .hub-card:nth-child(6)::before {
+            background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2088&q=80');
+        }
+
+        .hub-card > * {
+            position: relative;
+            z-index: 2;
         }
 
         .hub-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .hub-card:hover::before {
+            opacity: 0.1;
         }
 
         .hub-flag {
@@ -459,7 +560,8 @@
 
         /* Footer */
         .footer {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
             color: white;
             padding: 60px 0 30px;
         }
@@ -559,7 +661,7 @@
     <header class="header">
         <div class="nav-container">
             <div class="logo">
-                <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG" alt="Yorkseed Logo">
+                <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG">
             </div>
             <nav>
                 <ul class="nav-links">
