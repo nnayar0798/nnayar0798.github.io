@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yorkseed - Startup Community Platform</title>
+    <title>Yorkseed - Your Global Launchpad for Startup Connections</title>
     <style>
         * {
             margin: 0;
@@ -28,6 +28,7 @@
             backdrop-filter: blur(20px);
             border-bottom: 1px solid #e0e0e0;
             z-index: 1000;
+            align-items: center;
             padding: 1rem 0;
             transition: all 0.3s ease;
         }
@@ -47,15 +48,18 @@
             align-items: center;
             font-size: 1.5rem;
             font-weight: 700;
-            text-decoration: none;
         }
 
         .logo img {
-            max-height: 100px;
+            max-height: 100px; /* keep logo within header */
             height: auto;
             width: auto;
             margin-right: 0.5rem;
             transition: all 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
         }
 
         .logo-text {
@@ -100,7 +104,7 @@
             width: 100%;
         }
 
-        .login-btn, .platform-btn {
+        .login-btn {
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
             color: white !important;
             padding: 0.5rem 1.5rem;
@@ -108,21 +112,19 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            margin-left: 1rem;
         }
 
-        .login-btn:hover, .platform-btn:hover {
+        .login-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(220, 38, 38, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
             color: white;
-            padding: 200px 0 150px;
+            padding: 150px 0 100px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -157,12 +159,27 @@
             font-weight: 700;
             margin-bottom: 1.5rem;
             line-height: 1.2;
+            opacity: 0;
+            animation: slideUp 1s ease 0.3s forwards;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            opacity: 0.9;
+            font-size: 1.25rem;
             margin-bottom: 2.5rem;
+            opacity: 0.9;
+            opacity: 0;
+            animation: slideUp 1s ease 0.6s forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .cta-buttons {
@@ -170,57 +187,104 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            opacity: 0;
+            animation: slideUp 1s ease 0.9s forwards;
         }
 
-        .cta-primary {
+        .cta-btn {
             background: white;
             color: #dc2626;
-            padding: 1.2rem 2.5rem;
+            padding: 1rem 2rem;
             border: none;
             border-radius: 30px;
-            font-size: 1.1rem;
             font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
         }
 
-        .cta-primary:hover {
+        .cta-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
-        .cta-secondary {
+        .cta-btn.secondary {
             background: transparent;
             color: white;
-            padding: 1.2rem 2.5rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+            border: 2px solid white;
         }
 
-        .cta-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: white;
-            transform: translateY(-3px);
+        .cta-btn.secondary:hover {
+            background: white;
+            color: #dc2626;
         }
 
-        /* Platform Features */
-        .platform-features {
-            padding: 100px 0;
+        /* Stats Section */
+        .stats {
             background: #f8fafc;
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2015&q=80') center/cover;
+            opacity: 0.05;
+            z-index: 1;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #dc2626;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Why Yorkseed Section */
+        .why-yorkseed {
+            padding: 100px 0;
+            background: white;
         }
 
         .section-title {
@@ -233,59 +297,338 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
+            margin-top: 4rem;
         }
 
         .feature-card {
             text-align: center;
-            padding: 2.5rem 2rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
             transition: all 0.3s ease;
-            border-top: 4px solid #dc2626;
+            position: relative;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.9) 100%);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .feature-card:nth-child(1)::before {
+            background-image: url('https://images.unsplash.com/photo-1556075798-4825dfaaf498?ixlib=rb-4.0.3&auto=format&fit=crop&w=2076&q=80');
+        }
+
+        .feature-card:nth-child(2)::before {
+            background-image: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+
+        .feature-card:nth-child(3)::before {
+            background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+
+        .feature-card > * {
+            position: relative;
+            z-index: 2;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
         }
 
-        .feature-title {
-            font-size: 1.3rem;
+        .feature-card h3 {
+            font-size: 1.5rem;
             font-weight: 600;
-            color: #dc2626;
             margin-bottom: 1rem;
+            color: #1a1a1a;
         }
 
-        .feature-description {
+        .feature-card p {
             color: #666;
             line-height: 1.6;
         }
 
-        /* Platform Access Section */
-        .platform-access {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+        /* Featured Event Section */
+        .featured-event {
+            background: linear-gradient(135deg, rgba(153, 27, 27, 0.9) 0%, rgba(220, 38, 38, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80') center/cover;
             color: white;
+            padding: 80px 0;
             text-align: center;
-            padding: 100px 0;
         }
 
-        .platform-access .section-title {
+        .event-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .event-date {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .event-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .event-location {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
             color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Global Hubs Section */
+        .global-hubs {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&auto=format&fit=crop&w=2044&q=80') center/cover;
+        }
+
+        .hubs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .hub-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hub-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            transition: opacity 0.3s ease;
+        }
+
+        .hub-card:nth-child(1)::before {
+            background-image: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+
+        .hub-card:nth-child(2)::before {
+            background-image: url('https://images.unsplash.com/photo-1502602898536-47ad22581b52?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80');
+        }
+
+        .hub-card:nth-child(3)::before {
+            background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+
+        .hub-card:nth-child(4)::before {
+            background-image: url('https://images.unsplash.com/photo-1587564471511-c0478e5b45cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80');
+        }
+
+        .hub-card:nth-child(5)::before {
+            background-image: url('https://images.unsplash.com/photo-1525625293386-3f8f99389edd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2052&q=80');
+        }
+
+        .hub-card:nth-child(6)::before {
+            background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=2088&q=80');
+        }
+
+        .hub-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hub-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .hub-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .hub-flag {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hub-city {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .hub-members {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .hub-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .hub-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
             margin-bottom: 2rem;
         }
 
-        .platform-access p {
+        .footer-section h3 {
             font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #dc2626;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            text-align: center;
+            color: #999;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            transform: translateY(-2px);
         }
 
         /* Mobile Responsive */
@@ -303,7 +646,11 @@
                 align-items: center;
             }
 
-            .features-grid {
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -313,18 +660,18 @@
     <!-- Header -->
     <header class="header">
         <div class="nav-container">
-            <a href="index.html" class="logo">
-                <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG" alt="Yorkseed Logo">
-            </a>
+            <div class="logo">
+                <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG">
+            </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="hubs.html">Hubs</a></li>
                     <li><a href="events.html">Events</a></li>
                     <li><a href="insider.html">Insider</a></li>
-                    <li><a href="membership.html">Membership</a></li>
-                    <li><a href="login.html" class="login-btn">Login to Platform</a></li>
+                    <li><a href="platforms.html">Platform</a></li>
+                    <li><a href="#membership">Membership</a></li>
+                    <li><a href="#login" class="login-btn">Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -333,57 +680,197 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Welcome to Yorkseed</h1>
-            <p>The world's most connected startup community. Manage your profile, connect with founders, and grow your network.</p>
+            <h1>Your Global Launchpad for Startup Connections</h1>
+            <p>Connect with founders, investors, and innovators in 50+ cities worldwide. Build your startup journey with a curated community that moves at the speed of ambition.</p>
             <div class="cta-buttons">
-                <a href="login.html" class="cta-primary">Access Platform</a>
-                <a href="about.html" class="cta-secondary">Learn More</a>
+                <a href="#hubs" class="cta-btn">Join a Hub</a>
+                <a href="#events" class="cta-btn secondary">Explore Events</a>
+                <a href="#membership" class="cta-btn">Become a Member</a>
             </div>
         </div>
     </section>
 
-    <!-- Platform Features -->
-    <section class="platform-features">
+    <!-- Stats Section -->
+    <section class="stats">
         <div class="container">
-            <h2 class="section-title">Platform Features</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Global Hubs</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10K+</span>
+                    <span class="stat-label">Active Members</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$XM+</span>
+                    <span class="stat-label">Capital Raised</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Startups Launched</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Yorkseed Section -->
+    <section class="why-yorkseed">
+        <div class="container">
+            <h2 class="section-title">Why Yorkseed?</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">👤</div>
-                    <h3 class="feature-title">Manage Profile</h3>
-                    <p class="feature-description">Keep your founder and company information up to date. Showcase your achievements and milestones.</p>
+                    <div class="feature-icon">🚀</div>
+                    <h3>Founder-First</h3>
+                    <p>Built by founders, for founders. Every feature, event, and connection is designed to accelerate your startup journey with authentic peer support.</p>
                 </div>
-                
                 <div class="feature-card">
-                    <div class="feature-icon">📅</div>
-                    <h3 class="feature-title">RSVP to Events</h3>
-                    <p class="feature-description">Join exclusive startup events, mixers, and networking opportunities in your city and beyond.</p>
+                    <div class="feature-icon">🌍</div>
+                    <h3>City-Based Community</h3>
+                    <p>Local presence, global reach. Connect with your city's startup ecosystem while accessing opportunities across our worldwide network.</p>
                 </div>
-                
                 <div class="feature-card">
-                    <div class="feature-icon">📖</div>
-                    <h3 class="feature-title">Access Directory</h3>
-                    <p class="feature-description">Connect with founders, investors, and startups in our curated community directory.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📝</div>
-                    <h3 class="feature-title">Submit Updates</h3>
-                    <p class="feature-description">Share funding rounds, product launches, and company milestones with the community.</p>
+                    <div class="feature-icon">✨</div>
+                    <h3>Curated Connections</h3>
+                    <p>Quality over quantity. Our community is carefully curated to ensure every connection has the potential to transform your business.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Platform Access CTA -->
-    <section class="platform-access">
+    <!-- Featured Event Section -->
+    <section class="featured-event">
         <div class="container">
-            <h2 class="section-title">Ready to Join?</h2>
-            <p>Access your personalized startup dashboard and connect with thousands of founders worldwide</p>
-            <a href="login.html" class="cta-primary">Login to Platform</a>
+            <h2 class="section-title" style="color: white; margin-bottom: 2rem;">Featured Event</h2>
+            <div class="event-card">
+                <div class="event-date">March 15, 2025</div>
+                <div class="event-title">Midnight in Paris</div>
+                <div class="event-location">📍 Paris, France</div>
+                <p>Join 200+ founders and investors for an exclusive evening of networking, pitch sessions, and startup showcases in the City of Light.</p>
+                <a href="#events" class="cta-btn" style="margin-top: 1.5rem;">Learn More</a>
+            </div>
         </div>
     </section>
 
+    <!-- Global Hubs Section -->
+    <section class="global-hubs">
+        <div class="container">
+            <h2 class="section-title">Global Hubs</h2>
+            <p style="text-align: center; color: #666; font-size: 1.1rem;">Connect with startup communities in major cities worldwide</p>
+            <div class="hubs-grid">
+                <div class="hub-card">
+                    <div class="hub-flag">🇺🇸</div>
+                    <div class="hub-city">New York</div>
+                    <div class="hub-members">1,200+ members</div>
+                    <button class="hub-btn">Join Hub</button>
+                </div>
+                <div class="hub-card">
+                    <div class="hub-flag">🇫🇷</div>
+                    <div class="hub-city">Paris</div>
+                    <div class="hub-members">800+ members</div>
+                    <button class="hub-btn">Join Hub</button>
+                </div>
+                <div class="hub-card">
+                    <div class="hub-flag">🇬🇧</div>
+                    <div class="hub-city">London</div>
+                    <div class="hub-members">950+ members</div>
+                    <button class="hub-btn">Join Hub</button>
+                </div>
+                <div class="hub-card">
+                    <div class="hub-flag">🇩🇪</div>
+                    <div class="hub-city">Berlin</div>
+                    <div class="hub-members">650+ members</div>
+                    <button class="hub-btn">Join Hub</button>
+                </div>
+                <div class="hub-card">
+                    <div class="hub-flag">🇸🇬</div>
+                    <div class="hub-city">Singapore</div>
+                    <div class="hub-members">750+ members</div>
+                    <button class="hub-btn">Join Hub</button>
+                </div>
+                <div class="hub-card">
+                    <div class="hub-flag">🇯🇵</div>
+                    <div class="hub-city">Tokyo</div>
+                    <div class="hub-members">600+ members</div>
+                    <button class="hub-btn">Join Hub</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Stay in the Loop</h2>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Get Yorkseed event updates,insights and startup stories delivered twice weekly</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe to Insider</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#hubs">Global Hubs</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#membership">Membership</a></li>
+                        <li><a href="#jobs">Job Board</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#insider">Yorkseed Insider</a></li>
+                        <li><a href="#platform">Platform</a></li>
+                        <li><a href="#partners">For Partners</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#press">Press</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                    </ul>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">𝕏</a>
+                        <a href="#" class="social-icon">📧</a>
+                        <a href="#" class="social-icon">💼</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Yorkseed</h3>
+                    <p style="color: #ccc; line-height: 1.6;">Building the world's most connected startup community, one city at a time.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Yorkseed. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
         // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.querySelector('.header');
@@ -396,15 +883,53 @@
             }
         });
 
-        // Check if user is already logged in and redirect
-        if (localStorage.getItem('yorkseedLoggedIn') === 'true') {
-            // If user is logged in, show option to go to dashboard
-            const loginButtons = document.querySelectorAll('a[href="login.html"]');
-            loginButtons.forEach(btn => {
-                btn.textContent = 'Go to Dashboard';
-                btn.href = 'login.html#dashboard';
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('.newsletter-input').value;
+            alert('Thanks for subscribing! We\'ll send you the latest startup insights and opportunities.');
+            this.querySelector('.newsletter-input').value = '';
+        });
+
+        // Hub card interactions
+        document.querySelectorAll('.hub-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const city = this.querySelector('.hub-city').textContent;
+                alert(`Joining ${city} hub! You'll be redirected to the application form.`);
+            });
+        });
+
+        // Animated counters for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/\D/g, ''));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = counter.textContent.replace(/\d+/, target);
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
+                    }
+                }, 20);
             });
         }
+
+        // Trigger counter animation when stats section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.stats'));
     </script>
 </body>
 </html>
