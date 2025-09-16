@@ -670,8 +670,8 @@
                     <li><a href="events.html">Events</a></li>
                     <li><a href="insider.html">Insider</a></li>
                     <li><a href="platforms.html">Platform</a></li>
-                    <li><a href="#membership">Membership</a></li>
-                    <li><a href="#login" class="login-btn">Login</a></li>
+                    <li><a href="membership.html">Membership</a></li>
+                    <li><a href="login.html" class="login-btn">Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -683,9 +683,9 @@
             <h1>Your Global Launchpad for Startup Connections</h1>
             <p>Connect with founders, investors, and innovators in 50+ cities worldwide. Build your startup journey with a curated community that moves at the speed of ambition.</p>
             <div class="cta-buttons">
-                <a href="#hubs" class="cta-btn">Join a Hub</a>
-                <a href="#events" class="cta-btn secondary">Explore Events</a>
-                <a href="#membership" class="cta-btn">Become a Member</a>
+                <a href="login.html" class="cta-btn">Access Platform</a>
+                <a href="login.html" class="cta-btn secondary">Join Community</a>
+                <a href="membership.html" class="cta-btn">Become a Member</a>
             </div>
         </div>
     </section>
@@ -703,7 +703,7 @@
                     <span class="stat-label">Active Members</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">$XM+</span>
+                    <span class="stat-number">$250M+</span>
                     <span class="stat-label">Capital Raised</span>
                 </div>
                 <div class="stat-item">
@@ -747,7 +747,7 @@
                 <div class="event-title">Midnight in Paris</div>
                 <div class="event-location">📍 Paris, France</div>
                 <p>Join 200+ founders and investors for an exclusive evening of networking, pitch sessions, and startup showcases in the City of Light.</p>
-                <a href="#events" class="cta-btn" style="margin-top: 1.5rem;">Learn More</a>
+                <a href="login.html" class="cta-btn" style="margin-top: 1.5rem;">RSVP Now</a>
             </div>
         </div>
     </section>
@@ -817,119 +817,6 @@
                 <div class="footer-section">
                     <h3>Community</h3>
                     <ul>
-                        <li><a href="#hubs">Global Hubs</a></li>
-                        <li><a href="#events">Events</a></li>
-                        <li><a href="#membership">Membership</a></li>
-                        <li><a href="#jobs">Job Board</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#insider">Yorkseed Insider</a></li>
-                        <li><a href="#platform">Platform</a></li>
-                        <li><a href="#partners">For Partners</a></li>
-                        <li><a href="#about">About Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <ul>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="#press">Press</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                    </ul>
-                    <div class="social-icons">
-                        <a href="#" class="social-icon">𝕏</a>
-                        <a href="#" class="social-icon">📧</a>
-                        <a href="#" class="social-icon">💼</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Yorkseed</h3>
-                    <p style="color: #ccc; line-height: 1.6;">Building the world's most connected startup community, one city at a time.</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Yorkseed. All rights reserved. | Privacy Policy | Terms of Service</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
-            }
-        });
-
-        // Newsletter form submission
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('.newsletter-input').value;
-            alert('Thanks for subscribing! We\'ll send you the latest startup insights and opportunities.');
-            this.querySelector('.newsletter-input').value = '';
-        });
-
-        // Hub card interactions
-        document.querySelectorAll('.hub-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const city = this.querySelector('.hub-city').textContent;
-                alert(`Joining ${city} hub! You'll be redirected to the application form.`);
-            });
-        });
-
-        // Animated counters for stats
-        function animateCounters() {
-            const counters = document.querySelectorAll('.stat-number');
-            counters.forEach(counter => {
-                const target = parseInt(counter.textContent.replace(/\D/g, ''));
-                const increment = target / 100;
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        counter.textContent = counter.textContent.replace(/\d+/, target);
-                        clearInterval(timer);
-                    } else {
-                        counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
-                    }
-                }, 20);
-            });
-        }
-
-        // Trigger counter animation when stats section is visible
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    observer.unobserve(entry.target);
-                }
-            });
-        });
-
-        observer.observe(document.querySelector('.stats'));
-    </script>
-</body>
-</html>
+                        <li><a href="hubs.html">Global Hubs</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="membership.html">Membership</a>
