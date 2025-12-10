@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Members - Yorkseed</title>
+    <link rel="stylesheet" href="css/buttons.css"/>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#f8fafc;color:#0f172a}
+
+        /* Header / Hero */
+        .header{position:fixed;inset:0 0 auto 0;height:96px;background:#fff;border-bottom:1px solid #e5e7eb;z-index:10}
+        .nav{max-width:1200px;margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 24px}
+        .nav a{color:#0f172a;text-decoration:none;font-weight:600;margin:0 10px}
+        .nav .active{color:#dc2626}
+        .hero{padding-top:120px;background:linear-gradient(135deg,#111827 0%,#dc2626 100%);color:#fff;text-align:center;padding-bottom:40px}
+        .hero h1{font-weight:800;font-size:40px}
+        .hero p{opacity:.9;margin-top:8px}
+
+        /* Toolbar */
+        .toolbar{background:#fff;border-bottom:1px solid #e5e7eb}
+        .toolbar-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+        .pill{padding:10px 16px;border:2px solid #e5e7eb;border-radius:999px;background:#fff;font-weight:700;cursor:pointer}
+        .pill.active{background:#dc2626;color:#fff;border-color:#dc2626}
+        .search{flex:1;min-width:260px}
+        .search input{width:100%;padding:12px 14px;border:2px solid #e5e7eb;border-radius:12px}
+        .search input:focus{outline:none;border-color:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.12)}
+
+        /* Grid */
+        .container{max-width:1200px;margin:0 auto;padding:24px}
+        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+
+        /* Card (compact only) */
+        .card{position:relative;background:#fff;border:1px solid #e5e7eb;border-radius:22px;padding:18px;box-shadow:0 10px 22px rgba(0,0,0,.06);transition:transform .15s, box-shadow .15s}
+        .card:hover{transform:translateY(-2px);box-shadow:0 16px 28px rgba(0,0,0,.10)}
+        .top{display:flex;gap:14px;align-items:center}
+        .avatar{min-width:56px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:18px}
+        .title-wrap{flex:1;min-width:0}
+        .name{font-weight:900;font-size:18px;line-height:1.1}
+        .role-badge{margin-top:6px;display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:900}
+
+        .minimal{margin-top:12px;display:grid;grid-template-columns:auto 1fr;gap:8px 10px}
+        .label{font-size:12px;font-weight:900}
+        .val{font-size:14px}
+        .muted{color:#6b7280}
+
+        /* Info button -> opens POPOVER (not the card) */
+        .info-btn{
+          position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:999px;border:1px solid #e5e7eb;background:#fff;
+          display:grid;place-items:center;cursor:pointer;font-weight:900;color:#0f172a;box-shadow:0 2px 8px rgba(0,0,0,.06)
+        }
+        .info-btn:hover{background:#f3f4f6}
+
+        /* Themes */
+        .founder .avatar{background:linear-gradient(135deg,#1d4ed8,#60a5fa)}
+        .founder .role-badge{background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe}
+        .investor .avatar{background:linear-gradient(135deg,#059669,#34d399)}
+        .investor .role-badge{background:#dcfce7;color:#065f46;border:1px solid #bbf7d0}
+        .filterable{cursor:pointer}
+        .filterable:hover{text-decoration:underline}
+        .empty{padding:32px;text-align:center;color:#6b7280}
+
+        /* POPOVER (portal to body) */
+        .popover-backdrop{
+          position:fixed;inset:0;pointer-events:none; /* allows clicks to go through except popover itself */
+          z-index:60;
+        }
+        .popover{
+          position:fixed; /* anchor near button; no layout shift */
+          width:min(520px,92vw);max-height:80vh;overflow:auto;
+          background:#fff;border-radius:16px;border:1px solid #e5e7eb;box-shadow:0 24px 60px rgba(0,0,0,.25);
+          transform-origin:top left;animation:pop .12s ease-out;
+        }
+        @keyframes pop{from{transform:scale(.96);opacity:.0}to{transform:scale(1);opacity:1}}
+        .popover-header{display:flex;align-items:center;gap:12px;padding:14px 14px;border-bottom:1px solid #e5e7eb}
+        .popover-title{font-weight:900}
+        .popover-role{margin-left:auto;font-size:11px;font-weight:900;padding:4px 10px;border-radius:999px}
+        .popover-close{margin-left:8px;width:30px;height:30px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;cursor:pointer}
+        .popover-body{padding:14px;display:grid;grid-template-columns:auto 1fr;gap:10px 12px}
+        .arrow{
+          position:fixed;width:12px;height:12px;background:#fff;border-left:1px solid #e5e7eb;border-top:1px solid #e5e7eb;transform:rotate(45deg);z-index:61;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="nav">
+        <div><a href="index.html" class="active">Yorkseed</a></div>
+        <nav>
+
+            <a href="about.html">About</a>
+            <a href="members.html" class="active">Members</a>
+            <a href="#" id="logoutBtn">Logout</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <h1>Our Community</h1>
+    <p>Discover founders and investors across Yorkseed—search, filter, and connect.</p>
+</section>
+
+<section class="toolbar">
+    <div class="toolbar-inner">
+        <div>
+            <button class="pill active" data-role="all">All</button>
+            <button class="pill" data-role="founder">Founders</button>
+            <button class="pill" data-role="investor">Investors</button>
+        </div>
+        <div class="search">
+            <input id="searchBox" placeholder="Search name, location, sector, focus…"/>
+        </div>
+    </div>
+</section>
+
+<main class="container">
+    <div id="grid" class="grid">
+        <div class="empty">Loading members…</div>
+    </div>
+</main>
+
+<!-- popover portal containers -->
+<div id="popoverBackdrop" class="popover-backdrop" aria-hidden="true"></div>
+<div id="popoverArrow" class="arrow" style="display:none"></div>
+
+<script>
+    const API_BASE = 'http://localhost:8080/AuthService';
+    const grid = document.getElementById('grid');
+    const pills = document.querySelectorAll('.pill');
+    const searchBox = document.getElementById('searchBox');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    const popoverBackdrop = document.getElementById('popoverBackdrop');
+    const popoverArrow = document.getElementById('popoverArrow');
+    let popoverEl = null; // created on demand
+    let role = 'all';
+    let q = '';
+    let currentList = [];
+
+    const safe = v => (v ?? '').toString().trim();
+    const initials = name => {
+      const p = (name || '').trim().split(/\s+/);
+      return ((p[0]?.[0]||'') + (p[1]?.[0]||'')).toUpperCase();
+    };
+    const composeLocation = m => {
+      const parts = [m.city, m.state, m.country].map(v => (v || '').trim()).filter(Boolean);
+      return parts.length ? parts.join(', ') : null;
+    };
+    const filterable = t => (safe(t) ? `<span class="filterable" data-filter="${safe(t)}">${safe(t)}</span>` : '<span class="muted">—</span>');
+    const row  = (l,v)=>`<div class="label">${l}</div><div class="val">${filterable(v)}</div>`;
+    const rowLink = (l,h)=>`<div class="label">${l}</div><div class="val">${safe(h)?`<a href="${h}" target="_blank" rel="noopener">${h.replace(/^https?:\/\//,'')}</a>`:'<span class="muted">—</span>'}</div>`;
+
+    const founderDetails = m => [
+      row('Location', composeLocation(m)),
+      row('StartUpName', m.companyName),
+      row('ProblemStatement', m.problemStatement),
+      row('StartUpStage', m.startupStage),
+      row('HasCoFounderOrTeam', m.hasCoFounderOrTeam),
+      row('IndustrySector', m.industrySector),
+      row('OperatingRegions', m.region),
+      row('AboutCompany', m.aboutCompany),
+      row('Looking For', m.lookingFor),
+      row('Value Proposition', m.valueProposition),
+      rowLink('StartUpWebsite', m.websiteUrl),
+      rowLink('LinkedIn', m.linkedin),
+    ].join('');
+    const investorDetails = m => [
+      row('Location', composeLocation(m)),
+      row('FirmName', m.firmName),
+      rowLink('Firm Website', m.firmWebsite),
+      row('InvestmentFocus', m.investmentFocus),
+      row('InvestmentStage', m.investmentStage),
+      row('CheckSize', m.investmentSize),
+      row('PreviousInvestments', m.previousInvestments),
+      row('PreferredRegions', m.preferredRegions),
+      row('InvestmentThesis', m.investmentThesis),
+      row('ValueAdd', m.valueAdd),
+      rowLink('LinkedIn', m.linkedin),
+    ].join('');
+
+    function createPopover(){
+      if (popoverEl) return popoverEl;
+      popoverEl = document.createElement('div');
+      popoverEl.className = 'popover';
+      popoverEl.setAttribute('role','dialog');
+      popoverEl.setAttribute('aria-modal','false'); // non-blocking
+      popoverEl.innerHTML = `
+        <div class="popover-header">
+          <div id="pvAvatar" class="avatar" style="width:40px;height:40px;min-width:40px;border-radius:12px;"></div>
+          <div class="popover-title" id="pvTitle">Member</div>
+          <span id="pvRole" class="popover-role">ROLE</span>
+          <button class="popover-close" id="pvClose" aria-label="Close">✕</button>
+        </div>
+        <div id="pvBody" class="popover-body"></div>
+      `;
+      document.body.appendChild(popoverEl);
+      popoverEl.querySelector('#pvClose').addEventListener('click', closePopover);
+      // stop click-through
+      popoverEl.addEventListener('click', e => e.stopPropagation());
+      return popoverEl;
+    }
+
+    function positionPopover(anchorBtn){
+      const rect = anchorBtn.getBoundingClientRect();
+      const pv = createPopover();
+      const margin = 10;
+      const vw = window.innerWidth, vh = window.innerHeight;
+      const pvWidth = Math.min(520, vw * .92);
+      const pvHeight = Math.min(0.8*vh, pv.scrollHeight + 0); // approx before paint
+
+      // prefer right side; if not, place left; keep on screen
+      let left = rect.right + margin;
+      let top  = rect.top;
+      if (left + pvWidth > vw - 8) left = rect.left - margin - pvWidth;       // flip left
+      if (left < 8) left = Math.max(8, vw - pvWidth - 8);                     // clamp
+      if (top + pvHeight > vh - 8) top = Math.max(8, vh - pvHeight - 8);      // clamp
+
+      pv.style.left = `${left}px`;
+      pv.style.top  = `${top}px`;
+      pv.style.width = `${pvWidth}px`;
+      pv.style.maxHeight = `80vh`;
+
+      // arrow
+      const arrowSize = 12;
+      const arrowLeft = (left > rect.left)         // popover on right?
+        ? rect.right + (margin - arrowSize/2)
+        : rect.left - (arrowSize/2) - margin;
+      const arrowTop = Math.min(vh - 16, Math.max(16, rect.top + 8));
+      popoverArrow.style.left = `${arrowLeft}px`;
+      popoverArrow.style.top  = `${arrowTop}px`;
+      popoverArrow.style.display = 'block';
+    }
+
+    function openPopover(member, anchorBtn){
+      const pv = createPopover();
+      pv.querySelector('#pvTitle').textContent = safe(member.name) || 'Member';
+      pv.querySelector('#pvAvatar').textContent = initials(member.name);
+
+      const r = safe(member.role).toUpperCase();
+      const roleBadge = pv.querySelector('#pvRole');
+      roleBadge.textContent = r;
+      roleBadge.style.background = r === 'FOUNDER' ? '#dbeafe' : '#dcfce7';
+      roleBadge.style.color = r === 'FOUNDER' ? '#1d4ed8' : '#065f46';
+      roleBadge.style.border = `1px solid ${r === 'FOUNDER' ? '#bfdbfe' : '#bbf7d0'}`;
+
+      pv.querySelector('#pvBody').innerHTML = (r === 'FOUNDER') ? founderDetails(member) : investorDetails(member);
+
+      // show & place
+      popoverBackdrop.setAttribute('aria-hidden','false'); // still pointer-events:none
+      positionPopover(anchorBtn);
+
+      // outside click / Esc
+      const outside = () => closePopover();
+      const esc = (e) => { if (e.key === 'Escape') closePopover(); };
+      setTimeout(()=>{
+        document.addEventListener('click', outside, { once:true });
+        document.addEventListener('keydown', esc, { once:true });
+        pv.dataset.outsideBound = '1';
+      },0);
+    }
+
+    function closePopover(){
+      if (!popoverEl) return;
+      popoverArrow.style.display = 'none';
+      popoverBackdrop.setAttribute('aria-hidden','true');
+      // keep the node for reuse (faster), just move offscreen
+      popoverEl.style.left = '-9999px';
+      popoverEl.style.top  = '-9999px';
+    }
+
+    function render(items){
+      currentList = items || [];
+      if (!currentList.length){
+        grid.innerHTML = `<div class="empty">No members found.</div>`;
+        return;
+      }
+      grid.innerHTML = currentList.map((m, idx)=>{
+        const r = safe(m.role).toUpperCase();
+        const cls = r === 'FOUNDER' ? 'founder' : 'investor';
+        return `
+          <article class="card ${cls}">
+            <button class="info-btn" aria-label="Show details" data-index="${idx}">i</button>
+            <div class="top">
+              <div class="avatar">${initials(m.name)}</div>
+              <div class="title-wrap">
+                <div class="name">${safe(m.name) || 'Member'}</div>
+                <span class="role-badge">${r}</span>
+              </div>
+            </div>
+            <div class="minimal">
+              <div class="label">Location</div>
+              <div class="val">${filterable(composeLocation(m))}</div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      // open popover from “i”
+      grid.querySelectorAll('.info-btn').forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+          e.stopPropagation();
+          const i = Number(btn.getAttribute('data-index'));
+          const member = currentList[i];
+          if (member) openPopover(member, btn);
+        });
+      });
+
+      // quick filter from any text chip
+      grid.querySelectorAll('.filterable').forEach(el=>{
+        el.addEventListener('click', ()=>{
+          const text = el.getAttribute('data-filter') || '';
+          if (!text) return;
+          pills.forEach(p=>p.classList.remove('active'));
+          document.querySelector('.pill[data-role="all"]').classList.add('active');
+          role = 'all';
+          q = text;
+          searchBox.value = text;
+          load();
+        });
+      });
+    }
+
+    async function load(){
+      const roleParam = role==='all' ? '' : `role=${encodeURIComponent(role.toUpperCase())}&`;
+      const qParam = q ? `q=${encodeURIComponent(q)}&` : '';
+      const url = `${API_BASE}/api/members?${roleParam}${qParam}page=0&size=24`;
+      try{
+        const res = await fetch(url, { headers: { 'Accept':'application/json' }});
+        if(!res.ok) throw new Error(await res.text());
+        const data = await res.json();
+        render(data.items || []);
+      }catch(e){
+        console.error(e);
+        grid.innerHTML = `<div class="empty">Failed to load members.</div>`;
+      }
+    }
+
+    // toolbar
+    pills.forEach(p=>{
+      p.addEventListener('click', ()=>{
+        pills.forEach(x=>x.classList.remove('active'));
+        p.classList.add('active');
+        role = p.getAttribute('data-role');
+        closePopover();
+        load();
+      });
+    });
+    let t;
+    searchBox.addEventListener('input', ()=>{
+      clearTimeout(t);
+      t = setTimeout(()=>{ q = searchBox.value.trim(); closePopover(); load(); }, 250);
+    });
+
+    if (logoutBtn){
+      logoutBtn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('userRole');
+        localStorage.removeItem('userEmail');
+        window.location.href = 'index.html';
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', load);
+    window.addEventListener('resize', ()=>{ if (popoverEl && popoverBackdrop.getAttribute('aria-hidden')==='false') closePopover(); });
+    window.addEventListener('scroll', ()=>{ if (popoverEl && popoverBackdrop.getAttribute('aria-hidden')==='false') closePopover(); }, { passive:true });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+/* Buttons - buttons.css */
+
+/* Base Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    height: 40px;
+}
+
+/* Signup Button */
+.signup-btn {
+    background: #ffffff;
+    color: #1a1a1a !important;
+    padding: 0.5rem 1.5rem 0.5rem 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover effects */
+.signup-btn:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-color: #c0c0c0;
+}
+
+.signup-btn:hover::before {
+    transform: rotate(90deg);
+}
+
+/* Active state */
+.signup-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus state for accessibility */
+.signup-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Login Button */
+.login-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+.login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }

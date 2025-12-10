@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifying Email - Yorkseed Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .verification-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #dc2626;
+            border-radius: 50%;
+            margin: 2rem auto;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .status-message {
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .success {
+            color: #10b981;
+        }
+
+        .error {
+            color: #dc2626;
+        }
+
+        .redirect-message {
+            color: #666;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #dc2626;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-container">
+        <div class="logo-text">Yorkseed</div>
+        <div id="loader" class="loader"></div>
+        <div id="statusMessage" class="status-message">Verifying your email address...</div>
+        <div id="redirectMessage" class="redirect-message">Please wait while we verify your email.</div>
+        <a href="login.html" id="loginBtn" class="btn" style="display: none;">Go to Login</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            const statusMessage = document.getElementById('statusMessage');
+            const redirectMessage = document.getElementById('redirectMessage');
+            const loginBtn = document.getElementById('loginBtn');
+            const loader = document.getElementById('loader');
+
+            if (!token) {
+                showError('No verification token found. Please use the link from your email.');
+                return;
+            }
+
+            // Show loading state for 2 seconds before making the API call
+            setTimeout(() => {
+                verifyEmail(token);
+            }, 2000);
+
+            function verifyEmail(verificationToken) {
+                // Replace with your actual API endpoint
+                const apiUrl = `http://localhost:8080/AuthService/api/auth/verify-email?token=${verificationToken}`;
+                
+                fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Verification failed');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        showSuccess('Email verified successfully!');
+                        // Redirect to login after 3 seconds
+                        setTimeout(() => {
+                            window.location.href = 'login.html?verified=true';
+                        }, 3000);
+                    } else {
+                        throw new Error(data.message || 'Verification failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('Verification error:', error);
+                    showError(error.message || 'Failed to verify email. The link may have expired or is invalid.');
+                });
+            }
+
+            function showSuccess(message) {
+                loader.style.display = 'none';
+                statusMessage.textContent = message;
+                statusMessage.className = 'status-message success';
+                redirectMessage.textContent = 'Redirecting you to login page...';
+                loginBtn.style.display = 'inline-block';
+            }
+
+            function showError(message) {
+                loader.style.display = 'none';
+                statusMessage.textContent = message;
+                statusMessage.className = 'status-message error';
+                redirectMessage.textContent = 'Please try again or contact support if the problem persists.';
+                loginBtn.style.display = 'inline-block';
+            }
+        });
+    </script>
+</body>
+</html>

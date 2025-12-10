@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sign Up - Yorkseed Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/buttons.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#f8fafc;color:#1a1a1a;line-height:1.5}
+        .login-screen{background:linear-gradient(135deg,#1a1a1a 0%,#dc2626 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem}
+        .login-container{background:rgba(255,255,255,.98);backdrop-filter:blur(20px);border-radius:20px;box-shadow:0 25px 50px rgba(0,0,0,.3);padding:2rem 3rem;width:100%;max-width:980px;margin:1.5rem auto}
+        .logo-section{text-align:center;margin-bottom:1.2rem}
+        .logo-text{font-size:2rem;font-weight:700;background:linear-gradient(135deg,#dc2626 0%,#991b1b 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .welcome-text{color:#666;margin-top:.4rem;text-align:center}
+        .section-title{font-weight:700;margin:.75rem 0 .5rem}
+        .form-group{margin-bottom:.75rem}
+        .form-group label{display:block;color:#333;font-weight:500;margin-bottom:.4rem;font-size:.95rem}
+        .form-group input,.form-group select,.form-group textarea{width:100%;padding:.9rem 1rem;border:2px solid #e0e0e0;border-radius:10px;font-size:.95rem;transition:.2s ease;background:#fff}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.1)}
+        textarea{min-height:100px;resize:vertical}
+        .hint{color:#6b7280;font-size:.85rem;margin-top:.25rem}
+        .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+        .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+        .user-type-selector{display:flex;gap:12px;margin:8px 0;flex-wrap:wrap}
+        .user-type-selector input[type="radio"]{display:none}
+        .user-type-btn{flex:1;min-width:120px;padding:12px;text-align:center;border:2px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:.2s;background:#fff}
+        .user-type-selector input[type="radio"]:checked + label{background:#dc2626;color:#fff;border-color:#dc2626}
+        .user-type-fields{background:#f8fafc;padding:16px;border-radius:12px;margin:14px 0;border:1px solid #e2e8f0}
+        .subtle{font-size:.9rem;color:#374151;margin-bottom:.4rem;font-weight:600}
+        .auth-btn{width:100%;background:#000;color:#fff;border:none;padding:14px 24px;border-radius:50px;font-weight:600;cursor:pointer;margin:1.2rem 0;transition:.2s}
+        .auth-btn:hover{background:#222;transform:translateY(-2px)}
+        .auth-footer{text-align:center;margin-top:.5rem;color:#666}
+        .auth-footer a{color:#dc2626;text-decoration:none;font-weight:500}
+        .auth-footer a:hover{color:#991b1b}
+        @media(max-width:980px){.login-container{padding:1.6rem 1.4rem}}
+        @media(max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr}.login-container{max-width:95%}}
+    </style>
+</head>
+<body>
+<div class="login-screen">
+    <div class="login-container">
+        <div class="logo-section">
+            <div class="logo-text">Yorkseed Platform</div>
+            <p class="welcome-text">Create your account</p>
+        </div>
+
+        <form id="signupForm" onsubmit="event.preventDefault();">
+            <!-- Basic Info -->
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                </div>
+            </div>
+
+            <!-- Role -->
+            <div class="form-group">
+                <label class="section-title">I am a: *</label>
+                <div class="user-type-selector">
+                    <input type="radio" id="founder" name="userType" value="founder" required>
+                    <label for="founder" class="user-type-btn">Founder</label>
+                    <input type="radio" id="investor" name="userType" value="investor">
+                    <label for="investor" class="user-type-btn">Investor</label>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div id="locationFields" class="user-type-fields" style="display:none;">
+                <div class="subtle">Location</div>
+                <div class="grid-3">
+                    <div class="form-group">
+                        <label for="cityInput">City *</label>
+                        <input type="text" id="cityInput" name="city" placeholder="e.g., Dallas">
+                    </div>
+                    <div class="form-group">
+                        <label for="stateInput">State / Province *</label>
+                        <input type="text" id="stateInput" name="state" placeholder="e.g., Texas">
+                    </div>
+                    <div class="form-group">
+                        <label for="countryInput">Country *</label>
+                        <input type="text" id="countryInput" name="country" placeholder="e.g., United States">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Founder Fields -->
+            <div id="founderFields" class="user-type-fields" style="display:none;">
+                <div class="section-title">Founder Details</div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="companyName">Startup / Company Name</label>
+                        <input type="text" id="companyName" name="companyName" placeholder="Your startup name">
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Startup Website / Product Link</label>
+                        <input type="url" id="website" name="website" placeholder="https://">
+                        <div class="hint">Optional</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="problem">What problem are you solving? *</label>
+                    <textarea id="problem" name="problem" placeholder="Describe the pain point and who it affects" required></textarea>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="stage">Stage *</label>
+                        <select id="stage" name="stage" required>
+                            <option value="">Select stage</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Do you have a co-founder or team? *</label>
+                        <div class="grid-2" style="gap:.6rem">
+                            <label><input type="radio" name="hasTeam" value="yes" required> Yes</label>
+                            <label><input type="radio" name="hasTeam" value="no"> No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="sector">Industry / Sector *</label>
+                        <input type="text" id="sector" name="sector" placeholder="e.g., FinTech, HealthTech, AI" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="region">Where are you operating? (Region)</label>
+                        <input type="text" id="region" name="region" placeholder="e.g., North America, Global">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="aboutCompany">What does your startup do? (short blurb)</label>
+                    <textarea id="aboutCompany" name="aboutCompany" placeholder="One or two lines explaining your product or service"></textarea>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="lookingFor">What are you looking for?</label>
+                        <input type="text" id="lookingFor" name="lookingFor" placeholder="e.g., Investors, Advisors, Co-founders">
+                    </div>
+                    <div class="form-group">
+                        <label for="valueProposition">Your value proposition</label>
+                        <input type="text" id="valueProposition" name="valueProposition" placeholder="e.g., AI-enabled, 10x faster, unique data">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investor Fields -->
+            <div id="investorFields" class="user-type-fields" style="display:none;">
+                <div class="section-title">Investor Details</div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="firmName">Firm / Fund Name</label>
+                        <input type="text" id="firmName" name="firmName" placeholder="e.g., Ark Kapital">
+                    </div>
+                    <div class="form-group">
+                        <label for="firmWebsite">Firm Website</label>
+                        <input type="url" id="firmWebsite" name="firmWebsite" placeholder="https://">
+                        <div class="hint">Optional</div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="industryFocus">Industry Focus *</label>
+                        <input type="text" id="industryFocus" name="industryFocus" placeholder="e.g., Tech, Healthcare, FinTech" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkSize">Typical Check Size *</label>
+                        <input type="text" id="checkSize" name="checkSize" placeholder="e.g., $50k–$200k" required>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="investmentStage">Investing Stage *</label>
+                        <select id="investmentStage" name="investmentStage" required>
+                            <option value="">Select investment stage</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredRegions">Preferred Regions</label>
+                        <input type="text" id="preferredRegions" name="preferredRegions" placeholder="e.g., US, EU, Global">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="portfolio">Previous Investments (examples)</label>
+                    <input type="text" id="portfolio" name="portfolio" placeholder="e.g., Company A, Company B">
+                </div>
+
+                <div class="form-group">
+                    <label for="investmentType">Investment Focus (what types) *</label>
+                    <input type="text" id="investmentType" name="investmentType" placeholder="e.g., B2B SaaS, AI infra, healthtech" required>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="investmentThesis">Investment Thesis</label>
+                        <input type="text" id="investmentThesis" name="investmentThesis" placeholder="Short thesis (optional)">
+                    </div>
+                    <div class="form-group">
+                        <label for="valueAdd">Value Add (beyond capital)</label>
+                        <input type="text" id="valueAdd" name="valueAdd" placeholder="e.g., GTM help, hiring, partnerships">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account -->
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" placeholder="yourname@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password *</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password (min 6 characters)" required minlength="6">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="linkedin">LinkedIn Profile</label>
+                <input type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/yourprofile">
+            </div>
+
+            <button type="submit" class="auth-btn">Create Account</button>
+            <p class="auth-footer">
+                Already have an account? <a href="login.html">Sign in</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const FUNDING_STAGES = [
+        { value: 'idea', label: 'Idea' },
+        { value: 'pre-seed', label: 'Pre-seed' },
+        { value: 'seed', label: 'Seed' },
+        { value: 'series-a', label: 'Series A' },
+        { value: 'series-b', label: 'Series B' },
+        { value: 'series-c-plus', label: 'Series C and above' },
+      ];
+
+      const founderRadio   = document.getElementById('founder');
+      const investorRadio  = document.getElementById('investor');
+      const founderFields  = document.getElementById('founderFields');
+      const investorFields = document.getElementById('investorFields');
+      const locationFields = document.getElementById('locationFields');
+
+      const cityInput      = document.getElementById('cityInput');
+      const stateInput     = document.getElementById('stateInput');
+      const countryInput   = document.getElementById('countryInput');
+
+      const stageSelectFounder  = document.getElementById('stage');
+      const stageSelectInvestor = document.getElementById('investmentStage');
+      const form = document.getElementById('signupForm');
+
+      function populateStageSelect(selectEl) {
+        if (!selectEl) return;
+        for (let i = selectEl.options.length - 1; i >= 1; i--) selectEl.remove(i);
+        FUNDING_STAGES.forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s.value;
+          opt.textContent = s.label;
+          selectEl.appendChild(opt);
+        });
+      }
+
+      function toggleUserFields() {
+        const isFounder = founderRadio.checked;
+        const isInvestor = investorRadio.checked;
+
+        founderFields.style.display  = isFounder ? 'block' : 'none';
+        investorFields.style.display = isInvestor ? 'block' : 'none';
+
+        document.querySelectorAll('#founderFields [required]').forEach(el => el.required = isFounder);
+        document.querySelectorAll('#investorFields [required]').forEach(el => el.required = isInvestor);
+
+        const visible = isFounder || isInvestor;
+        locationFields.style.display = visible ? 'block' : 'none';
+        cityInput.required = visible;
+        stateInput.required = visible;
+        countryInput.required = visible;
+      }
+
+      function normUrl(u){
+        const v = (u||'').trim();
+        if (!v) return '';
+        try { return new URL(v).toString(); } catch { return v; }
+      }
+
+      populateStageSelect(stageSelectFounder);
+      populateStageSelect(stageSelectInvestor);
+
+      founderRadio.addEventListener('change', toggleUserFields);
+      investorRadio.addEventListener('change', toggleUserFields);
+      toggleUserFields();
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+
+        try {
+          const roleInput = document.querySelector('input[name="userType"]:checked');
+          if (!roleInput) { alert('Please select if you are a Founder or Investor'); return; }
+          const role = roleInput.value.toUpperCase();
+
+          const firstName = document.getElementById('firstName').value.trim();
+          const lastName  = document.getElementById('lastName').value.trim();
+          const email     = document.getElementById('email').value.trim();
+          const password  = document.getElementById('password').value;
+          const linkedin  = normUrl(document.getElementById('linkedin').value);
+
+          const city    = cityInput.value.trim();
+          const state   = stateInput.value.trim();
+          const country = countryInput.value.trim();
+
+          if (!firstName || !lastName || !email || !password) {
+            alert('Please fill in all required fields.'); return;
+          }
+          if (!(city && state && country)) {
+            alert('Please enter your City, State/Province, and Country.'); return;
+          }
+          if (password.length < 6) {
+            alert('Password must be at least 6 characters long'); return;
+          }
+
+          // Base payload (renamed to match backend DTO)
+          let payload = {
+            firstName,
+            lastName,
+            email,
+            password,
+            role,
+            locationCity: city,
+            locationState: state,
+            locationCountry: country,
+            linkedin
+          };
+
+          if (role === 'FOUNDER') {
+            const hasTeamEl = document.querySelector('input[name="hasTeam"]:checked');
+            const problemStatement = document.getElementById('problem').value.trim();
+            const startupStage     = document.getElementById('stage').value;
+            const hasCoFounderOrTeam = hasTeamEl ? hasTeamEl.value : null;
+            const websiteUrl       = normUrl(document.getElementById('website').value);
+            const industrySector   = document.getElementById('sector').value.trim();
+
+            if (!(problemStatement && startupStage && hasCoFounderOrTeam && industrySector)) {
+              alert('Please complete all required founder fields.'); return;
+            }
+
+            // Optional founder extras
+            const companyName      = document.getElementById('companyName').value.trim();
+            const aboutCompany     = document.getElementById('aboutCompany').value.trim();
+            const lookingFor       = document.getElementById('lookingFor').value.trim();
+            const valueProposition = document.getElementById('valueProposition').value.trim();
+            const region           = document.getElementById('region').value.trim();
+
+            payload = {
+              ...payload,
+              problemStatement,
+              startupStage,
+              hasCoFounderOrTeam,
+              websiteUrl,
+              industrySector,
+              companyName,
+              aboutCompany,
+              lookingFor,
+              valueProposition,
+              region,
+              // investor-only fields null
+              investmentFocus: null,
+              investmentStage: null,
+              investmentSize: null,
+              previousInvestments: null,
+              firmName: null,
+              firmWebsite: null,
+              investmentThesis: null,
+              valueAdd: null,
+              preferredRegions: null
+            };
+          } else {
+            // INVESTOR
+            // Merge both "industryFocus" and "investmentType" into investmentFocus for backend
+            const industryFocus    = document.getElementById('industryFocus').value.trim();
+            const investmentType   = document.getElementById('investmentType').value.trim();
+            const investmentFocus  = [industryFocus, investmentType].filter(Boolean).join(' | ');
+
+            const investmentStage  = document.getElementById('investmentStage').value;
+            const investmentSize   = document.getElementById('checkSize').value.trim();
+            const previousInvestments = document.getElementById('portfolio').value.trim();
+
+            if (!(investmentFocus && investmentStage && investmentSize)) {
+              alert('Please complete all required investor fields.'); return;
+            }
+
+            // Optional investor extras
+            const firmName         = document.getElementById('firmName').value.trim();
+            const firmWebsite      = normUrl(document.getElementById('firmWebsite').value);
+            const investmentThesis = document.getElementById('investmentThesis').value.trim();
+            const valueAdd         = document.getElementById('valueAdd').value.trim();
+            const preferredRegions = document.getElementById('preferredRegions').value.trim();
+
+            payload = {
+              ...payload,
+              investmentFocus,
+              investmentStage,
+              investmentSize,
+              previousInvestments,
+              // founder-only nulls
+              problemStatement: null,
+              startupStage: null,
+              hasCoFounderOrTeam: null,
+              websiteUrl: '',
+              industrySector: null,
+              // extras
+              firmName,
+              firmWebsite,
+              investmentThesis,
+              valueAdd,
+              preferredRegions
+            };
+          }
+
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Creating Account...';
+          submitBtn.style.opacity = '0.7';
+
+          const backendUrl = 'http://localhost:8080/AuthService/api/auth/signup';
+          const response = await fetch(backendUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await response.json().catch(()=> ({}));
+          if (!response.ok) throw new Error(data?.message || 'Signup failed');
+
+          alert(data?.message || 'Registration successful! Please check your email to verify your account.');
+          window.location.href = 'login.html?verificationSent=true';
+        } catch (err) {
+          console.error('Signup error:', err);
+          alert(err?.message || 'An error occurred during signup. Please try again.');
+        } finally {
+          const submitBtn = form.querySelector('button[type="submit"]');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Create Account';
+          submitBtn.style.opacity = '1';
+        }
+      });
+    });
+</script>
+<script src="js/nav.js"></script>
+</body>
+</html>
