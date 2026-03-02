@@ -90,7 +90,8 @@
         .cat-pill { display: flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1.1rem; background: white; border: 1.5px solid #e0e0e0; border-radius: 25px; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #444; user-select: none; }
         .cat-pill:hover, .cat-pill.active { background: #dc2626; border-color: #dc2626; color: white; }
 
-        .section-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; margin-top: 1rem; }
+        .section-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; margin-top: 3rem; padding-top: 2rem;border-top: 1px solid #eceff3;}
+        .section-row:first-of-type { margin-top: 0;padding-top: 0;border-top: none;}
         .section-row h2 { font-size: 1.4rem; font-weight: 700; }
         .see-all { color: #dc2626; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
         .see-all:hover { text-decoration: underline; }
@@ -435,6 +436,100 @@
 
         </div>
 
+        <!-- 🌍 Hub Perks -->
+        <div class="section-row">
+            <h2>🌍 Hub Perks</h2>
+            <a href="#" class="see-all">See all →</a>
+        </div>
+        <div class="deals-grid">
+            
+            <div class="deal-card">
+                <div class="deal-card-top" style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe)">🏙️ <span class="badge">HUB</span></div>
+                <div class="deal-card-body">
+                    <div class="deal-partner-name">Yorkseed NYC</div>
+                    <div class="deal-title">Event Space Credit — NYC Hub</div>
+                    <div class="deal-description">Get a member-rate credit toward hosting a meetup, demo day, or founder dinner in NYC.</div>
+                    <div class="deal-footer">
+                        <div class="deal-value">$300 credit<span>per event</span></div>
+                        <button class="claim-btn">Request</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-card-top" style="background:linear-gradient(135deg,#fff7ed,#ffedd5)">🎟️ <span class="badge">LIMITED</span><span class="members-badge">⭐ Members</span></div>
+                <div class="deal-card-body">
+                    <div class="deal-partner-name">Yorkseed London</div>
+                    <div class="deal-title">VIP Access — Founder Roundtable</div>
+                    <div class="deal-description">Priority access to curated founder dinners and operator roundtables in the London hub.</div>
+                    <div class="deal-footer">
+                        <div class="deal-value">Priority access<span>monthly</span></div>
+                        <button class="claim-btn">Request</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-card-top" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff)">🏨 <span class="badge">HUB</span></div>
+                <div class="deal-card-body">
+                    <div class="deal-partner-name">Yorkseed Global</div>
+                    <div class="deal-title">Offsite Booking Benefit</div>
+                    <div class="deal-description">Member-rate discounts on team offsites and meeting spaces (select cities, demo placeholder).</div>
+                    <div class="deal-footer">
+                        <div class="deal-value">10–15% off<span>select venues</span></div>
+                        <button class="claim-btn">Claim Deal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🤝 Access & Introductions -->
+        <div class="section-row">
+            <h2>🤝 Access & Introductions</h2>
+            <a href="#" class="see-all">See all →</a>
+        </div>
+        <div class="deals-grid">
+
+            <div class="deal-card">
+                <div class="deal-card-top" style="background:linear-gradient(135deg,#fff5f5,#ffe4e6)">🤝 <span class="badge">VETTED</span><span class="members-badge">⭐ Members</span></div>
+                <div class="deal-card-body">
+                    <div class="deal-partner-name">Yorkseed Concierge</div>
+                    <div class="deal-title">Warm Intro Concierge (1/month)</div>
+                    <div class="deal-description">Application-based intros to vetted operators, partners, and ecosystem resources across hubs.</div>
+                    <div class="deal-footer">
+                        <div class="deal-value">Member perk<span>monthly</span></div>
+                        <button class="claim-btn">Request</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-card-top" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">🎤 <span class="badge">POPULAR</span><span class="members-badge">⭐ Members</span></div>
+                <div class="deal-card-body">
+                    <div class="deal-partner-name">Yorkseed Office Hours</div>
+                    <div class="deal-title">Pitch Review + GTM Feedback</div>
+                    <div class="deal-description">Monthly closed-door pitch practice with founders/operators. Limited slots (demo placeholder).</div>
+                    <div class="deal-footer">
+                        <div class="deal-value">Priority access<span>limited</span></div>
+                        <button class="claim-btn">Request</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-card-top" style="background:linear-gradient(135deg,#eff6ff,#dbeafe)">🧩 <span class="badge">NEW</span></div>
+                <div class="deal-card-body">
+                    <div class="deal-partner-name">Yorkseed Operators</div>
+                    <div class="deal-title">Operator Hotline (Async Q&A)</div>
+                    <div class="deal-description">Ask a tactical question (legal, finance, hiring, GTM) and get matched to a vetted operator reply.</div>
+                    <div class="deal-footer">
+                        <div class="deal-value">Member perk<span>weekly</span></div>
+                        <button class="claim-btn">Request</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
         <!-- AI Tools -->
         <div class="section-row">
             <h2>🤖 AI Tools</h2>
@@ -517,101 +612,7 @@
             </div>
 
         </div>
-
-        <!-- 🌍 Hub Perks (Yorkseed-specific) -->
-        <div class="section-row">
-            <h2>🌍 Hub Perks</h2>
-            <a href="#" class="see-all">See all →</a>
-        </div>
-        <div class="deals-grid">
-            
-            <div class="deal-card">
-                <div class="deal-card-top" style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe)">🏙️ <span class="badge">HUB</span></div>
-                <div class="deal-card-body">
-                    <div class="deal-partner-name">Yorkseed NYC</div>
-                    <div class="deal-title">Event Space Credit — NYC Hub</div>
-                    <div class="deal-description">Get a member-rate credit toward hosting a meetup, demo day, or founder dinner in NYC.</div>
-                    <div class="deal-footer">
-                        <div class="deal-value">$300 credit<span>per event</span></div>
-                        <button class="claim-btn">Request</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="deal-card">
-                <div class="deal-card-top" style="background:linear-gradient(135deg,#fff7ed,#ffedd5)">🎟️ <span class="badge">LIMITED</span><span class="members-badge">⭐ Members</span></div>
-                <div class="deal-card-body">
-                    <div class="deal-partner-name">Yorkseed London</div>
-                    <div class="deal-title">VIP Access — Founder Roundtable</div>
-                    <div class="deal-description">Priority access to curated founder dinners and operator roundtables in the London hub.</div>
-                    <div class="deal-footer">
-                        <div class="deal-value">Priority access<span>monthly</span></div>
-                        <button class="claim-btn">Request</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="deal-card">
-                <div class="deal-card-top" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff)">🏨 <span class="badge">HUB</span></div>
-                <div class="deal-card-body">
-                    <div class="deal-partner-name">Yorkseed Global</div>
-                    <div class="deal-title">Offsite Booking Benefit</div>
-                    <div class="deal-description">Member-rate discounts on team offsites and meeting spaces (select cities, demo placeholder).</div>
-                    <div class="deal-footer">
-                        <div class="deal-value">10–15% off<span>select venues</span></div>
-                        <button class="claim-btn">Claim Deal</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 🤝 Access & Introductions (Yorkseed differentiator) -->
-        <div class="section-row">
-            <h2>🤝 Access & Introductions</h2>
-            <a href="#" class="see-all">See all →</a>
-        </div>
-        <div class="deals-grid">
-
-            <div class="deal-card">
-                <div class="deal-card-top" style="background:linear-gradient(135deg,#fff5f5,#ffe4e6)">🤝 <span class="badge">VETTED</span><span class="members-badge">⭐ Members</span></div>
-                <div class="deal-card-body">
-                    <div class="deal-partner-name">Yorkseed Concierge</div>
-                    <div class="deal-title">Warm Intro Concierge (1/month)</div>
-                    <div class="deal-description">Application-based intros to vetted operators, partners, and ecosystem resources across hubs.</div>
-                    <div class="deal-footer">
-                        <div class="deal-value">Member perk<span>monthly</span></div>
-                        <button class="claim-btn">Request</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="deal-card">
-                <div class="deal-card-top" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">🎤 <span class="badge">POPULAR</span><span class="members-badge">⭐ Members</span></div>
-                <div class="deal-card-body">
-                    <div class="deal-partner-name">Yorkseed Office Hours</div>
-                    <div class="deal-title">Pitch Review + GTM Feedback</div>
-                    <div class="deal-description">Monthly closed-door pitch practice with founders/operators. Limited slots (demo placeholder).</div>
-                    <div class="deal-footer">
-                        <div class="deal-value">Priority access<span>limited</span></div>
-                        <button class="claim-btn">Request</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="deal-card">
-                <div class="deal-card-top" style="background:linear-gradient(135deg,#eff6ff,#dbeafe)">🧩 <span class="badge">NEW</span></div>
-                <div class="deal-card-body">
-                    <div class="deal-partner-name">Yorkseed Operators</div>
-                    <div class="deal-title">Operator Hotline (Async Q&A)</div>
-                    <div class="deal-description">Ask a tactical question (legal, finance, hiring, GTM) and get matched to a vetted operator reply.</div>
-                    <div class="deal-footer">
-                        <div class="deal-value">Member perk<span>weekly</span></div>
-                        <button class="claim-btn">Request</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>      
+     
     </main>
 </div>
 
