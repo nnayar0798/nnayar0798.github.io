@@ -435,7 +435,7 @@
 
         <!-- 🌍 Hub Perks -->
         <div class="section-row">
-            <h2>🌍  Perks</h2>
+            <h2>🌍 Hub Perks</h2>
             <a href="#" class="see-all">See all →</a>
         </div>
         <div class="deals-grid">
@@ -444,7 +444,7 @@
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe)">🏙️ <span class="badge">HUB</span></div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed NYC</div>
-                    <div class="deal-title">Event Space Credit — NYC Hub</div>
+                    <div class="deal-title">Event Space Credit - NYC Hub</div>
                     <div class="deal-description">Get a member-rate credit toward hosting a meetup, demo day, or founder dinner in NYC.</div>
                     <div class="deal-footer">
                         <div class="deal-value">$300 credit<span>per event</span></div>
@@ -737,45 +737,52 @@
     }
     
     // ---- Hub Perks modal (ONLY for buttons with .js-hub-details) ----
-    function openHubDealModal(card) {
+    function openDealModal(card) {
         const partner = card.querySelector(".deal-partner-name")?.textContent || "Partner";
-        const title   = card.querySelector(".deal-title")?.textContent || "Deal title";
-        const desc    = card.querySelector(".deal-description")?.textContent || "Deal description";
+        const title   = card.querySelector(".deal-title")?.textContent || "Perk title";
+        const desc    = card.querySelector(".deal-description")?.textContent || "Perk description";
 
-        const hub      = (card.dataset.hub || "global").toUpperCase();
+        // Optional dataset fields (safe defaults)
+        const value    = card.dataset.value || "";
         const members  = (card.dataset.members || "0") === "1";
         const link     = card.dataset.link || "#";
 
-        document.getElementById("hubModalPartner").textContent = partner;
-        document.getElementById("hubModalTitle").textContent = title;
-        document.getElementById("hubModalDesc").textContent = desc;
+        // Fill modal
+        document.getElementById("ModalPartner").textContent = partner;
+        document.getElementById("ModalTitle").textContent = title;
+        document.getElementById("ModalDesc").textContent = desc;
 
-        document.getElementById("hubModalHub").textContent = `Hub: ${hub}`;
-        document.getElementById("hubModalMembers").textContent = members ? "Members-only" : "Available to all";
+        // Your chip id is "Modal" (bad name but we’ll keep it)
+        const chip = document.getElementById("Modal");
+        chip.textContent = value ? `Value: ${value}` : "Yorkseed Perk (Preview)";
 
-        const redeem = document.getElementById("hubModalRedeem");
+        const memChip = document.getElementById("ModalMembers");
+        memChip.textContent = members ? "Members-only" : "Available to all";
+
+        const redeem = document.getElementById("ModalRedeem");
         redeem.href = link;
 
-        document.getElementById("hubDealModal").style.display = "block";
-    }
-    
-    function closeHubDealModal() {
-        document.getElementById("hubDealModal").style.display = "none";
+        // Show modal
+        document.getElementById("DealModal").style.display = "block";
     }
 
-    // Close modal on overlay click (optional but nice)
+    function closeDealModal() {
+        document.getElementById("DealModal").style.display = "none";
+    }
+
+    // Close modal on overlay click
     document.addEventListener("click", (e) => {
-        const modal = document.getElementById("hubDealModal");
+        const modal = document.getElementById("DealModal");
         if (!modal) return;
-        if (e.target === modal) closeHubDealModal();
+        if (e.target === modal) closeDealModal();
     });
 
-    // Wire ONLY hub perk buttons
+    // Wire ONLY perks buttons
     document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".js-hub-details").forEach(btn => {
             btn.addEventListener("click", () => {
                 const card = btn.closest(".deal-card");
-                if (card) openHubDealModal(card);
+            if (card) openDealModal(card);
             });
         });
     });
