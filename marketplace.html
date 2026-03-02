@@ -162,7 +162,7 @@
 <!-- Filter Bar -->
 <div class="filter-bar">
     <div class="container">
-        <button class="filter-tab active" onclick="setTab(this)">All Deals</button>
+        <!-- <button class="filter-tab active" onclick="setTab(this)">All Deals</button>
         <button class="filter-tab" onclick="setTab(this)">🔥 New</button>
         <button class="filter-tab" onclick="setTab(this)">🛠️ Software</button>
         <button class="filter-tab" onclick="setTab(this)">💼 Legal & Finance</button>
@@ -170,7 +170,17 @@
         <button class="filter-tab" onclick="setTab(this)">🤖 AI Tools</button>
         <button class="filter-tab" onclick="setTab(this)">✈️ Travel</button>
         <button class="filter-tab" onclick="setTab(this)">🏥 Health</button>
-        <button class="filter-tab" onclick="setTab(this)">🎓 Education</button>
+        <button class="filter-tab" onclick="setTab(this)">🎓 Education</button> -->
+
+        <button class="filter-tab active" data-tab="all" onclick="setTab(this)">All Deals</button>
+        <button class="filter-tab" data-tab="new" onclick="setTab(this)">🔥 New</button>
+        <button class="filter-tab" data-tab="software" onclick="setTab(this)">🛠️ Software</button>
+        <button class="filter-tab" data-tab="legal" onclick="setTab(this)">💼 Legal & Finance</button>
+        <button class="filter-tab" data-tab="marketing" onclick="setTab(this)">📣 Marketing</button>
+        <button class="filter-tab" data-tab="ai" onclick="setTab(this)">🤖 AI Tools</button>
+        <button class="filter-tab" data-tab="travel" onclick="setTab(this)">✈️ Travel</button>
+        <button class="filter-tab" data-tab="health" onclick="setTab(this)">🏥 Health</button>
+        <button class="filter-tab" data-tab="education" onclick="setTab(this)">🎓 Education</button>
         <input class="filter-search" type="text" placeholder="🔍  Search deals…" oninput="searchDeals(this.value)">
     </div>
 </div>
@@ -273,13 +283,21 @@
 
         <!-- Category Pills -->
         <div class="category-pills">
-            <div class="cat-pill active" onclick="filterPill(this)">✨ All</div>
+            <!-- <div class="cat-pill active" onclick="filterPill(this)">✨ All</div>
             <div class="cat-pill" onclick="filterPill(this)">🔥 New This Week</div>
             <div class="cat-pill" onclick="filterPill(this)">🤖 AI Tools</div>
             <div class="cat-pill" onclick="filterPill(this)">🛠️ Dev Tools</div>
             <div class="cat-pill" onclick="filterPill(this)">💰 Banking</div>
             <div class="cat-pill" onclick="filterPill(this)">📣 Marketing</div>
-            <div class="cat-pill" onclick="filterPill(this)">✈️ Travel</div>
+            <div class="cat-pill" onclick="filterPill(this)">✈️ Travel</div> -->
+
+            <div class="cat-pill active" data-pill="all" onclick="filterPill(this)">✨ All</div>
+            <div class="cat-pill" data-pill="new" onclick="filterPill(this)">🔥 New This Week</div>
+            <div class="cat-pill" data-pill="ai" onclick="filterPill(this)">🤖 AI Tools</div>
+            <div class="cat-pill" data-pill="software" onclick="filterPill(this)">🛠️ Dev Tools</div>
+            <div class="cat-pill" data-pill="legal" onclick="filterPill(this)">💰 Banking</div>
+            <div class="cat-pill" data-pill="marketing" onclick="filterPill(this)">📣 Marketing</div>
+            <div class="cat-pill" data-pill="travel" onclick="filterPill(this)">✈️ Travel</div>
         </div>
 
         <!-- Popular Deals -->
