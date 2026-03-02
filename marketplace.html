@@ -185,33 +185,56 @@
                 <div class="toggle-label">🔐 Members Only</div>
                 <div class="toggle-sub">Show exclusive perks</div>
             </div>
-            <div class="toggle-switch" id="membersToggle"></div>
+            <div class="toggle-switch off" id="membersToggle"></div>
         </div>
         <div class="sidebar-section">
+            
             <h4>Category</h4>
-            <label class="sidebar-option"><input type="checkbox" checked> All <span class="count">152</span></label>
+            <!-- <label class="sidebar-option"><input type="checkbox" checked> All <span class="count">152</span></label>
             <label class="sidebar-option"><input type="checkbox"> 🛠️ Software <span class="count">48</span></label>
             <label class="sidebar-option"><input type="checkbox"> 🤖 AI Tools <span class="count">31</span></label>
             <label class="sidebar-option"><input type="checkbox"> 📣 Marketing <span class="count">22</span></label>
             <label class="sidebar-option"><input type="checkbox"> 💼 Legal & Finance <span class="count">18</span></label>
             <label class="sidebar-option"><input type="checkbox"> ✈️ Travel <span class="count">14</span></label>
             <label class="sidebar-option"><input type="checkbox"> 🏥 Health <span class="count">12</span></label>
-            <label class="sidebar-option"><input type="checkbox"> 🎓 Education <span class="count">7</span></label>
+            <label class="sidebar-option"><input type="checkbox"> 🎓 Education <span class="count">7</span></label> -->
+
+            <label class="sidebar-option"><input type="checkbox" id="cat_all" checked> All <span class="count">152</span></label>
+            <label class="sidebar-option"><input type="checkbox" class="cat" value="software"> 🛠️ Software <span class="count">48</span></label>
+            <label class="sidebar-option"><input type="checkbox" class="cat" value="ai"> 🤖 AI Tools <span class="count">31</span></label>
+            <label class="sidebar-option"><input type="checkbox" class="cat" value="marketing"> 📣 Marketing <span class="count">22</span></label>
+            <label class="sidebar-option"><input type="checkbox" class="cat" value="legal"> 💼 Legal & Finance <span class="count">18</span></label>
+            <label class="sidebar-option"><input type="checkbox" class="cat" value="travel"> ✈️ Travel <span class="count">14</span></label>
+            <label class="sidebar-option"><input type="checkbox" class="cat" value="health"> 🏥 Health <span class="count">12</span></label>
+            <label class="sidebar-option"><input type="checkbox" class="cat" value="education"> 🎓 Education <span class="count">7</span></label>
+
         </div>
         <div class="sidebar-section">
             <h4>Deal Type</h4>
-            <label class="sidebar-option"><input type="checkbox" checked> % Off Subscription</label>
+            <!-- <label class="sidebar-option"><input type="checkbox" checked> % Off Subscription</label>
             <label class="sidebar-option"><input type="checkbox" checked> Free Trial / Credits</label>
             <label class="sidebar-option"><input type="checkbox"> Cash Back</label>
             <label class="sidebar-option"><input type="checkbox"> Extended Trial</label>
-            <label class="sidebar-option"><input type="checkbox"> Priority Access</label>
+            <label class="sidebar-option"><input type="checkbox"> Priority Access</label> -->
+
+            <label class="sidebar-option"><input type="checkbox" class="dtype" value="percent" checked> % Off Subscription</label>
+            <label class="sidebar-option"><input type="checkbox" class="dtype" value="credits" checked> Free Trial / Credits</label>
+            <label class="sidebar-option"><input type="checkbox" class="dtype" value="cashback"> Cash Back</label>
+            <label class="sidebar-option"><input type="checkbox" class="dtype" value="extended"> Extended Trial</label>
+            <label class="sidebar-option"><input type="checkbox" class="dtype" value="priority"> Priority Access</label>
+
         </div>
         <div class="sidebar-section">
             <h4>Value</h4>
-            <label class="sidebar-option"><input type="checkbox"> Under $500</label>
+            <!-- <label class="sidebar-option"><input type="checkbox"> Under $500</label>
             <label class="sidebar-option"><input type="checkbox"> $500 – $2,000</label>
             <label class="sidebar-option"><input type="checkbox"> $2,000 – $10,000</label>
-            <label class="sidebar-option"><input type="checkbox"> $10,000+</label>
+            <label class="sidebar-option"><input type="checkbox"> $10,000+</label> -->
+
+            <label class="sidebar-option"><input type="checkbox" class="val" value="0-500"> Under $500</label>
+            <label class="sidebar-option"><input type="checkbox" class="val" value="500-2000"> $500 – $2,000</label>
+            <label class="sidebar-option"><input type="checkbox" class="val" value="2000-10000"> $2,000 – $10,000</label>
+            <label class="sidebar-option"><input type="checkbox" class="val" value="10000-999999"> $10,000+</label>
         </div>
     </aside>
 
