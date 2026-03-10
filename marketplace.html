@@ -103,11 +103,12 @@
         .toggle-switch.off::after { right: auto; left: 3px; }
 
         /* ── Featured banner ── */
-        .featured-banner { background: linear-gradient(135deg,#1a1a1a,#2d2d2d); border-radius: 15px; padding: 2.5rem; color: white; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; position: relative; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.15); transition: all 0.3s ease; }
+        .featured-banner { background: linear-gradient(135deg,#1a1a1a,#2d2d2d); border-radius: 15px; padding: 2.5rem; color: white; margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; position: relative; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.15); transition: all 0.3s ease; }
         .featured-banner:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.25); }
-        .featured-banner::before { content: '⭐ FEATURED DEAL'; position: absolute; top: 1rem; left: 1rem; background: #dc2626; color: white; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; padding: 0.25rem 0.75rem; border-radius: 20px; }
+        .featured-banner::before { content: '⭐ FEATURED DEAL'; position: absolute; top: 1rem; left: 50%; transform: translateX(-50%); background: #dc2626; color: white; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; padding: 0.25rem 0.75rem; border-radius: 20px; white-space: nowrap; }
+        .featured-banner-text { display: flex; flex-direction: column; align-items: center; }
         .featured-banner-text h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; margin-top: 1rem; }
-        .featured-banner-text p { color: #ccc; font-size: 1rem; margin-bottom: 1.5rem; max-width: 450px; }
+        .featured-banner-text p { color: #ccc; font-size: 1rem; margin-bottom: 0; max-width: 500px; }
         .featured-logo { width: 80px; height: 80px; background: white; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; flex-shrink: 0; }
         .deal-pill { display: inline-block; background: #dc2626; color: white; padding: 0.35rem 1rem; border-radius: 20px; font-weight: 700; font-size: 0.9rem; }
         .claim-btn-white { background: white; color: #1a1a1a; padding: 0.8rem 1.8rem; border: none; border-radius: 25px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block; margin-top: 1rem; }
@@ -316,13 +317,13 @@
 
         <!-- Featured Deal -->
         <div class="featured-banner">
+            <div class="featured-logo">☁️</div>
             <div class="featured-banner-text">
                 <span class="deal-pill">$50,000 in Credits</span>
                 <h3>AWS Activate for Startups</h3>
                 <p>Get cloud credits, training, and AWS technical support — exclusively for Yorkseed members scaling their infrastructure.</p>
                 <a href="#" class="claim-btn-white">Claim This Deal →</a>
             </div>
-            <div class="featured-logo">☁️</div>
         </div>
 
         <!-- Partner Logos -->
