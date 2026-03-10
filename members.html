@@ -125,20 +125,6 @@
   .skeleton { background: linear-gradient(90deg, #f0f2f5 25%, #e8ecf0 50%, #f0f2f5 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 8px; }
   @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-  /* ── API Key Modal ── */
-  .apikey-modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:3000; align-items:center; justify-content:center; padding:2rem; }
-  .apikey-box { background:white; border-radius:16px; padding:2rem; max-width:460px; width:100%; box-shadow:0 20px 60px rgba(0,0,0,0.25); }
-  .apikey-box h3 { font-size:1.2rem; font-weight:700; margin-bottom:0.4rem; }
-  .apikey-box p { font-size:0.88rem; color:#666; margin-bottom:1.25rem; line-height:1.6; }
-  .apikey-input-wrap { display:flex; gap:0.75rem; margin-bottom:0.75rem; }
-  .apikey-input-wrap input { flex:1; padding:0.7rem 1rem; border:1.5px solid #e0e0e0; border-radius:10px; font-size:0.9rem; font-family:inherit; outline:none; transition:border 0.2s; }
-  .apikey-input-wrap input:focus { border-color:#7c3aed; }
-  .apikey-submit { background:linear-gradient(135deg,#7c3aed,#6d28d9); color:white; border:none; border-radius:10px; padding:0.7rem 1.25rem; font-weight:700; font-size:0.9rem; cursor:pointer; font-family:inherit; white-space:nowrap; transition:all 0.2s; }
-  .apikey-submit:hover { transform:translateY(-1px); box-shadow:0 5px 15px rgba(124,58,237,0.3); }
-  .apikey-notice { font-size:0.78rem; color:#aaa; background:#f8fafc; border-radius:8px; padding:0.6rem 0.85rem; line-height:1.5; }
-  .apikey-cancel { background:none; border:none; color:#999; font-size:0.85rem; cursor:pointer; margin-top:0.75rem; font-family:inherit; }
-  .apikey-cancel:hover { color:#333; }
-
   /* ── Footer ── */
   .footer { background: #1a1a1a; color: white; padding: 60px 0 30px; margin-top: 2rem; }
   .footer-content { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 3rem; margin-bottom: 2rem; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 2rem; }
@@ -331,9 +317,10 @@ function toggleMatching() {
 }
 
 // ─────────────────────────────────────────────────────────────
-// AI MATCHING via Anthropic API
+// LOCAL MATCHING ENGINE — no API key needed
+// Scores every member against the current user across 5 dimensions
 // ─────────────────────────────────────────────────────────────
-async function runMatching() {
+function runMatching() {
   if (matchLoading) return;
   matchLoading = true;
 
@@ -343,101 +330,135 @@ async function runMatching() {
   statusEl.classList.add('visible');
   statusTxt.innerHTML = `Analyzing compatibility for <strong>${MEMBERS[currentUserId].name}</strong>…`;
   spinner.style.display = 'block';
-
-  // Re-render with loading skeletons on match badges
   renderGrid(true);
 
-  const currentUser = MEMBERS[currentUserId];
-  const others = MEMBERS.filter(m => m.id !== currentUserId);
+  // Small timeout so the loading state is visible before scoring runs
+  setTimeout(() => {
+    const me     = MEMBERS[currentUserId];
+    const others = MEMBERS.filter(m => m.id !== me.id);
 
-  const prompt = `You are a startup ecosystem matchmaker for Yorkseed, a global founder & investor community.
+    matchData = {};
 
-Current user profile:
-${JSON.stringify(currentUser, null, 2)}
-
-Other members to evaluate:
-${JSON.stringify(others, null, 2)}
-
-For each member, assess how well they match the current user based on:
-- Sector/industry alignment
-- Stage alignment (founder stage vs investor stage)
-- Role compatibility (founder seeking investors, investors seeking founders, founders with complementary skills)
-- Geographic/market overlap
-- Strategic fit
-
-Return a JSON array (no markdown, no explanation, raw JSON only):
-[
-  {
-    "memberId": <number>,
-    "score": <0-100>,
-    "matchType": "strong" | "moderate" | "weak",
-    "matchReasons": ["short reason 1", "short reason 2", "short reason 3"]
-  },
-  ...
-]
-
-Rules:
-- "strong" = score 75+
-- "moderate" = score 45-74  
-- "weak" = score < 45
-- matchReasons should be concise (max 6 words each), specific and actionable
-- Consider investor→founder matches as high if the investor's focus aligns with founder's sector/stage`;
-
-  try {
-    // Get API key from input or sessionStorage
-    const apiKey = (document.getElementById('apiKeyInput')?.value || '').trim()
-                || sessionStorage.getItem('ys_api_key') || '';
-
-    if (!apiKey) {
-      document.getElementById('apiKeyModal').style.display = 'flex';
-      matchLoading = false;
-      statusEl.classList.remove('visible');
-      return;
-    }
-
-    // Save for this session so user only has to enter once
-    sessionStorage.setItem('ys_api_key', apiKey);
-
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-        "anthropic-dangerous-direct-browser-access": "true"
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        messages: [{ role: "user", content: prompt }]
-      })
+    others.forEach(other => {
+      const result = scoreMatch(me, other);
+      matchData[other.id] = result;
     });
 
-    if (!response.ok) {
-      const err = await response.json().catch(() => ({}));
-      throw new Error(err.error?.message || `HTTP ${response.status}`);
-    }
-
-    const data = await response.json();
-    const raw  = data.content.map(b => b.text || '').join('');
-    const clean = raw.replace(/```json|```/g, '').trim();
-    const results = JSON.parse(clean);
-
-    matchData = {};
-    results.forEach(r => { matchData[r.memberId] = r; });
-
-    statusTxt.innerHTML = `✅ AI match complete for <strong>${currentUser.name}</strong> — ${results.filter(r=>r.matchType==='strong').length} strong matches found`;
+    const strongCount = Object.values(matchData).filter(r => r.matchType === 'strong').length;
+    statusTxt.innerHTML = `✅ Match complete for <strong>${me.name}</strong> — ${strongCount} strong match${strongCount !== 1 ? 'es' : ''} found`;
     spinner.style.display = 'none';
+    matchLoading = false;
+    renderGrid();
+  }, 600);
+}
 
-  } catch (err) {
-    console.error('Match error:', err);
-    statusTxt.innerHTML = `⚠️ Match failed: ${err.message} — <a href="#" onclick="sessionStorage.removeItem('ys_api_key');toggleMatching();toggleMatching();return false;" style="color:#dc2626">retry with new key</a>`;
-    spinner.style.display = 'none';
-    matchData = {};
+// ── Core scoring function ─────────────────────────────────────
+function scoreMatch(me, other) {
+  let score = 0;
+  const reasons = [];
+
+  const meIsFounder   = me.role === 'founder';
+  const meIsInvestor  = me.role === 'investor';
+  const othIsFounder  = other.role === 'founder';
+  const othIsInvestor = other.role === 'investor';
+
+  // ── 1. ROLE COMPATIBILITY (0–35 pts) ──────────────────────
+  if (meIsFounder && othIsInvestor) {
+    // Best case: founder meets investor
+    score += 30;
+    reasons.push('Investor–founder pairing');
+  } else if (meIsInvestor && othIsFounder) {
+    score += 30;
+    reasons.push('Founder seeking investment');
+  } else if (meIsFounder && othIsFounder) {
+    score += 12;
+    reasons.push('Peer founders — co-founder potential');
+  } else {
+    score += 8;
+    reasons.push('Peer investors — co-investment potential');
   }
 
-  matchLoading = false;
-  renderGrid();
+  // ── 2. SECTOR / FOCUS OVERLAP (0–35 pts) ──────────────────
+  const mySectors = normTokens([
+    ...(me.sectors || []), me.focus || '', me.bio || ''
+  ]);
+  const theirSectors = normTokens([
+    ...(other.sectors || []), other.focus || '', other.bio || ''
+  ]);
+
+  const shared = mySectors.filter(s => theirSectors.includes(s));
+  const sectorScore = Math.min(35, shared.length * 10);
+  score += sectorScore;
+
+  if (shared.length > 0) {
+    const top = shared.slice(0, 2).map(capitalise).join(' & ');
+    reasons.push(`Shared focus: ${top}`);
+  }
+
+  // ── 3. STAGE ALIGNMENT (0–20 pts) ─────────────────────────
+  const myStage    = (me.stage || me.investStage || '').toLowerCase();
+  const theirStage = (other.stage || other.investStage || '').toLowerCase();
+
+  if (myStage && theirStage) {
+    if (myStage === theirStage) {
+      score += 20;
+      reasons.push(`Same stage: ${capitalise(myStage)}`);
+    } else if (stagesAdjacent(myStage, theirStage)) {
+      score += 10;
+      reasons.push('Adjacent stage fit');
+    }
+  }
+
+  // ── 4. STATUS SIGNAL (0–10 pts) ───────────────────────────
+  const myStatus    = (me.status || '').toLowerCase();
+  const theirStatus = (other.status || '').toLowerCase();
+  const myRaising   = myStatus.includes('raising');
+  const theirDeploy = theirStatus.includes('deploying');
+
+  if (meIsFounder && othIsInvestor && myRaising && theirDeploy) {
+    score += 10;
+    reasons.push('Actively raising & deploying');
+  } else if (meIsInvestor && othIsFounder && theirStatus.includes('raising') && myStatus.includes('deploying')) {
+    score += 10;
+    reasons.push('Actively raising & deploying');
+  }
+
+  // ── 5. GEOGRAPHY (0–5 pts bonus) ──────────────────────────
+  if (me.flag && other.flag && me.flag === other.flag) {
+    score += 5;
+    reasons.push('Same geography');
+  }
+
+  // ── Clamp & classify ──────────────────────────────────────
+  score = Math.min(99, Math.max(5, score));
+  const matchType = score >= 75 ? 'strong' : score >= 45 ? 'moderate' : 'weak';
+
+  // Always have at least one reason
+  if (reasons.length === 0) reasons.push('Community member');
+
+  return { memberId: other.id, score, matchType, matchReasons: reasons.slice(0, 3) };
+}
+
+// ── Helpers ───────────────────────────────────────────────────
+const STAGE_ORDER = ['pre-seed','seed','series a','series b','series c','growth'];
+
+function stagesAdjacent(a, b) {
+  const ia = STAGE_ORDER.findIndex(s => a.includes(s));
+  const ib = STAGE_ORDER.findIndex(s => b.includes(s));
+  return ia >= 0 && ib >= 0 && Math.abs(ia - ib) === 1;
+}
+
+function normTokens(arr) {
+  const STOPWORDS = new Set(['and','the','a','in','of','for','to','with','all','industry','ops','turn','arounds','friendly','code','assessments']);
+  return arr.join(' ')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter(t => t.length > 2 && !STOPWORDS.has(t));
+}
+
+function capitalise(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -553,23 +574,6 @@ function buildCard(m, loadingBadges) {
 }
 
 // ─────────────────────────────────────────────────────────────
-// API KEY MODAL SUBMIT
-// ─────────────────────────────────────────────────────────────
-function submitApiKey() {
-  const key = document.getElementById('apiKeyInput').value.trim();
-  if (!key) { document.getElementById('apiKeyInput').style.borderColor = '#dc2626'; return; }
-  sessionStorage.setItem('ys_api_key', key);
-  document.getElementById('apiKeyModal').style.display = 'none';
-  runMatching();
-}
-
-// Allow Enter key in API key input
-document.addEventListener('DOMContentLoaded', () => {
-  const input = document.getElementById('apiKeyInput');
-  if (input) input.addEventListener('keydown', e => { if (e.key === 'Enter') submitApiKey(); });
-});
-
-// ─────────────────────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
@@ -594,24 +598,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderGrid();
 });
 </script>
-
-<!-- API Key Modal -->
-<div class="apikey-modal" id="apiKeyModal">
-  <div class="apikey-box">
-    <h3>🔑 Enter your Anthropic API Key</h3>
-    <p>The AI Match feature calls Claude directly from your browser. Your key is only stored for this session and never sent anywhere except Anthropic's API.</p>
-    <div class="apikey-input-wrap">
-      <input type="password" id="apiKeyInput" placeholder="sk-ant-api03-..." autocomplete="off">
-      <button class="apikey-submit" onclick="submitApiKey()">Run Matching →</button>
-    </div>
-    <div class="apikey-notice">
-      🔒 Stored in <code>sessionStorage</code> only — cleared when you close the tab.<br>
-      Get your key at <a href="https://console.anthropic.com" target="_blank" style="color:#7c3aed;">console.anthropic.com</a>
-    </div>
-    <br>
-    <button class="apikey-cancel" onclick="document.getElementById('apiKeyModal').style.display='none'; document.getElementById('matchToggle').classList.remove('active'); matchMode=false;">Cancel</button>
-  </div>
-</div>
 
 <!-- Footer -->
 <footer class="footer">
