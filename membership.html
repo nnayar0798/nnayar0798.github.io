@@ -1,875 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Membership | Yorkseed</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: #1a1a1a;
-            overflow-x: hidden;
-        }
-
-        /* Header */
-        .header {
-            position: fixed;
-            height: 110px;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid #e0e0e0;
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        .logo img {
-            max-height: 100px;
-            height: auto;
-            width: auto;
-            margin-right: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .logo img:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-text {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #dc2626;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 50%;
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .login-btn {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            color: white !important;
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
-        }
-
-        /* Page Hero */
-        .page-hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
-            color: white;
-            padding: 150px 0 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .page-hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .page-hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .page-hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-
-        .hero-cta {
-            background: white;
-            color: #dc2626;
-            padding: 1.2rem 2.5rem;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .hero-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Sections */
-        section {
-            padding: 100px 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: #1a1a1a;
-        }
-
-        .section-light {
-            background: #f8fafc;
-        }
-
-        .section-dark {
-            background: #1a1a1a;
-            color: white;
-        }
-
-        .section-dark .section-title {
-            color: white;
-        }
-
-        /* Who Can Join Section */
-        .member-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .member-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            transition: all 0.3s ease;
-            border-top: 4px solid #dc2626;
-            position: relative;
-        }
-
-        .member-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .member-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .member-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-        }
-
-        .member-card p {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .member-features {
-            list-style: none;
-            text-align: left;
-        }
-
-        .member-features li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .member-features li::before {
-            content: "✓";
-            color: #10b981;
-            font-weight: bold;
-            margin-right: 0.75rem;
-            width: 16px;
-        }
-
-        /* Membership Tiers */
-        .tiers-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-            margin: 4rem 0;
-        }
-
-        .tier-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            position: relative;
-            transition: all 0.3s ease;
-            border-top: 4px solid #e5e5e5;
-        }
-
-        .tier-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .tier-card.featured {
-            border-top: 4px solid #dc2626;
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.15);
-            transform: scale(1.05);
-        }
-
-        .tier-card.featured::before {
-            content: "Most Popular";
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #dc2626;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-
-        .tier-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .tier-header h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #1a1a1a;
-        }
-
-        .tier-header .price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #dc2626;
-            margin-bottom: 0.5rem;
-        }
-
-        .tier-header .period {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .tier-features {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .tier-features li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .tier-features li::before {
-            content: "✓";
-            color: #10b981;
-            font-weight: bold;
-            margin-right: 0.75rem;
-            width: 16px;
-            margin-top: 2px;
-        }
-
-        .tier-cta {
-            width: 100%;
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            color: white;
-            border: none;
-            padding: 1rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .tier-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
-        }
-
-        .tier-cta.secondary {
-            background: transparent;
-            color: #dc2626;
-            border: 2px solid #dc2626;
-        }
-
-        .tier-cta.secondary:hover {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            color: white;
-        }
-
-        /* Access Features */
-        .access-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .access-card {
-            background: #374151;
-            border-radius: 15px;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .access-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .access-card::before {
-            content: attr(data-icon);
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 1.5rem;
-        }
-
-        .access-card h4 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .access-card p {
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        /* Application Form */
-        .application-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            padding: 3rem 2.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border: 2px solid #e5e5e5;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #dc2626;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            color: white;
-            border: none;
-            padding: 1.2rem 2rem;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(220, 38, 38, 0.3);
-        }
-
-        /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 60px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section ul li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section ul li a:hover {
-            color: #dc2626;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 2rem;
-            text-align: center;
-            color: #999;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .page-hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .member-types,
-            .tiers-container,
-            .access-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tier-card.featured {
-                transform: none;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Members | Yorkseed</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: #f0f2f5; color: #1a1a1a; min-height: 100vh; }
+
+  /* ── Header (matches full site) ── */
+  .header { position: fixed; height: 110px; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e0e0e0; z-index: 1000; padding: 1rem 0; transition: all 0.3s ease; }
+  .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 100%; padding: 0 2rem; }
+  .logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: 700; text-decoration: none; }
+  .logo img { max-height: 100px; height: auto; width: auto; margin-right: 0.5rem; transition: all 0.3s ease; }
+  .logo img:hover { transform: scale(1.05); }
+  .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+  .nav-links a { text-decoration: none; color: #555; font-weight: 500; transition: color 0.3s ease; position: relative; }
+  .nav-links a:hover, .nav-links a.active { color: #dc2626; }
+  .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; background: linear-gradient(135deg, #dc2626, #991b1b); transition: all 0.3s ease; transform: translateX(-50%); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .login-btn { background: linear-gradient(135deg, #dc2626, #991b1b); color: white !important; padding: 0.5rem 1.5rem; border-radius: 25px; transition: all 0.3s ease; }
+  .login-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(220,38,38,0.3); }
+  .login-btn::after { display: none !important; }
+
+  /* ── Hero ── */
+  .hero { background: linear-gradient(135deg, #7f1d1d 0%, #dc2626 60%, #b91c1c 100%); color: white; padding: 150px 2rem 80px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+  .hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .hero h1 { font-size: 2.8rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .hero p { font-size: 1.05rem; opacity: 0.85; }
+
+  /* ── Controls bar ── */
+  .controls { background: white; border-bottom: 1px solid #e8ecf0; padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .pill-group { display: flex; gap: 0.5rem; }
+  .pill { padding: 0.5rem 1.2rem; border-radius: 25px; font-size: 0.88rem; font-weight: 600; cursor: pointer; border: 2px solid #e0e0e0; background: white; color: #555; transition: all 0.2s; font-family: inherit; }
+  .pill.active, .pill:hover { background: #dc2626; border-color: #dc2626; color: white; }
+  .search-wrap { flex: 1; min-width: 240px; position: relative; }
+  .search-wrap input { width: 100%; padding: 0.6rem 1rem 0.6rem 2.6rem; border: 1.5px solid #e0e0e0; border-radius: 25px; font-size: 0.9rem; font-family: inherit; outline: none; transition: border 0.2s; background: #fafafa; }
+  .search-wrap input:focus { border-color: #dc2626; background: white; }
+  .search-wrap::before { content: '🔍'; position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem; }
+  .match-toggle { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 1.2rem; border-radius: 25px; font-size: 0.88rem; font-weight: 600; cursor: pointer; border: 2px solid #e0e0e0; background: white; color: #555; transition: all 0.2s; font-family: inherit; margin-left: auto; }
+  .match-toggle.active { background: linear-gradient(135deg,#7c3aed,#6d28d9); border-color: #7c3aed; color: white; }
+  .match-toggle .dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; transition: background 0.2s; }
+  .match-toggle.active .dot { background: #a78bfa; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* ── "Viewing as" banner ── */
+  .viewing-as { background: linear-gradient(135deg,#f5f3ff,#ede9fe); border: 1px solid #c4b5fd; border-radius: 12px; padding: 0.85rem 1.25rem; margin: 1.5rem 2rem 0; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .viewing-as .va-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #7c3aed; }
+  .viewing-as .va-name { font-weight: 700; color: #1a1a1a; }
+  .viewing-as .va-meta { font-size: 0.85rem; color: #666; }
+  .viewing-as select { margin-left: auto; padding: 0.4rem 0.8rem; border: 1px solid #c4b5fd; border-radius: 8px; font-family: inherit; font-size: 0.85rem; background: white; color: #333; cursor: pointer; outline: none; }
+
+  /* ── Match status bar ── */
+  .match-status { margin: 1rem 2rem; background: white; border-radius: 12px; padding: 0.85rem 1.25rem; display: none; align-items: center; gap: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e8ecf0; }
+  .match-status.visible { display: flex; }
+  .match-status .ms-icon { font-size: 1.4rem; }
+  .match-status .ms-text { font-size: 0.9rem; color: #555; }
+  .match-status .ms-text strong { color: #7c3aed; }
+  .match-status .ms-spinner { width: 20px; height: 20px; border: 2px solid #e0e0e0; border-top-color: #7c3aed; border-radius: 50%; animation: spin 0.8s linear infinite; margin-left: auto; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Grid ── */
+  .grid-wrap { padding: 1.5rem 2rem 4rem; max-width: 1400px; margin: 0 auto; }
+  .members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+
+  /* ── Member card ── */
+  .member-card { background: white; border-radius: 16px; padding: 1.4rem; box-shadow: 0 2px 12px rgba(0,0,0,0.07); transition: all 0.25s ease; position: relative; border: 2px solid transparent; overflow: hidden; }
+  .member-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.12); }
+  .member-card.has-match { border-color: #7c3aed; }
+  .member-card.strong-match { border-color: #059669; }
+
+  .card-header { display: flex; align-items: flex-start; gap: 0.85rem; margin-bottom: 1rem; }
+  .member-avatar { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 800; color: white; flex-shrink: 0; letter-spacing: -0.02em; }
+  .member-info { flex: 1; min-width: 0; }
+  .member-name { font-weight: 700; font-size: 1rem; color: #1a1a1a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .member-company { font-size: 0.82rem; color: #888; margin-top: 0.1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .member-badges { display: flex; gap: 0.4rem; margin-top: 0.4rem; flex-wrap: wrap; }
+  .badge-role { font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .badge-role.founder { background: #fee2e2; color: #dc2626; }
+  .badge-role.investor { background: #d1fae5; color: #059669; }
+  .badge-flag { font-size: 0.85rem; }
+  .view-btn { background: #1a1a1a; color: white; border: none; border-radius: 8px; padding: 0.45rem 0.9rem; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap; font-family: inherit; flex-shrink: 0; }
+  .view-btn:hover { background: #dc2626; }
+  .view-btn.investor-btn { background: #059669; }
+  .view-btn.investor-btn:hover { background: #047857; }
+
+  .card-meta { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 0.75rem; align-items: baseline; margin-bottom: 1rem; }
+  .meta-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #bbb; }
+  .meta-value { font-size: 0.85rem; color: #444; }
+
+  .card-footer { display: flex; align-items: center; justify-content: space-between; }
+  .chat-btn { width: 32px; height: 32px; border: 1.5px solid #e0e0e0; border-radius: 8px; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: all 0.2s; }
+  .chat-btn:hover { border-color: #dc2626; background: #fff5f5; }
+  .status-pill { font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.75rem; border-radius: 20px; }
+  .status-raising { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+  .status-deploying { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+
+  /* ── Match badge on card ── */
+  .match-badge { position: absolute; top: 0; right: 0; border-radius: 0 14px 0 12px; padding: 0.35rem 0.75rem; font-size: 0.75rem; font-weight: 800; display: none; align-items: center; gap: 0.3rem; }
+  .match-badge.visible { display: flex; }
+  .match-badge.strong { background: linear-gradient(135deg,#059669,#047857); color: white; }
+  .match-badge.moderate { background: linear-gradient(135deg,#7c3aed,#6d28d9); color: white; }
+  .match-badge.weak { background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; border-top: none; border-right: none; }
+
+  /* ── Match reasons panel ── */
+  .match-reasons { margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px dashed #e8ecf0; display: none; }
+  .match-reasons.visible { display: block; }
+  .match-reasons-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #7c3aed; margin-bottom: 0.5rem; }
+  .match-reason-tag { display: inline-flex; align-items: center; gap: 0.3rem; background: #f5f3ff; color: #6d28d9; font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 20px; margin: 0.2rem 0.2rem 0 0; border: 1px solid #ddd6fe; }
+
+  /* ── Sort bar ── */
+  .sort-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+  .sort-bar .count { font-size: 0.9rem; color: #888; }
+  .sort-bar .count strong { color: #1a1a1a; }
+  .sort-select { padding: 0.4rem 0.75rem; border: 1px solid #e0e0e0; border-radius: 8px; font-family: inherit; font-size: 0.85rem; outline: none; background: white; cursor: pointer; }
+
+  /* ── Empty state ── */
+  .empty-state { text-align: center; padding: 4rem 2rem; color: #999; }
+  .empty-state .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .empty-state p { font-size: 1rem; }
+
+  /* ── Loading skeleton ── */
+  .skeleton { background: linear-gradient(90deg, #f0f2f5 25%, #e8ecf0 50%, #f0f2f5 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 8px; }
+  @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+  /* ── Footer ── */
+  .footer { background: #1a1a1a; color: white; padding: 60px 0 30px; margin-top: 2rem; }
+  .footer-content { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 3rem; margin-bottom: 2rem; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 2rem; }
+  .footer-section h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; }
+  .footer-section ul { list-style: none; }
+  .footer-section ul li { margin-bottom: 0.5rem; }
+  .footer-section ul li a { color: #ccc; text-decoration: none; transition: color 0.2s; }
+  .footer-section ul li a:hover { color: #dc2626; }
+  .footer-bottom { border-top: 1px solid #333; padding-top: 2rem; text-align: center; color: #999; font-size: 0.9rem; max-width: 1200px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; }
+
+  @media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 2rem; } .controls { flex-direction: column; align-items: stretch; } .match-toggle { margin-left: 0; } }
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG" alt="Yorkseed Logo">
-            </a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="hubs.html">Hubs</a></li>
-                    <li><a href="events.html">Events</a></li>
-                    <li><a href="insider.html">Insider</a></li>
-                    <li><a href="platform.html">Platform</a></li>
-                    <li><a href="membership.html">Membership</a></li>
-                    <li><a href="marketplace.html" class="active">Marketplace</a></li>
-                    <li><a href="login.html" class="login-btn">Login</a></li>
-                </ul>
-            </nav>
+
+<!-- Header -->
+<header class="header">
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <img src="DF3EE29E-8CE9-4C8E-8F29-561E04EF309B-3.PNG" alt="Yorkseed Logo">
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="hubs.html">Hubs</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="insider.html">Insider</a></li>
+                <li><a href="platform.html">Platform</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="marketplace.html">Marketplace</a></li>
+                <li><a href="members.html" class="active">Members</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Meet the Right Members.<br>Not Just More Members.</h1>
+    <p>Discover founders and investors across Yorkseed — search, filter, and find your best matches with AI.</p>
+  </div>
+</section>
+
+<!-- Controls -->
+<div class="controls">
+  <div class="pill-group">
+    <button class="pill active" data-filter="all" onclick="setFilter(this)">All</button>
+    <button class="pill" data-filter="founder" onclick="setFilter(this)">Founders</button>
+    <button class="pill" data-filter="investor" onclick="setFilter(this)">Investors</button>
+  </div>
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Search name, company, sector, focus..." oninput="renderGrid()">
+  </div>
+  <button class="match-toggle" id="matchToggle" onclick="toggleMatching()">
+    <div class="dot"></div>
+    ✨ AI Match Me
+  </button>
+</div>
+
+<!-- Viewing as -->
+<div class="viewing-as" id="viewingAs">
+  <span class="va-label">Viewing as</span>
+  <span class="va-name" id="vaName">Alejandro O.</span>
+  <span class="va-meta" id="vaMeta">Founder · Web3, Entertainment · Pre-Seed · Raising</span>
+  <select id="userSelect" onchange="switchUser(this.value)">
+    <option value="0">Alejandro O. (Founder)</option>
+    <option value="1">Amelia Tran (Founder)</option>
+    <option value="2">Matt Routr (Investor)</option>
+    <option value="3">Sam Emmes (Investor)</option>
+    <option value="4">Parker Will. (Investor)</option>
+    <option value="5">Timothy Si. (Investor)</option>
+  </select>
+</div>
+
+<!-- Match status -->
+<div class="match-status" id="matchStatus">
+  <span class="ms-icon">🤖</span>
+  <span class="ms-text" id="matchStatusText">Analyzing compatibility with <strong>all members</strong>…</span>
+  <div class="ms-spinner" id="matchSpinner"></div>
+</div>
+
+<!-- Grid -->
+<div class="grid-wrap">
+  <div class="sort-bar">
+    <span class="count">Showing <strong id="visibleCount">0</strong> members</span>
+    <select class="sort-select" id="sortSelect" onchange="renderGrid()">
+      <option value="default">Sort: Default</option>
+      <option value="match">Sort: Best Match</option>
+      <option value="name">Sort: Name A–Z</option>
+    </select>
+  </div>
+  <div class="members-grid" id="membersGrid"></div>
+  <div class="empty-state" id="emptyState" style="display:none">
+    <div class="empty-icon">🔍</div>
+    <p>No members match your search.</p>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+// MEMBER DATA
+// ─────────────────────────────────────────────────────────────
+const MEMBERS = [
+  { id:0, name:"Alejandro O.", initials:"AO", company:"Nameless NYC", role:"founder", sectors:["Web3","Entertainment","Events"], stage:"Pre-Seed", status:"Raising", color:"#dc2626", flag:"🇺🇸", bio:"Building the next generation of event-tech in the Web3 space. Seeking seed investors with entertainment/events expertise." },
+  { id:1, name:"Amelia Tran", initials:"AT", company:"WorkReduce", role:"founder", sectors:["All industry","Marketing","Ad-Tech"], stage:"Seed", status:"Raising", color:"#dc2626", flag:"🇺🇸", bio:"Founder at WorkReduce building marketing/ad-tech solutions. Seed stage, actively fundraising." },
+  { id:2, name:"Matt Routr", initials:"MR", company:"Routr", role:"investor", focus:"Founder-friendly ops and turn-arounds", investStage:"Seed", status:"Deploying / Raising", color:"#059669", flag:"🇺🇸", bio:"Investor at Routr focused on founder-friendly operations and turn-around situations at Seed stage." },
+  { id:3, name:"Sam Emmes", initials:"SE", company:"Geek Cartel", role:"investor", focus:"Geek Cartel – Web3, security/code assessments", investStage:"Pre-Seed", status:"Deploying / Raising", color:"#059669", flag:"🇺🇸", bio:"Investing via Geek Cartel in Web3 and security/code assessment companies at Pre-Seed stage." },
+  { id:4, name:"Parker Will.", initials:"PW", company:"Clockwork", role:"investor", focus:"Clean Tech", investStage:"Seed", status:"Deploying / Raising", color:"#059669", flag:"🇺🇸", bio:"Clean Tech focused investor at Clockwork deploying at Seed stage." },
+  { id:5, name:"Timothy Si.", initials:"TS", company:"Ark Kapital", role:"investor", focus:"B2B, B2C, SaaS, AI", investStage:"Seed", status:"Deploying / Raising", color:"#059669", flag:"🇺🇸", bio:"Broad mandate investor at Ark Kapital covering B2B, B2C, SaaS and AI at Seed stage." },
+  { id:6, name:"Rupesh Pe.", initials:"RP", company:"TDVC", role:"investor", focus:"Web3 / Digital Assets", investStage:"Seed", status:"Deploying / Raising", color:"#059669", flag:"🇺🇸", bio:"Web3 and Digital Assets investor at TDVC focusing on Seed stage companies." },
+  { id:7, name:"Marc Nathan", initials:"MN", company:"T-Squared Age.", role:"founder", sectors:["B2B SaaS","Consumer Tech","CPG"], stage:"Seed", status:"Raising", color:"#dc2626", flag:"🇺🇸", bio:"Founder at T-Squared Agency building across B2B SaaS, Consumer Tech and CPG. Seed stage, raising." },
+  { id:8, name:"Sarah Kim", initials:"SK", company:"NovaSpark AI", role:"founder", sectors:["AI","SaaS","B2B"], stage:"Pre-Seed", status:"Raising", color:"#dc2626", flag:"🇺🇸", bio:"Building AI-powered SaaS tools for enterprise teams. Pre-Seed, looking for angels and early-stage funds." },
+  { id:9, name:"David Osei", initials:"DO", company:"GreenLoop", role:"founder", sectors:["Clean Tech","Climate","B2C"], stage:"Seed", status:"Raising", color:"#dc2626", flag:"🇬🇧", bio:"GreenLoop is a consumer-facing clean tech platform reducing household carbon footprints. Seed stage." },
+  { id:10, name:"Priya Mehta", initials:"PM", company:"Nexus Capital", role:"investor", focus:"AI, SaaS, B2B Enterprise", investStage:"Pre-Seed, Seed", status:"Deploying / Raising", color:"#059669", flag:"🇬🇧", bio:"Early-stage investor at Nexus Capital focused on AI and B2B SaaS. Loves technical founders." },
+  { id:11, name:"Carlos R.", initials:"CR", company:"ChainVault", role:"founder", sectors:["Web3","DeFi","Fintech"], stage:"Pre-Seed", status:"Raising", color:"#dc2626", flag:"🇪🇸", bio:"Building DeFi infrastructure at ChainVault. Pre-Seed, looking for Web3-native investors." },
+];
+
+// ─────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────
+let currentUserId = 0;
+let filterType    = 'all';
+let matchMode     = false;
+let matchData     = {};  // memberId -> { score, matchType, matchReasons }
+let matchLoading  = false;
+
+// ─────────────────────────────────────────────────────────────
+// SWITCH USER
+// ─────────────────────────────────────────────────────────────
+function switchUser(idx) {
+  currentUserId = parseInt(idx);
+  const u = MEMBERS[currentUserId];
+  document.getElementById('vaName').textContent = u.name;
+  const meta = u.role === 'founder'
+    ? `Founder · ${u.sectors?.join(', ')} · ${u.stage} · ${u.status}`
+    : `Investor · ${u.focus} · ${u.investStage} · ${u.status}`;
+  document.getElementById('vaMeta').textContent = meta;
+  document.getElementById('headerAvatar').textContent = u.initials;
+  document.getElementById('headerAvatar').style.background = u.color;
+  document.getElementById('headerName').textContent = u.name;
+
+  // Reset matches when switching user
+  matchData = {};
+  if (matchMode) runMatching();
+  else renderGrid();
+}
+
+// ─────────────────────────────────────────────────────────────
+// FILTER & SEARCH
+// ─────────────────────────────────────────────────────────────
+function setFilter(btn) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  filterType = btn.dataset.filter;
+  renderGrid();
+}
+
+function getFilteredMembers() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  return MEMBERS.filter(m => {
+    if (m.id === currentUserId) return false; // hide self
+    if (filterType !== 'all' && m.role !== filterType) return false;
+    if (!q) return true;
+    const haystack = [m.name, m.company, m.role,
+      ...(m.sectors || []), m.focus || '', m.stage || '', m.investStage || ''
+    ].join(' ').toLowerCase();
+    return haystack.includes(q);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────
+// TOGGLE MATCHING
+// ─────────────────────────────────────────────────────────────
+function toggleMatching() {
+  matchMode = !matchMode;
+  const btn = document.getElementById('matchToggle');
+  btn.classList.toggle('active', matchMode);
+  document.getElementById('sortSelect').value = matchMode ? 'match' : 'default';
+
+  if (matchMode) {
+    if (Object.keys(matchData).length === 0) runMatching();
+    else renderGrid();
+  } else {
+    document.getElementById('matchStatus').classList.remove('visible');
+    renderGrid();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// AI MATCHING via Anthropic API
+// ─────────────────────────────────────────────────────────────
+async function runMatching() {
+  if (matchLoading) return;
+  matchLoading = true;
+
+  const statusEl  = document.getElementById('matchStatus');
+  const statusTxt = document.getElementById('matchStatusText');
+  const spinner   = document.getElementById('matchSpinner');
+  statusEl.classList.add('visible');
+  statusTxt.innerHTML = `Analyzing compatibility for <strong>${MEMBERS[currentUserId].name}</strong>…`;
+  spinner.style.display = 'block';
+
+  // Re-render with loading skeletons on match badges
+  renderGrid(true);
+
+  const currentUser = MEMBERS[currentUserId];
+  const others = MEMBERS.filter(m => m.id !== currentUserId);
+
+  const prompt = `You are a startup ecosystem matchmaker for Yorkseed, a global founder & investor community.
+
+Current user profile:
+${JSON.stringify(currentUser, null, 2)}
+
+Other members to evaluate:
+${JSON.stringify(others, null, 2)}
+
+For each member, assess how well they match the current user based on:
+- Sector/industry alignment
+- Stage alignment (founder stage vs investor stage)
+- Role compatibility (founder seeking investors, investors seeking founders, founders with complementary skills)
+- Geographic/market overlap
+- Strategic fit
+
+Return a JSON array (no markdown, no explanation, raw JSON only):
+[
+  {
+    "memberId": <number>,
+    "score": <0-100>,
+    "matchType": "strong" | "moderate" | "weak",
+    "matchReasons": ["short reason 1", "short reason 2", "short reason 3"]
+  },
+  ...
+]
+
+Rules:
+- "strong" = score 75+
+- "moderate" = score 45-74  
+- "weak" = score < 45
+- matchReasons should be concise (max 6 words each), specific and actionable
+- Consider investor→founder matches as high if the investor's focus aligns with founder's sector/stage`;
+
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+
+    const data = await response.json();
+    const raw  = data.content.map(b => b.text || '').join('');
+    // Strip any accidental markdown fences
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const results = JSON.parse(clean);
+
+    matchData = {};
+    results.forEach(r => { matchData[r.memberId] = r; });
+
+    statusTxt.innerHTML = `✅ AI match complete for <strong>${currentUser.name}</strong> — ${results.filter(r=>r.matchType==='strong').length} strong matches found`;
+    spinner.style.display = 'none';
+
+  } catch (err) {
+    console.error('Match error:', err);
+    statusTxt.innerHTML = `⚠️ Match analysis failed — showing members without scores`;
+    spinner.style.display = 'none';
+    matchData = {};
+  }
+
+  matchLoading = false;
+  renderGrid();
+}
+
+// ─────────────────────────────────────────────────────────────
+// RENDER GRID
+// ─────────────────────────────────────────────────────────────
+function renderGrid(showLoadingBadges = false) {
+  let members = getFilteredMembers();
+
+  const sort = document.getElementById('sortSelect').value;
+  if (sort === 'match' && Object.keys(matchData).length > 0) {
+    members = [...members].sort((a, b) => {
+      const sa = matchData[a.id]?.score ?? -1;
+      const sb = matchData[b.id]?.score ?? -1;
+      return sb - sa;
+    });
+  } else if (sort === 'name') {
+    members = [...members].sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  document.getElementById('visibleCount').textContent = members.length;
+  const grid = document.getElementById('membersGrid');
+  const empty = document.getElementById('emptyState');
+
+  if (members.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  grid.innerHTML = members.map(m => buildCard(m, showLoadingBadges)).join('');
+
+  // Wire hub-detail buttons
+  document.querySelectorAll('.js-hub-details').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.deal-card');
+      if (card) openDealModal(card);
+    });
+  });
+}
+
+function buildCard(m, loadingBadges) {
+  const match = matchData[m.id];
+  const hasMatch = !!match;
+  const cardClass = hasMatch
+    ? (match.matchType === 'strong' ? 'member-card has-match strong-match' : 'member-card has-match')
+    : 'member-card';
+
+  // Match badge
+  let badgeHtml = '';
+  if (matchMode) {
+    if (loadingBadges || (matchLoading && !hasMatch)) {
+      badgeHtml = `<div class="match-badge visible weak" style="background:#f1f5f9;color:#94a3b8;">
+        <span class="skeleton" style="width:50px;height:12px;display:inline-block;border-radius:4px;"></span>
+      </div>`;
+    } else if (hasMatch) {
+      const emoji = match.matchType === 'strong' ? '🟢' : match.matchType === 'moderate' ? '🟣' : '⚪';
+      badgeHtml = `<div class="match-badge ${match.matchType} visible">${emoji} ${match.score}% Match</div>`;
+    }
+  }
+
+  // Match reasons
+  let reasonsHtml = '';
+  if (matchMode && hasMatch && match.matchReasons?.length) {
+    const tags = match.matchReasons.map(r => `<span class="match-reason-tag">✦ ${r}</span>`).join('');
+    reasonsHtml = `<div class="match-reasons visible">
+      <div class="match-reasons-title">Why you match</div>
+      ${tags}
+    </div>`;
+  }
+
+  // Meta rows
+  let metaHtml = '';
+  if (m.role === 'founder') {
+    metaHtml = `
+      <div class="card-meta">
+        <span class="meta-label">Sector</span><span class="meta-value">${(m.sectors || []).join(', ')}</span>
+        <span class="meta-label">Stage</span><span class="meta-value">${m.stage}</span>
+      </div>`;
+  } else {
+    metaHtml = `
+      <div class="card-meta">
+        <span class="meta-label">Focus</span><span class="meta-value">${m.focus}</span>
+        <span class="meta-label">Inv. Stage</span><span class="meta-value">${m.investStage}</span>
+      </div>`;
+  }
+
+  const statusClass = m.status?.toLowerCase().includes('raising') ? 'status-raising' : 'status-deploying';
+  const btnClass = m.role === 'investor' ? 'view-btn investor-btn' : 'view-btn';
+
+  return `
+  <div class="${cardClass}" data-id="${m.id}">
+    ${badgeHtml}
+    <div class="card-header">
+      <div class="member-avatar" style="background:${m.color}">${m.initials}</div>
+      <div class="member-info">
+        <div class="member-name">${m.name}</div>
+        <div class="member-company">${m.company}</div>
+        <div class="member-badges">
+          <span class="badge-role ${m.role}">${m.role}</span>
+          <span class="badge-flag">${m.flag}</span>
         </div>
-    </header>
+      </div>
+      <button class="${btnClass}">View Profile</button>
+    </div>
+    ${metaHtml}
+    <div class="card-footer">
+      <button class="chat-btn" title="Message">💬</button>
+      <span class="status-pill ${statusClass}">${m.status}</span>
+    </div>
+    ${reasonsHtml}
+  </div>`;
+}
 
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <div class="page-hero-content">
-            <h1>Join Yorkseed</h1>
-            <p>Connect with the world's most ambitious founders, investors, and operators</p>
-            <a href="#apply" class="hero-cta">Apply for Membership</a>
+// ─────────────────────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Require login — redirect to login.html if not authenticated
+  if (!localStorage.getItem('ys_user')) {
+    sessionStorage.setItem('ys_return', 'members.html');
+    window.location.href = 'login.html';
+    return;
+  }
+
+  // Pre-select the logged-in user in the "Viewing as" dropdown
+  try {
+    const user = JSON.parse(localStorage.getItem('ys_user'));
+    const idx  = MEMBERS.findIndex(m => m.id === user.id);
+    if (idx >= 0) {
+      currentUserId = idx;
+      document.getElementById('userSelect').value = idx;
+      switchUser(idx);
+    }
+  } catch(e) {}
+
+  renderGrid();
+});
+</script>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Community</h3>
+            <ul>
+                <li><a href="hubs.html">Global Hubs</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="membership.html">Membership</a></li>
+            </ul>
         </div>
-    </section>
-
-    <!-- Who Can Join -->
-    <section>
-        <div class="container">
-            <h2 class="section-title">Who Can Join?</h2>
-            <div class="member-types">
-                <div class="member-card">
-                    <span class="member-icon">🚀</span>
-                    <h3>Founders</h3>
-                    <p>Visionary entrepreneurs building the next generation of game-changing startups</p>
-                    <ul class="member-features">
-                        <li>Early-stage to Series A+ founders</li>
-                        <li>Serial entrepreneurs</li>
-                        <li>First-time builders with traction</li>
-                        <li>Startup studio partners</li>
-                    </ul>
-                </div>
-
-                <div class="member-card">
-                    <span class="member-icon">💼</span>
-                    <h3>Investors</h3>
-                    <p>Active capital providers seeking high-quality dealflow and co-investment opportunities</p>
-                    <ul class="member-features">
-                        <li>Angel investors (£25K+ annual)</li>
-                        <li>VC partners and principals</li>
-                        <li>Family office representatives</li>
-                        <li>Corporate venture arms</li>
-                    </ul>
-                </div>
-
-                <div class="member-card">
-                    <span class="member-icon">⚡</span>
-                    <h3>Operators</h3>
-                    <p>Senior executives and specialists driving growth at high-impact companies</p>
-                    <ul class="member-features">
-                        <li>C-suite executives</li>
-                        <li>VP+ at growth companies</li>
-                        <li>Strategic advisors & consultants</li>
-                        <li>Industry domain experts</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="footer-section">
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="insider.html">Insider</a></li>
+                <li><a href="platform.html">Platform</a></li>
+                <li><a href="marketplace.html">Marketplace</a></li>
+                <li><a href="about.html">About Us</a></li>
+            </ul>
         </div>
-    </section>
-
-    <!-- Membership Tiers -->
-    <section class="section-light">
-        <div class="container">
-            <h2 class="section-title">Membership Tiers & Benefits</h2>
-            <div class="tiers-container">
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <h3>Basic</h3>
-                        <div class="price">Free</div>
-                        <div class="period">Community Access</div>
-                    </div>
-                    <ul class="tier-features">
-                        <li>Basic directory access</li>
-                        <li>Public event invitations</li>
-                        <li>Community forum access</li>
-                        <li>Monthly newsletter</li>
-                        <li>Job board viewing</li>
-                    </ul>
-                    <button class="tier-cta secondary">Join Free</button>
-                </div>
-
-                <div class="tier-card featured">
-                    <div class="tier-header">
-                        <h3>Pro</h3>
-                        <div class="price">£99<span style="font-size: 1rem; font-weight: 400;">/month</span></div>
-                        <div class="period">Full Access</div>
-                    </div>
-                    <ul class="tier-features">
-                        <li>Everything in Basic</li>
-                        <li>Smart directory with filters</li>
-                        <li>Priority event access & discounts</li>
-                        <li>Direct messaging capabilities</li>
-                        <li>Yorkseed Insider premium</li>
-                        <li>Monthly virtual networking</li>
-                        <li>Resource library access</li>
-                        <li>Job posting credits (3/month)</li>
-                    </ul>
-                    <button class="tier-cta">Upgrade to Pro</button>
-                </div>
-
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <h3>VIP</h3>
-                        <div class="price">£299<span style="font-size: 1rem; font-weight: 400;">/month</span></div>
-                        <div class="period">Executive Access</div>
-                    </div>
-                    <ul class="tier-features">
-                        <li>Everything in Pro</li>
-                        <li>VIP-only events & dinners</li>
-                        <li>1-on-1 intro facilitation</li>
-                        <li>Partner program access</li>
-                        <li>Quarterly founder/investor summits</li>
-                        <li>Direct access to Yorkseed team</li>
-                        <li>Custom deal sourcing</li>
-                        <li>Unlimited job postings</li>
-                        <li>Speaking opportunity priority</li>
-                    </ul>
-                    <button class="tier-cta">Apply for VIP</button>
-                </div>
-            </div>
+        <div class="footer-section">
+            <h3>Connect</h3>
+            <ul>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="press.html">Press</a></li>
+                <li><a href="careers.html">Careers</a></li>
+            </ul>
         </div>
-    </section>
-
-    <!-- What You Get Access To -->
-    <section class="section-dark">
-        <div class="container">
-            <h2 class="section-title">What You Get Access To</h2>
-            <div class="access-grid">
-                <div class="access-card" data-icon="🌍">
-                    <h4>Global Hubs</h4>
-                    <p>Connect with startup communities across 50+ cities worldwide, from London to Singapore to New York.</p>
-                </div>
-
-                <div class="access-card" data-icon="🎯">
-                    <h4>Curated Events</h4>
-                    <p>Exclusive mixers, pitch nights, and intimate dinners designed for meaningful connections and deal-making.</p>
-                </div>
-
-                <div class="access-card" data-icon="📊">
-                    <h4>Smart Directory</h4>
-                    <p>AI-powered member directory with advanced filters to find exactly the right founders, investors, or operators.</p>
-                </div>
-
-                <div class="access-card" data-icon="📚">
-                    <h4>Resource Library</h4>
-                    <p>Exclusive guides, templates, and insights from successful exits, fundraising decks, and growth strategies.</p>
-                </div>
-
-                <div class="access-card" data-icon="📧">
-                    <h4>Yorkseed Insider</h4>
-                    <p>Premium newsletter with insider dealflow, market insights, and opportunities not available anywhere else.</p>
-                </div>
-
-                <div class="access-card" data-icon="🤝">
-                    <h4>Partner Network</h4>
-                    <p>Direct access to our ecosystem of legal, accounting, HR, and other service providers with member discounts.</p>
-                </div>
-            </div>
+        <div class="footer-section">
+            <h3>Yorkseed</h3>
+            <p style="color:#ccc;line-height:1.6;">Building the world's most connected startup community, one city at a time.</p>
         </div>
-    </section>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Yorkseed. All rights reserved. | Privacy Policy | Terms of Service</p>
+    </div>
+</footer>
 
-    <!-- Application Form -->
-    <section class="section-light" id="apply">
-        <div class="container">
-            <h2 class="section-title">Apply for Membership</h2>
-            <form class="application-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">First Name *</label>
-                        <input type="text" id="firstName" name="firstName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name *</label>
-                        <input type="text" id="lastName" name="lastName" required>
-                    </div>
-                </div>
+<!-- Auth: updates nav with user chip on every page -->
+<script src="auth.js"></script>
 
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="memberType">I am a *</label>
-                        <select id="memberType" name="memberType" required>
-                            <option value="">Select your role</option>
-                            <option value="founder">Founder</option>
-                            <option value="investor">Investor</option>
-                            <option value="operator">Operator</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Location *</label>
-                        <input type="text" id="location" name="location" placeholder="City, Country" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="company">Current Company *</label>
-                    <input type="text" id="company" name="company" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="title">Job Title *</label>
-                    <input type="text" id="title" name="title" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="linkedin">LinkedIn Profile *</label>
-                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="bio">Tell us about yourself and why you want to join Yorkseed *</label>
-                    <textarea id="bio" name="bio" placeholder="Share your background, what you're working on, and what you hope to get from the Yorkseed community..." required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="referral">How did you hear about us?</label>
-                    <select id="referral" name="referral">
-                        <option value="">Select an option</option>
-                        <option value="member">Referred by a member</option>
-                        <option value="event">At a Yorkseed event</option>
-                        <option value="social">Social media</option>
-                        <option value="newsletter">Newsletter/Blog</option>
-                        <option value="search">Google search</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="submit-btn">Submit Application</button>
-                
-                <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 1rem;">
-                    Applications are reviewed within 48 hours. We'll be in touch soon!
-                </p>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Community</h3>
-                    <ul>
-                        <li><a href="hubs.html">Global Hubs</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="membership.html">Membership</a></li>
-                        <li><a href="jobs.html">Job Board</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="insider.html">Yorkseed Insider</a></li>
-                        <li><a href="platform.html">Platform</a></li>
-                        <li><a href="partners.html">For Partners</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <ul>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="press.html">Press</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Yorkseed</h3>
-                    <p style="color: #ccc; line-height: 1.6;">Building the world's most connected startup community, one city at a time.</p>
-                </div>
-            </div>
+</body>
+</html>
