@@ -195,6 +195,7 @@
                 <li><a href="platform.html">Platform</a></li>
                 <li><a href="membership.html">Membership</a></li>
                 <li><a href="marketplace.html" class="active">Marketplace</a></li>
+                <li><a href="members.html">Members</a></li>
                 <li><a href="login.html" class="login-btn">Login</a></li>
             </ul>
         </nav>
@@ -808,13 +809,11 @@
 
 <script>
     // ─────────────────────────────────────────────
-    // AUTH STATE — simulated via nav button text.
-    // If the nav shows "Login", user is logged out.
+    // AUTH STATE — reads from localStorage set by login.html
     // ─────────────────────────────────────────────
     function isLoggedIn() {
-        const loginLink = document.querySelector('.nav-links .login-btn');
-        // Logged in if the button text is NOT "Login"
-        return loginLink && loginLink.textContent.trim().toLowerCase() !== 'login';
+        try { return !!JSON.parse(localStorage.getItem('ys_user')); }
+        catch { return false; }
     }
 
     // How many cards to show to logged-out users per section before the wall
@@ -1090,6 +1089,9 @@
         applyFilters();
     });
 </script>
+
+<!-- Auth: updates nav with user chip, adds Members link -->
 <script src="auth.js"></script>
+
 </body>
 </html>
