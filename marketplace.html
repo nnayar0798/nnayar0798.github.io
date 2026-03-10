@@ -159,6 +159,19 @@
         .footer-section ul li a:hover { color: #dc2626; }
         .footer-bottom { border-top: 1px solid #333; padding-top: 2rem; text-align: center; color: #999; font-size: 0.9rem; }
 
+        /* ── Locked members card teaser (logged-out + members toggle ON) ── */
+        .deal-card.members-teaser .deal-card-body { filter: blur(4px); user-select: none; pointer-events: none; }
+        .deal-card.members-teaser .deal-card-top { filter: blur(3px); }
+        .deal-card.members-teaser { position: relative; }
+        .deal-card.members-teaser::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.45); border-radius: 15px; z-index: 1; pointer-events: none; }
+        .teaser-overlay { display: none; position: absolute; inset: 0; z-index: 2; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 1.5rem; border-radius: 15px; }
+        .deal-card.members-teaser .teaser-overlay { display: flex; }
+        .teaser-lock { font-size: 1.8rem; margin-bottom: 0.4rem; }
+        .teaser-title { font-size: 0.95rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.3rem; }
+        .teaser-sub { font-size: 0.78rem; color: #555; margin-bottom: 0.85rem; line-height: 1.4; }
+        .teaser-btn { background: linear-gradient(135deg,#dc2626,#991b1b); color: white; text-decoration: none; padding: 0.5rem 1.1rem; border-radius: 20px; font-size: 0.82rem; font-weight: 700; transition: all 0.2s; }
+        .teaser-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(220,38,38,0.35); }
+
         /* ── Responsive ── */
         @media (max-width: 900px) { .marketplace-body { grid-template-columns: 1fr; } .sidebar { position: static; } .featured-banner { flex-direction: column; } }
         @media (max-width: 768px) { .nav-links { display: none; } .page-hero h1 { font-size: 2.2rem; } .stats-grid-bar { grid-template-columns: repeat(2,1fr); } }
@@ -361,6 +374,12 @@
         <div class="deals-grid" data-section="popular">
 
             <div class="deal-card" data-cat="software" data-members="true" data-type="credits" data-value="960" data-new="true">
+                <div class="teaser-overlay">
+                    <div class="teaser-lock">🔐</div>
+                    <div class="teaser-title">Members Only</div>
+                    <div class="teaser-sub">6 Months Free on Notion Plus<br>worth $960</div>
+                    <a href="login.html" class="teaser-btn">Login to Unlock →</a>
+                </div>
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">
                     📝 <span class="badge">NEW</span><span class="members-badge">⭐ Members</span>
                 </div>
@@ -391,6 +410,12 @@
             </div>
 
             <div class="deal-card" data-cat="software" data-members="true" data-type="credits" data-value="1440">
+                <div class="teaser-overlay">
+                    <div class="teaser-lock">🔐</div>
+                    <div class="teaser-title">Members Only</div>
+                    <div class="teaser-sub">1 Year Free Figma Professional<br>worth $1,440</div>
+                    <a href="login.html" class="teaser-btn">Login to Unlock →</a>
+                </div>
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff)">
                     🎨 <span class="badge">FREE YEAR</span><span class="members-badge">⭐ Members</span>
                 </div>
@@ -434,6 +459,12 @@
             </div>
 
             <div class="deal-card" data-cat="software" data-members="true" data-type="credits" data-value="600">
+                <div class="teaser-overlay">
+                    <div class="teaser-lock">🔐</div>
+                    <div class="teaser-title">Members Only</div>
+                    <div class="teaser-sub">3 Months Free Payroll & HR<br>worth $600+</div>
+                    <a href="login.html" class="teaser-btn">Login to Unlock →</a>
+                </div>
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#f7fee7,#ecfccb)">
                     👥 <span class="members-badge">⭐ Members</span>
                 </div>
@@ -471,6 +502,12 @@
             </div>
 
             <div class="deal-card" data-cat="hub" data-members="true" data-type="priority" data-value="0">
+                <div class="teaser-overlay">
+                    <div class="teaser-lock">🔐</div>
+                    <div class="teaser-title">Members Only</div>
+                    <div class="teaser-sub">VIP Access — Founder Roundtable</div>
+                    <a href="login.html" class="teaser-btn">Login to Unlock →</a>
+                </div>
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#fff7ed,#ffedd5)">🎟️ <span class="badge">LIMITED</span><span class="members-badge">⭐ Members</span></div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed London</div>
@@ -506,6 +543,12 @@
         <div class="deals-grid" data-section="access">
 
             <div class="deal-card" data-cat="access" data-members="true" data-type="priority" data-value="0">
+                <div class="teaser-overlay">
+                    <div class="teaser-lock">🔐</div>
+                    <div class="teaser-title">Members Only</div>
+                    <div class="teaser-sub">Warm Intro Concierge (1/month)</div>
+                    <a href="login.html" class="teaser-btn">Login to Unlock →</a>
+                </div>
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#fff5f5,#ffe4e6)">🤝 <span class="badge">VETTED</span><span class="members-badge">⭐ Members</span></div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed Concierge</div>
@@ -519,6 +562,12 @@
             </div>
 
             <div class="deal-card" data-cat="access" data-members="true" data-type="priority" data-value="0">
+                <div class="teaser-overlay">
+                    <div class="teaser-lock">🔐</div>
+                    <div class="teaser-title">Members Only</div>
+                    <div class="teaser-sub">Pitch Review + GTM Feedback</div>
+                    <a href="login.html" class="teaser-btn">Login to Unlock →</a>
+                </div>
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">🎤 <span class="badge">POPULAR</span><span class="members-badge">⭐ Members</span></div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed Office Hours</div>
@@ -584,6 +633,12 @@
             </div>
 
             <div class="deal-card" data-cat="ai" data-members="true" data-type="credits" data-value="3000">
+                <div class="teaser-overlay">
+                    <div class="teaser-lock">🔐</div>
+                    <div class="teaser-title">Members Only</div>
+                    <div class="teaser-sub">$3,000 in AI Video Credits<br>Runway ML</div>
+                    <a href="login.html" class="teaser-btn">Login to Unlock →</a>
+                </div>
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">
                     🤖 <span class="members-badge">⭐ Members</span>
                 </div>
@@ -621,6 +676,12 @@
             </div>
 
             <div class="deal-card" data-cat="legal" data-members="true" data-type="credits" data-value="3000">
+                <div class="teaser-overlay">
+                    <div class="teaser-lock">🔐</div>
+                    <div class="teaser-title">Members Only</div>
+                    <div class="teaser-sub">Free Cap Table Management<br>worth $3,000+</div>
+                    <a href="login.html" class="teaser-btn">Login to Unlock →</a>
+                </div>
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#eff6ff,#dbeafe)">
                     📊 <span class="badge">POPULAR</span><span class="members-badge">⭐ Members</span>
                 </div>
@@ -777,16 +838,37 @@
         const cards = Array.from(document.querySelectorAll('.deal-card'));
 
         // If members-only toggle is ON and user is NOT logged in:
-        // show the login prompt, hide all cards and section rows
+        // show members cards as blurred teasers, hide non-members cards, show prompt banner
         const membersLoginPrompt = document.getElementById('membersLoginPrompt');
         if (membersOnly && !loggedIn) {
             membersLoginPrompt.style.display = 'block';
-            cards.forEach(c => c.style.display = 'none');
-            document.querySelectorAll('.section-row, .deals-grid').forEach(el => el.style.display = 'none');
             document.getElementById('loginWall').style.display = 'none';
+
+            cards.forEach(card => {
+                const isMembers = card.dataset.members === 'true';
+                if (isMembers) {
+                    card.style.display = '';
+                    card.classList.add('members-teaser');
+                } else {
+                    card.style.display = 'none';
+                    card.classList.remove('members-teaser');
+                }
+            });
+
+            // Show/hide section rows based on visible cards
+            document.querySelectorAll('.section-row').forEach(row => {
+                const sec = row.dataset.section;
+                const grid = document.querySelector(`.deals-grid[data-section="${sec}"]`);
+                if (!grid) return;
+                const anyVisible = Array.from(grid.querySelectorAll('.deal-card')).some(c => c.style.display !== 'none');
+                row.style.display  = anyVisible ? '' : 'none';
+                grid.style.display = anyVisible ? '' : 'none';
+            });
             return;
         } else {
             membersLoginPrompt.style.display = 'none';
+            // Remove teaser state when toggle is off
+            cards.forEach(c => c.classList.remove('members-teaser'));
         }
 
         // Value ranges helper
