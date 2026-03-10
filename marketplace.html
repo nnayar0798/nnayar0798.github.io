@@ -8,7 +8,19 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: #1a1a1a; background: #f8fafc; overflow-x: hidden; }
 
-        .header { position: fixed; height: 110px; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e0e0e0; z-index: 1000; transition: all 0.3s ease; }
+        /* ── Header (exact match to about.html) ── */
+        .header {
+            position: fixed;
+            height: 110px;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 100%; padding: 0 2rem; }
         .logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: 700; text-decoration: none; }
         .logo img { max-height: 100px; height: auto; width: auto; margin-right: 0.5rem; transition: all 0.3s ease; }
@@ -21,100 +33,123 @@
         .login-btn { background: linear-gradient(135deg, #dc2626, #991b1b); color: white !important; padding: 0.5rem 1.5rem; border-radius: 25px; transition: all 0.3s ease; }
         .login-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(220,38,38,0.3); }
 
-        .page-hero { background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%); color: white; padding: 160px 0 80px; text-align: center; position: relative; overflow: hidden; }
-        .page-hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-        .page-hero-content { max-width: 700px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
-        .page-hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
-        .page-hero p { font-size: 1.2rem; opacity: 0.85; margin-bottom: 2rem; }
+        /* ── Hero (exact match to about.html) ── */
+        .page-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s ease-in-out infinite;
+        }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .page-hero-content { max-width: 800px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
+        .page-hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; }
+        .page-hero p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 1.5rem; }
         .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 25px; padding: 0.4rem 1.2rem; font-size: 0.9rem; margin-bottom: 1.5rem; }
 
-        /*chatgpt added for new layout style
-        .header { position: fixed; height: 84px; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e0e0e0; z-index: 1000; transition: all 0.3s ease; }
-        .logo img { max-height: 64px; height: auto; width: auto; margin-right: 0.5rem; transition: all 0.3s ease; }
-        .filter-bar { background: white; border-bottom: 1px solid #e8ecf0; position: sticky; top: 84px; z-index: 900; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .sidebar { position: sticky; top: 140px; }
-        .page-hero { background: linear-gradient(135deg, #1a1a1a 0%, #dc2626 100%); color: white; padding: 130px 0 70px; text-align: center; position: relative; overflow: hidden; }
-        */
-        
-        
-        .savings-bar { background: white; border-bottom: 1px solid #e8ecf0; padding: 1.2rem 0; }
-        .savings-bar .container { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
-        .savings-stat { text-align: center; }
-        .savings-stat strong { display: block; font-size: 1.6rem; color: #dc2626; font-weight: 700; }
-        .savings-stat span { font-size: 0.85rem; color: #666; }
+        /* ── Stats bar (matches about.html stat style) ── */
+        .stats-bar { background: white; padding: 60px 0; border-bottom: 1px solid #e8ecf0; }
+        .stats-grid-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; text-align: center; }
+        .stat-item { background: #f8fafc; padding: 2rem 1.5rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .stat-item:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .stat-number { display: block; font-size: 2.5rem; color: #dc2626; font-weight: 700; margin-bottom: 0.4rem; }
+        .stat-label { color: #666; font-weight: 500; font-size: 0.95rem; }
 
+        /* ── How it works (3-card row, same as beliefs grid) ── */
+        .how-section { background: #f8fafc; padding: 60px 0; border-bottom: 1px solid #e8ecf0; }
+        .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+        .how-card { background: white; border-radius: 15px; padding: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.08); text-align: center; transition: all 0.3s ease; border-top: 4px solid #dc2626; }
+        .how-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .how-num { font-size: 2.5rem; font-weight: 700; color: #dc2626; margin-bottom: 0.75rem; }
+        .how-card p { color: #666; font-size: 0.95rem; line-height: 1.6; }
+
+        /* ── Filter bar ── */
         .filter-bar { background: white; border-bottom: 1px solid #e8ecf0; position: sticky; top: 110px; z-index: 900; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .filter-bar .container { display: flex; align-items: center; overflow-x: auto; scrollbar-width: none; }
         .filter-bar .container::-webkit-scrollbar { display: none; }
         .filter-tab { flex-shrink: 0; padding: 1.1rem 1.5rem; border: none; background: none; font-size: 0.9rem; font-weight: 500; color: #666; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; font-family: inherit; }
         .filter-tab:hover { color: #dc2626; }
         .filter-tab.active { color: #dc2626; border-bottom-color: #dc2626; }
-        .filter-search { margin-left: auto; padding: 0.5rem 1rem; border: 1px solid #e0e0e0; border-radius: 20px; font-size: 0.9rem; outline: none; width: 220px; flex-shrink: 0; margin-right: 1rem; transition: border 0.2s; }
+        .filter-search { margin-left: auto; padding: 0.5rem 1rem; border: 1px solid #e0e0e0; border-radius: 20px; font-size: 0.9rem; outline: none; width: 220px; flex-shrink: 0; margin-right: 1rem; transition: border 0.2s; font-family: inherit; }
         .filter-search:focus { border-color: #dc2626; }
 
+        /* ── Main layout ── */
         .marketplace-body { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 240px 1fr; gap: 2.5rem; align-items: start; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
+        /* ── Sidebar (aligned with about's card style) ── */
         .sidebar { position: sticky; top: 175px; }
-        .sidebar-section { background: white; border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .sidebar-section { background: white; border-radius: 15px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; }
         .sidebar-section h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #999; margin-bottom: 1rem; }
         .sidebar-option { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0; cursor: pointer; font-size: 0.95rem; color: #333; }
         .sidebar-option:hover { color: #dc2626; }
         .sidebar-option input[type="checkbox"] { accent-color: #dc2626; width: 16px; height: 16px; cursor: pointer; }
         .sidebar-option .count { margin-left: auto; font-size: 0.8rem; color: #aaa; }
-        .members-only-toggle { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; background: linear-gradient(135deg,#fff5f5,#fff); border: 1px solid #fca5a5; border-radius: 14px; margin-bottom: 1.5rem; cursor: pointer; }
+
+        .members-only-toggle { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 1.5rem; background: linear-gradient(135deg,#fff5f5,#fff); border: 1px solid #fca5a5; border-radius: 15px; margin-bottom: 1.5rem; cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; }
+        .members-only-toggle:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(220,38,38,0.12); }
         .toggle-label { font-weight: 600; font-size: 0.9rem; color: #dc2626; }
         .toggle-sub { font-size: 0.75rem; color: #999; }
-        .toggle-switch { width: 42px; height: 24px; background: #dc2626; border-radius: 12px; position: relative; transition: background 0.3s; }
-        .toggle-switch::after { content: ''; position: absolute; top: 3px; right: 3px; width: 18px; height: 18px; background: white; border-radius: 50%; transition: right 0.3s; }
-        .toggle-switch.off { background: #ccc; }
+        .toggle-switch { width: 42px; height: 24px; background: #dc2626; border-radius: 12px; position: relative; transition: background 0.3s; flex-shrink: 0; }
+        .toggle-switch::after { content: ''; position: absolute; top: 3px; right: 3px; width: 18px; height: 18px; background: white; border-radius: 50%; transition: all 0.3s; }
+        .toggle-switch.off { background: #ddd; }
         .toggle-switch.off::after { right: auto; left: 3px; }
 
-        .featured-banner { background: linear-gradient(135deg,#1a1a1a,#2d2d2d); border-radius: 18px; padding: 2.5rem; color: white; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; position: relative; overflow: hidden; }
+        /* ── Featured banner ── */
+        .featured-banner { background: linear-gradient(135deg,#1a1a1a,#2d2d2d); border-radius: 15px; padding: 2.5rem; color: white; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; position: relative; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.15); transition: all 0.3s ease; }
+        .featured-banner:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.25); }
         .featured-banner::before { content: '⭐ FEATURED DEAL'; position: absolute; top: 1rem; left: 1rem; background: #dc2626; color: white; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; padding: 0.25rem 0.75rem; border-radius: 20px; }
         .featured-banner-text h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; margin-top: 1rem; }
         .featured-banner-text p { color: #ccc; font-size: 1rem; margin-bottom: 1.5rem; max-width: 450px; }
-        .featured-logo { width: 80px; height: 80px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; flex-shrink: 0; }
+        .featured-logo { width: 80px; height: 80px; background: white; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; flex-shrink: 0; }
         .deal-pill { display: inline-block; background: #dc2626; color: white; padding: 0.35rem 1rem; border-radius: 20px; font-weight: 700; font-size: 0.9rem; }
-        .claim-btn-white { background: white; color: #1a1a1a; padding: 0.8rem 1.8rem; border: none; border-radius: 25px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; margin-top: 1rem; }
+        .claim-btn-white { background: white; color: #1a1a1a; padding: 0.8rem 1.8rem; border: none; border-radius: 25px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block; margin-top: 1rem; }
         .claim-btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
 
-        .partners-scroll { background: white; border-radius: 16px; padding: 1.5rem 2rem; margin-bottom: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        /* ── Partner logos ── */
+        .partners-scroll { background: white; border-radius: 15px; padding: 1.5rem 2rem; margin-bottom: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
         .partners-scroll h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 1.2rem; }
         .partner-logos { display: flex; gap: 1.5rem; overflow-x: auto; scrollbar-width: none; padding-bottom: 0.5rem; }
         .partner-logos::-webkit-scrollbar { display: none; }
-        .partner-logo-item { flex-shrink: 0; width: 90px; height: 50px; background: #f4f4f4; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; cursor: pointer; transition: all 0.2s; }
-        .partner-logo-item:hover { background: #fff0f0; transform: scale(1.05); }
+        .partner-logo-item { flex-shrink: 0; width: 90px; height: 50px; background: #f4f4f4; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; cursor: pointer; transition: all 0.3s ease; }
+        .partner-logo-item:hover { background: #fff0f0; transform: scale(1.05); box-shadow: 0 5px 15px rgba(220,38,38,0.15); }
 
-        .category-pills { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
-        .cat-pill { display: flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1.1rem; background: white; border: 1.5px solid #e0e0e0; border-radius: 25px; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: #444; user-select: none; }
-        .cat-pill:hover, .cat-pill.active { background: #dc2626; border-color: #dc2626; color: white; }
-
-        .section-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; margin-top: 3rem; padding-top: 2rem;border-top: 1px solid #eceff3;}
-        .section-row:first-of-type { margin-top: 0;padding-top: 0;border-top: none;}
-        .section-row h2 { font-size: 1.4rem; font-weight: 700; }
-        .see-all { color: #dc2626; text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        /* ── Section rows ── */
+        .section-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid #eceff3; }
+        .section-row:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+        .section-row h2 { font-size: 1.5rem; font-weight: 700; }
+        .see-all { color: #dc2626; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: all 0.2s; }
         .see-all:hover { text-decoration: underline; }
 
-        .deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
-        .deal-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); transition: all 0.25s ease; display: flex; flex-direction: column; }
-        .deal-card:hover { transform: translateY(-5px); box-shadow: 0 12px 35px rgba(0,0,0,0.13); }
-        .deal-card-top { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; }
+        /* ── Deal cards (aligned with about.html card system) ── */
+        .deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 1rem; }
+        .deal-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: all 0.3s ease; display: flex; flex-direction: column; border-top: 4px solid transparent; }
+        .deal-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-top-color: #dc2626; }
+        .deal-card-top { height: 110px; display: flex; align-items: center; justify-content: center; font-size: 2.8rem; position: relative; }
         .badge { position: absolute; top: 12px; left: 12px; background: #dc2626; color: white; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 20px; }
         .members-badge { position: absolute; top: 12px; right: 12px; background: #1a1a1a; color: white; font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 20px; }
-        .deal-card-body { padding: 1.2rem 1.3rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
-        .deal-partner-name { font-size: 0.75rem; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+        .deal-card-body { padding: 1.4rem 1.5rem 1.6rem; flex: 1; display: flex; flex-direction: column; }
+        .deal-partner-name { font-size: 0.75rem; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
         .deal-title { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; line-height: 1.3; }
-        .deal-description { font-size: 0.85rem; color: #666; line-height: 1.5; margin-bottom: 1rem; flex: 1; }
+        .deal-description { font-size: 0.87rem; color: #666; line-height: 1.55; margin-bottom: 1rem; flex: 1; }
         .deal-footer { display: flex; align-items: center; justify-content: space-between; }
         .deal-value { font-size: 1.1rem; font-weight: 700; color: #dc2626; }
         .deal-value span { font-size: 0.75rem; font-weight: 400; color: #999; display: block; }
-        .claim-btn { background: linear-gradient(135deg,#dc2626,#991b1b); color: white; border: none; border-radius: 20px; padding: 0.5rem 1.1rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; }
-        .claim-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(220,38,38,0.35); }
-        .locked-card { background: linear-gradient(135deg,#f9f9f9,#efefef) !important; box-shadow: none !important; border: 2px dashed #ddd; text-align: center; padding: 2rem; align-items: center; justify-content: center; min-height: 260px; }
+        .claim-btn { background: linear-gradient(135deg,#dc2626,#991b1b); color: white; border: none; border-radius: 20px; padding: 0.55rem 1.2rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: inherit; }
+        .claim-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(220,38,38,0.35); }
+        .locked-card { background: linear-gradient(135deg,#f9f9f9,#efefef) !important; box-shadow: 0 5px 20px rgba(0,0,0,0.06) !important; border: 2px dashed #ddd; border-top: 2px dashed #ddd !important; text-align: center; padding: 2rem; align-items: center; justify-content: center; min-height: 260px; }
+        .locked-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important; }
 
+        /* ── Footer (exact match to about.html) ── */
         .footer { background: #1a1a1a; color: white; padding: 60px 0 30px; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 3rem; margin-bottom: 2rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 3rem; margin-bottom: 2rem; }
         .footer-section h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; }
         .footer-section ul { list-style: none; }
         .footer-section ul li { margin-bottom: 0.5rem; }
@@ -122,8 +157,9 @@
         .footer-section ul li a:hover { color: #dc2626; }
         .footer-bottom { border-top: 1px solid #333; padding-top: 2rem; text-align: center; color: #999; font-size: 0.9rem; }
 
+        /* ── Responsive ── */
         @media (max-width: 900px) { .marketplace-body { grid-template-columns: 1fr; } .sidebar { position: static; } .featured-banner { flex-direction: column; } }
-        @media (max-width: 768px) { .nav-links { display: none; } .page-hero h1 { font-size: 2rem; } .savings-bar .container { gap: 2rem; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .page-hero h1 { font-size: 2.2rem; } .stats-grid-bar { grid-template-columns: repeat(2,1fr); } }
     </style>
 </head>
 <body>
@@ -155,34 +191,50 @@
     <div class="page-hero-content">
         <div class="hero-badge">🎁 Members Save an Average of $12,000/year</div>
         <h1>Yorkseed Marketplace</h1>
-        <p>Exclusive deals, tools, and perks - curated for founders who mean business.</p>
+        <p>Exclusive deals, tools, and perks — curated for founders who mean business.</p>
     </div>
 </section>
 
-<!-- Savings Bar -->
-<div class="savings-bar">
+<!-- Stats Bar -->
+<div class="stats-bar">
     <div class="container">
-        <div class="savings-stat"><strong>150+</strong><span>Partner Deals</span></div>
-        <div class="savings-stat"><strong>$12K+</strong><span>Avg. Annual Savings</span></div>
-        <div class="savings-stat"><strong>50+</strong><span>Categories</span></div>
-        <div class="savings-stat"><strong>10K+</strong><span>Members Unlocking</span></div>
+        <div class="stats-grid-bar">
+            <div class="stat-item">
+                <span class="stat-number" data-target="150">150+</span>
+                <span class="stat-label">Partner Deals</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">$12K+</span>
+                <span class="stat-label">Avg. Annual Savings</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="50">50+</span>
+                <span class="stat-label">Categories</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="10000">10K+</span>
+                <span class="stat-label">Members Unlocking</span>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<div class="savings-bar" style="background:#ffffff; border-bottom:1px solid #e8ecf0; padding:1.8rem 0;">>
-    <div class="container" style="gap:3rem;">
-        <div class="savings-stat">
-            <strong style="color:#111;">1</strong>
-            <span>Browse perks by category, deal type, or hub</span>
-        </div>
-        <div class="savings-stat">
-            <strong style="color:#111;">2</strong>
-            <span>Claim with membership (some perks are members-only)</span>
-        </div>
-        <div class="savings-stat">
-            <strong style="color:#111;">3</strong>
-            <span>Redeem via partner link - credits applied after verification</span>
+<!-- How It Works -->
+<div class="how-section">
+    <div class="container">
+        <div class="how-grid">
+            <div class="how-card">
+                <div class="how-num">1</div>
+                <p>Browse perks by category, deal type, or your nearest hub</p>
+            </div>
+            <div class="how-card">
+                <div class="how-num">2</div>
+                <p>Claim with your membership — some perks are members-only</p>
+            </div>
+            <div class="how-card">
+                <div class="how-num">3</div>
+                <p>Redeem via partner link — credits applied after verification</p>
+            </div>
         </div>
     </div>
 </div>
@@ -190,16 +242,6 @@
 <!-- Filter Bar -->
 <div class="filter-bar">
     <div class="container">
-        <!-- <button class="filter-tab active" onclick="setTab(this)">All Deals</button>
-        <button class="filter-tab" onclick="setTab(this)">🔥 New</button>
-        <button class="filter-tab" onclick="setTab(this)">🛠️ Software</button>
-        <button class="filter-tab" onclick="setTab(this)">💼 Legal & Finance</button>
-        <button class="filter-tab" onclick="setTab(this)">📣 Marketing</button>
-        <button class="filter-tab" onclick="setTab(this)">🤖 AI Tools</button>
-        <button class="filter-tab" onclick="setTab(this)">✈️ Travel</button>
-        <button class="filter-tab" onclick="setTab(this)">🏥 Health</button>
-        <button class="filter-tab" onclick="setTab(this)">🎓 Education</button> -->
-
         <button class="filter-tab active" data-tab="all" onclick="setTab(this)">All Deals</button>
         <button class="filter-tab" data-tab="new" onclick="setTab(this)">🔥 New</button>
         <button class="filter-tab" data-tab="software" onclick="setTab(this)">🛠️ Software</button>
@@ -225,10 +267,10 @@
             </div>
             <div class="toggle-switch off" id="membersToggle"></div>
         </div>
+
         <div class="sidebar-section">
-            
             <h4>Hub</h4>
-            <select id="Filter" style="width:100%; padding:0.7rem 0.9rem; border:1px solid #e0e0e0; border-radius:12px; font-family:inherit;">
+            <select id="hubFilter" style="width:100%; padding:0.7rem 0.9rem; border:1px solid #e0e0e0; border-radius:10px; font-family:inherit; font-size:0.9rem; color:#333; outline:none; cursor:pointer; margin-bottom:1.25rem;">
                 <option value="all">🌍 Global</option>
                 <option value="nyc">NYC</option>
                 <option value="sf">San Francisco</option>
@@ -239,15 +281,6 @@
             </select>
 
             <h4>Category</h4>
-            <!-- <label class="sidebar-option"><input type="checkbox" checked> All <span class="count">152</span></label>
-            <label class="sidebar-option"><input type="checkbox"> 🛠️ Software <span class="count">48</span></label>
-            <label class="sidebar-option"><input type="checkbox"> 🤖 AI Tools <span class="count">31</span></label>
-            <label class="sidebar-option"><input type="checkbox"> 📣 Marketing <span class="count">22</span></label>
-            <label class="sidebar-option"><input type="checkbox"> 💼 Legal & Finance <span class="count">18</span></label>
-            <label class="sidebar-option"><input type="checkbox"> ✈️ Travel <span class="count">14</span></label>
-            <label class="sidebar-option"><input type="checkbox"> 🏥 Health <span class="count">12</span></label>
-            <label class="sidebar-option"><input type="checkbox"> 🎓 Education <span class="count">7</span></label> -->
-
             <label class="sidebar-option"><input type="checkbox" id="cat_all" checked> All <span class="count">152</span></label>
             <label class="sidebar-option"><input type="checkbox" class="cat" value="hub"> 🌍 Hub Perks <span class="count">9</span></label>
             <label class="sidebar-option"><input type="checkbox" class="cat" value="access"> 🤝 Access & Intros <span class="count">6</span></label>
@@ -258,30 +291,19 @@
             <label class="sidebar-option"><input type="checkbox" class="cat" value="travel"> ✈️ Travel <span class="count">14</span></label>
             <label class="sidebar-option"><input type="checkbox" class="cat" value="health"> 🏥 Health <span class="count">12</span></label>
             <label class="sidebar-option"><input type="checkbox" class="cat" value="education"> 🎓 Education <span class="count">7</span></label>
-
         </div>
+
         <div class="sidebar-section">
             <h4>Deal Type</h4>
-            <!-- <label class="sidebar-option"><input type="checkbox" checked> % Off Subscription</label>
-            <label class="sidebar-option"><input type="checkbox" checked> Free Trial / Credits</label>
-            <label class="sidebar-option"><input type="checkbox"> Cash Back</label>
-            <label class="sidebar-option"><input type="checkbox"> Extended Trial</label>
-            <label class="sidebar-option"><input type="checkbox"> Priority Access</label> -->
-
             <label class="sidebar-option"><input type="checkbox" class="dtype" value="percent" checked> % Off Subscription</label>
             <label class="sidebar-option"><input type="checkbox" class="dtype" value="credits" checked> Free Trial / Credits</label>
             <label class="sidebar-option"><input type="checkbox" class="dtype" value="cashback"> Cash Back</label>
             <label class="sidebar-option"><input type="checkbox" class="dtype" value="extended"> Extended Trial</label>
             <label class="sidebar-option"><input type="checkbox" class="dtype" value="priority"> Priority Access</label>
-
         </div>
+
         <div class="sidebar-section">
             <h4>Value</h4>
-            <!-- <label class="sidebar-option"><input type="checkbox"> Under $500</label>
-            <label class="sidebar-option"><input type="checkbox"> $500 – $2,000</label>
-            <label class="sidebar-option"><input type="checkbox"> $2,000 – $10,000</label>
-            <label class="sidebar-option"><input type="checkbox"> $10,000+</label> -->
-
             <label class="sidebar-option"><input type="checkbox" class="val" value="0-500"> Under $500</label>
             <label class="sidebar-option"><input type="checkbox" class="val" value="500-2000"> $500 – $2,000</label>
             <label class="sidebar-option"><input type="checkbox" class="val" value="2000-10000"> $2,000 – $10,000</label>
@@ -321,20 +343,6 @@
                 <div class="partner-logo-item" title="Loom">🎥</div>
             </div>
         </div>
-
-        <!-- Category Pills -->
-        <!-- already too many filters and sections
-        <div class="category-pills">
-
-            <div class="cat-pill active" data-pill="all" onclick="filterPill(this)">✨ All</div>
-            <div class="cat-pill" data-pill="new" onclick="filterPill(this)">🔥 New This Week</div>
-            <div class="cat-pill" data-pill="ai" onclick="filterPill(this)">🤖 AI Tools</div>
-            <div class="cat-pill" data-pill="software" onclick="filterPill(this)">🛠️ Dev Tools</div>
-            <div class="cat-pill" data-pill="legal" onclick="filterPill(this)">💰 Banking</div>
-            <div class="cat-pill" data-pill="marketing" onclick="filterPill(this)">📣 Marketing</div>
-            <div class="cat-pill" data-pill="travel" onclick="filterPill(this)">✈️ Travel</div>
-        </div> 
-        -->
 
         <!-- Popular Deals -->
         <div class="section-row">
@@ -433,18 +441,18 @@
 
         </div>
 
-        <!-- 🌍 Hub Perks -->
+        <!-- Hub Perks -->
         <div class="section-row">
             <h2>🌍 Hub Perks</h2>
             <a href="#" class="see-all">See all →</a>
         </div>
         <div class="deals-grid">
-            
+
             <div class="deal-card">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe)">🏙️ <span class="badge">HUB</span></div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed NYC</div>
-                    <div class="deal-title">Event Space Credit - NYC Hub</div>
+                    <div class="deal-title">Event Space Credit — NYC Hub</div>
                     <div class="deal-description">Get a member-rate credit toward hosting a meetup, demo day, or founder dinner in NYC.</div>
                     <div class="deal-footer">
                         <div class="deal-value">$300 credit<span>per event</span></div>
@@ -471,16 +479,17 @@
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed Global</div>
                     <div class="deal-title">Offsite Booking Benefit</div>
-                    <div class="deal-description">Member-rate discounts on team offsites and meeting spaces (select cities, demo placeholder).</div>
+                    <div class="deal-description">Member-rate discounts on team offsites and meeting spaces across select cities.</div>
                     <div class="deal-footer">
                         <div class="deal-value">10–15% off<span>select venues</span></div>
                         <button class="claim-btn js-hub-details">View details</button>
                     </div>
                 </div>
             </div>
+
         </div>
 
-        <!-- 🤝 Access & Introductions -->
+        <!-- Access & Introductions -->
         <div class="section-row">
             <h2>🤝 Access & Introductions</h2>
             <a href="#" class="see-all">See all →</a>
@@ -505,7 +514,7 @@
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed Office Hours</div>
                     <div class="deal-title">Pitch Review + GTM Feedback</div>
-                    <div class="deal-description">Monthly closed-door pitch practice with founders/operators. Limited slots (demo placeholder).</div>
+                    <div class="deal-description">Monthly closed-door pitch practice with experienced founders and operators. Limited slots.</div>
                     <div class="deal-footer">
                         <div class="deal-value">Priority access<span>limited</span></div>
                         <button class="claim-btn">Request</button>
@@ -518,14 +527,15 @@
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed Operators</div>
                     <div class="deal-title">Operator Hotline (Async Q&A)</div>
-                    <div class="deal-description">Ask a tactical question (legal, finance, hiring, GTM) and get matched to a vetted operator reply.</div>
+                    <div class="deal-description">Ask a tactical question — legal, finance, hiring, GTM — and get matched to a vetted operator reply.</div>
                     <div class="deal-footer">
                         <div class="deal-value">Member perk<span>weekly</span></div>
                         <button class="claim-btn">Request</button>
                     </div>
                 </div>
             </div>
-        </div> 
+
+        </div>
 
         <!-- AI Tools -->
         <div class="section-row">
@@ -609,7 +619,7 @@
             </div>
 
         </div>
-     
+
     </main>
 </div>
 
@@ -654,71 +664,54 @@
     </div>
 </footer>
 
-<!--  PERKS MODAL (dummy preview, applies ONLY to  Perks buttons) -->
-<div id="DealModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:2500; padding:2rem;">
-  <div style="max-width:760px; margin:0 auto; background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.35);">
-    <div style="padding:1.1rem 1.4rem; border-bottom:1px solid #eceff3; display:flex; justify-content:space-between; align-items:center;">
-      <div>
-        <div id="ModalPartner" style="font-size:0.75rem; letter-spacing:0.06em; text-transform:uppercase; color:#999; font-weight:800;"></div>
-        <div id="ModalTitle" style="font-size:1.25rem; font-weight:900; color:#111; margin-top:0.15rem;"></div>
-      </div>
-      <button type="button" onclick="closeDealModal()"
-              style="border:none; background:#f3f4f6; border-radius:10px; padding:0.5rem 0.7rem; cursor:pointer;">
-        ✕
-      </button>
-    </div>
-
-    <div style="padding:1.2rem 1.4rem;">
-      <p id="ModalDesc" style="color:#555; margin-bottom:1rem;"></p>
-
-      <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1rem;">
-        <span id="Modal" style="background:#f8fafc; border:1px solid #e8ecf0; border-radius:999px; padding:0.35rem 0.7rem; font-size:0.85rem; color:#333; font-weight:700;"></span>
-        <span id="ModalMembers" style="background:#fff5f5; border:1px solid #fca5a5; border-radius:999px; padding:0.35rem 0.7rem; font-size:0.85rem; color:#991b1b; font-weight:800;"></span>
-      </div>
-
-      <div style="background:#f8fafc; border:1px solid #e8ecf0; border-radius:12px; padding:1rem; margin-bottom:1rem;">
-        <div style="font-weight:900; margin-bottom:0.4rem;">How it works (dummy)</div>
-        <ol style="margin-left:1.1rem; color:#555; line-height:1.7;">
-          <li>Choose your  perk and click “Request / Redeem”.</li>
-          <li>We’ll verify membership +  availability (placeholder).</li>
-          <li>You’ll receive a confirmation email with next steps (placeholder).</li>
-        </ol>
-        <div style="margin-top:0.75rem; font-size:0.85rem; color:#777;">
-          <b>Note:</b> This is a mock flow to show the concept — not final.
+<!-- Deal Modal -->
+<div id="DealModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:2500; padding:2rem; align-items:center; justify-content:center;">
+    <div style="max-width:760px; width:100%; margin:0 auto; background:#fff; border-radius:15px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.35);">
+        <div style="padding:1.2rem 1.5rem; border-bottom:1px solid #eceff3; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <div id="ModalPartner" style="font-size:0.75rem; letter-spacing:0.06em; text-transform:uppercase; color:#999; font-weight:800;"></div>
+                <div id="ModalTitle" style="font-size:1.25rem; font-weight:900; color:#111; margin-top:0.15rem;"></div>
+            </div>
+            <button type="button" onclick="closeDealModal()" style="border:none; background:#f3f4f6; border-radius:10px; padding:0.5rem 0.7rem; cursor:pointer; font-size:1rem;">✕</button>
         </div>
-      </div>
-
-      <div style="display:flex; gap:0.75rem; justify-content:flex-end; flex-wrap:wrap;">
-        <a id="ModalRedeem" href="#" target="_blank"
-           style="background:linear-gradient(135deg,#dc2626,#991b1b); color:#fff; text-decoration:none; padding:0.75rem 1rem; border-radius:12px; font-weight:800;">
-          Request / Redeem →
-        </a>
-        <a href="membership.html"
-           style="background:#fff; border:1px solid #e0e0e0; color:#111; text-decoration:none; padding:0.75rem 1rem; border-radius:12px; font-weight:800;">
-          View membership
-        </a>
-      </div>
+        <div style="padding:1.5rem;">
+            <p id="ModalDesc" style="color:#555; margin-bottom:1.25rem; line-height:1.7;"></p>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1.25rem;">
+                <span id="Modal" style="background:#f8fafc; border:1px solid #e8ecf0; border-radius:999px; padding:0.35rem 0.8rem; font-size:0.85rem; color:#333; font-weight:700;"></span>
+                <span id="ModalMembers" style="background:#fff5f5; border:1px solid #fca5a5; border-radius:999px; padding:0.35rem 0.8rem; font-size:0.85rem; color:#991b1b; font-weight:800;"></span>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #e8ecf0; border-radius:12px; padding:1.25rem; margin-bottom:1.25rem;">
+                <div style="font-weight:700; margin-bottom:0.5rem;">How it works</div>
+                <ol style="margin-left:1.1rem; color:#555; line-height:1.8;">
+                    <li>Choose your perk and click "Request / Redeem".</li>
+                    <li>We'll verify membership and availability.</li>
+                    <li>You'll receive a confirmation email with next steps.</li>
+                </ol>
+            </div>
+            <div style="display:flex; gap:0.75rem; justify-content:flex-end; flex-wrap:wrap;">
+                <a id="ModalRedeem" href="#" target="_blank" style="background:linear-gradient(135deg,#dc2626,#991b1b); color:#fff; text-decoration:none; padding:0.75rem 1.25rem; border-radius:12px; font-weight:700; transition:all 0.2s;">Request / Redeem →</a>
+                <a href="membership.html" style="background:#fff; border:1px solid #e0e0e0; color:#111; text-decoration:none; padding:0.75rem 1.25rem; border-radius:12px; font-weight:700;">View membership</a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <script>
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-        const h = document.querySelector('.header');
-        h.style.background = window.scrollY > 100 ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.95)';
-        h.style.boxShadow = window.scrollY > 100 ? '0 2px 20px rgba(0,0,0,0.1)' : 'none';
+    // Header scroll effect (matches about.html exactly)
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(255,255,255,0.98)';
+            header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+        } else {
+            header.style.background = 'rgba(255,255,255,0.95)';
+            header.style.boxShadow = 'none';
+        }
     });
 
     // Filter tabs
     function setTab(el) {
         document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-        el.classList.add('active');
-    }
-
-    // Category pills
-    function filterPill(el) {
-        document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
         el.classList.add('active');
     }
 
@@ -732,61 +725,77 @@
 
     // Members-only toggle
     function toggleMembers(el) {
-        const sw = document.getElementById('membersToggle');
-        sw.classList.toggle('off');
+        document.getElementById('membersToggle').classList.toggle('off');
     }
-    
-    // ---- Hub Perks modal (ONLY for buttons with .js-hub-details) ----
+
+    // Animated counters (matches about.html pattern)
+    function animateCounters() {
+        document.querySelectorAll('.stat-number[data-target]').forEach(counter => {
+            const target = parseInt(counter.dataset.target);
+            const suffix = counter.textContent.replace(/[\d,]/g, '');
+            const increment = target / 80;
+            let current = 0;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    counter.textContent = target.toLocaleString() + suffix;
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.floor(current).toLocaleString() + suffix;
+                }
+            }, 20);
+        });
+    }
+
+    // Trigger counters on scroll into view
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    });
+    const statsEl = document.querySelector('.stats-bar');
+    if (statsEl) statsObserver.observe(statsEl);
+
+    // Hub Perks modal
     function openDealModal(card) {
-        const partner = card.querySelector(".deal-partner-name")?.textContent || "Partner";
-        const title   = card.querySelector(".deal-title")?.textContent || "Perk title";
-        const desc    = card.querySelector(".deal-description")?.textContent || "Perk description";
+        const partner = card.querySelector('.deal-partner-name')?.textContent || 'Partner';
+        const title   = card.querySelector('.deal-title')?.textContent || 'Perk title';
+        const desc    = card.querySelector('.deal-description')?.textContent || '';
+        const value   = card.dataset.value || '';
+        const members = (card.dataset.members || '0') === '1';
+        const link    = card.dataset.link || '#';
 
-        // Optional dataset fields (safe defaults)
-        const value    = card.dataset.value || "";
-        const members  = (card.dataset.members || "0") === "1";
-        const link     = card.dataset.link || "#";
+        document.getElementById('ModalPartner').textContent = partner;
+        document.getElementById('ModalTitle').textContent = title;
+        document.getElementById('ModalDesc').textContent = desc;
+        document.getElementById('Modal').textContent = value ? `Value: ${value}` : 'Yorkseed Perk';
+        document.getElementById('ModalMembers').textContent = members ? 'Members-only' : 'Available to all';
+        document.getElementById('ModalRedeem').href = link;
 
-        // Fill modal
-        document.getElementById("ModalPartner").textContent = partner;
-        document.getElementById("ModalTitle").textContent = title;
-        document.getElementById("ModalDesc").textContent = desc;
-
-        // Your chip id is "Modal" (bad name but we’ll keep it)
-        const chip = document.getElementById("Modal");
-        chip.textContent = value ? `Value: ${value}` : "Yorkseed Perk (Preview)";
-
-        const memChip = document.getElementById("ModalMembers");
-        memChip.textContent = members ? "Members-only" : "Available to all";
-
-        const redeem = document.getElementById("ModalRedeem");
-        redeem.href = link;
-
-        // Show modal
-        document.getElementById("DealModal").style.display = "block";
+        const modal = document.getElementById('DealModal');
+        modal.style.display = 'flex';
     }
 
     function closeDealModal() {
-        document.getElementById("DealModal").style.display = "none";
+        document.getElementById('DealModal').style.display = 'none';
     }
 
-    // Close modal on overlay click
-    document.addEventListener("click", (e) => {
-        const modal = document.getElementById("DealModal");
-        if (!modal) return;
+    document.addEventListener('click', (e) => {
+        const modal = document.getElementById('DealModal');
         if (e.target === modal) closeDealModal();
     });
 
-    // Wire ONLY perks buttons
-    document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".js-hub-details").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const card = btn.closest(".deal-card");
-            if (card) openDealModal(card);
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.js-hub-details').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.deal-card');
+                if (card) openDealModal(card);
             });
         });
     });
-
 </script>
 
 </body>
