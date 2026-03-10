@@ -262,7 +262,7 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-        <div class="members-only-toggle" onclick="toggleMembers(this)">
+        <div class="members-only-toggle">
             <div>
                 <div class="toggle-label">🔐 Members Only</div>
                 <div class="toggle-sub">Show exclusive perks</div>
@@ -346,14 +346,21 @@
             </div>
         </div>
 
+        <!-- ALL DEALS — data attributes drive all filtering -->
+        <!-- data-cat: software | ai | marketing | legal | hub | access | travel | health | education -->
+        <!-- data-members: true | false -->
+        <!-- data-type: percent | credits | cashback | extended | priority -->
+        <!-- data-value: numeric dollar amount (for value range filter) -->
+        <!-- data-new: true (for "New" tab) -->
+
         <!-- Popular Deals -->
-        <div class="section-row">
+        <div class="section-row" data-section="popular">
             <h2>Popular Deals</h2>
             <a href="#" class="see-all">See all →</a>
         </div>
-        <div class="deals-grid">
+        <div class="deals-grid" data-section="popular">
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="software" data-members="true" data-type="credits" data-value="960" data-new="true">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">
                     📝 <span class="badge">NEW</span><span class="members-badge">⭐ Members</span>
                 </div>
@@ -368,7 +375,7 @@
                 </div>
             </div>
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="marketing" data-members="false" data-type="percent" data-value="7200">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#eff6ff,#dbeafe)">
                     🎯 <span class="badge">90% OFF</span>
                 </div>
@@ -383,7 +390,7 @@
                 </div>
             </div>
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="software" data-members="true" data-type="credits" data-value="1440">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff)">
                     🎨 <span class="badge">FREE YEAR</span><span class="members-badge">⭐ Members</span>
                 </div>
@@ -398,7 +405,7 @@
                 </div>
             </div>
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="legal" data-members="false" data-type="cashback" data-value="500">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#fff7ed,#ffedd5)">🏦</div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Brex</div>
@@ -411,7 +418,7 @@
                 </div>
             </div>
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="ai" data-members="false" data-type="credits" data-value="2500">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe)">
                     🤖 <span class="badge">HOT</span>
                 </div>
@@ -426,7 +433,7 @@
                 </div>
             </div>
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="software" data-members="true" data-type="credits" data-value="600">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#f7fee7,#ecfccb)">
                     👥 <span class="members-badge">⭐ Members</span>
                 </div>
@@ -444,13 +451,13 @@
         </div>
 
         <!-- Hub Perks -->
-        <div class="section-row">
+        <div class="section-row" data-section="hub">
             <h2>🌍 Hub Perks</h2>
             <a href="#" class="see-all">See all →</a>
         </div>
-        <div class="deals-grid">
+        <div class="deals-grid" data-section="hub">
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="hub" data-members="false" data-type="credits" data-value="300">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe)">🏙️ <span class="badge">HUB</span></div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed NYC</div>
@@ -463,7 +470,7 @@
                 </div>
             </div>
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="hub" data-members="true" data-type="priority" data-value="0">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#fff7ed,#ffedd5)">🎟️ <span class="badge">LIMITED</span><span class="members-badge">⭐ Members</span></div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed London</div>
@@ -476,7 +483,7 @@
                 </div>
             </div>
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="hub" data-members="false" data-type="percent" data-value="0">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff)">🏨 <span class="badge">HUB</span></div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed Global</div>
@@ -492,13 +499,13 @@
         </div>
 
         <!-- Access & Introductions -->
-        <div class="section-row">
+        <div class="section-row" data-section="access">
             <h2>🤝 Access & Introductions</h2>
             <a href="#" class="see-all">See all →</a>
         </div>
-        <div class="deals-grid">
+        <div class="deals-grid" data-section="access">
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="access" data-members="true" data-type="priority" data-value="0">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#fff5f5,#ffe4e6)">🤝 <span class="badge">VETTED</span><span class="members-badge">⭐ Members</span></div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed Concierge</div>
@@ -511,7 +518,7 @@
                 </div>
             </div>
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="access" data-members="true" data-type="priority" data-value="0">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">🎤 <span class="badge">POPULAR</span><span class="members-badge">⭐ Members</span></div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed Office Hours</div>
@@ -524,7 +531,7 @@
                 </div>
             </div>
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="access" data-members="false" data-type="priority" data-value="0" data-new="true">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#eff6ff,#dbeafe)">🧩 <span class="badge">NEW</span></div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Yorkseed Operators</div>
@@ -540,13 +547,13 @@
         </div>
 
         <!-- AI Tools -->
-        <div class="section-row">
+        <div class="section-row" data-section="ai">
             <h2>🤖 AI Tools</h2>
             <a href="#" class="see-all">See all →</a>
         </div>
-        <div class="deals-grid">
+        <div class="deals-grid" data-section="ai">
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="ai" data-members="false" data-type="credits" data-value="500" data-new="true">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#faf5ff,#f3e8ff)">
                     🧠 <span class="badge">NEW</span>
                 </div>
@@ -561,7 +568,7 @@
                 </div>
             </div>
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="ai" data-members="false" data-type="percent" data-value="840">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#fff1f2,#ffe4e6)">
                     ✍️ <span class="badge">50% OFF</span>
                 </div>
@@ -576,23 +583,31 @@
                 </div>
             </div>
 
-            <div class="deal-card locked-card" style="display:flex;flex-direction:column;">
-                <div style="font-size:2rem;margin-bottom:0.75rem;">🔐</div>
-                <div style="font-weight:700;color:#333;margin-bottom:0.5rem;">3 More AI Deals</div>
-                <div style="font-size:0.85rem;color:#999;margin-bottom:1rem;">Unlock with a Yorkseed membership</div>
-                <button class="claim-btn" onclick="window.location='membership.html'">Upgrade to Unlock</button>
+            <div class="deal-card" data-cat="ai" data-members="true" data-type="credits" data-value="3000">
+                <div class="deal-card-top" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">
+                    🤖 <span class="members-badge">⭐ Members</span>
+                </div>
+                <div class="deal-card-body">
+                    <div class="deal-partner-name">Runway ML</div>
+                    <div class="deal-title">$3,000 in AI Video Credits</div>
+                    <div class="deal-description">State-of-the-art generative AI video tools for startups building next-gen media and content products.</div>
+                    <div class="deal-footer">
+                        <div class="deal-value">$3,000 credits</div>
+                        <button class="claim-btn">Claim Deal</button>
+                    </div>
+                </div>
             </div>
 
         </div>
 
         <!-- Legal & Finance -->
-        <div class="section-row">
+        <div class="section-row" data-section="legal">
             <h2>💼 Legal & Finance</h2>
             <a href="#" class="see-all">See all →</a>
         </div>
-        <div class="deals-grid">
+        <div class="deals-grid" data-section="legal">
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="legal" data-members="false" data-type="credits" data-value="500">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">⚖️</div>
                 <div class="deal-card-body">
                     <div class="deal-partner-name">Stripe Atlas</div>
@@ -605,7 +620,7 @@
                 </div>
             </div>
 
-            <div class="deal-card">
+            <div class="deal-card" data-cat="legal" data-members="true" data-type="credits" data-value="3000">
                 <div class="deal-card-top" style="background:linear-gradient(135deg,#eff6ff,#dbeafe)">
                     📊 <span class="badge">POPULAR</span><span class="members-badge">⭐ Members</span>
                 </div>
@@ -620,6 +635,38 @@
                 </div>
             </div>
 
+            <div class="deal-card" data-cat="legal" data-members="false" data-type="extended" data-value="0">
+                <div class="deal-card-top" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff)">🧾</div>
+                <div class="deal-card-body">
+                    <div class="deal-partner-name">Clerky</div>
+                    <div class="deal-title">Free Legal Docs for Startups</div>
+                    <div class="deal-description">Generate lawyer-drafted incorporation, SAFEs, and NDAs online. Used by Y Combinator companies.</div>
+                    <div class="deal-footer">
+                        <div class="deal-value">Free tier<span>core docs</span></div>
+                        <button class="claim-btn">Claim Deal</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Login wall — shown to logged-out users, hidden when logged in -->
+        <div id="loginWall" style="display:none; margin: 2rem 0 3rem; border-radius: 15px; background: linear-gradient(135deg,#1a1a1a,#2d2d2d); padding: 3rem 2rem; text-align: center; color: white; box-shadow: 0 5px 20px rgba(0,0,0,0.15);">
+            <div style="font-size:2.5rem; margin-bottom:1rem;">🔒</div>
+            <h3 style="font-size:1.5rem; font-weight:700; margin-bottom:0.75rem;">You're seeing a preview</h3>
+            <p style="color:#ccc; margin-bottom:1.75rem; max-width:420px; margin-left:auto; margin-right:auto; line-height:1.7;">Log in to unlock all 150+ deals across every category — plus members-only perks worth $12,000+ a year.</p>
+            <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                <a href="login.html" style="background:linear-gradient(135deg,#dc2626,#991b1b); color:white; text-decoration:none; padding:0.85rem 2rem; border-radius:25px; font-weight:700; font-size:1rem; transition:all 0.2s;">Login to View More Deals →</a>
+                <a href="membership.html" style="background:white; color:#1a1a1a; text-decoration:none; padding:0.85rem 2rem; border-radius:25px; font-weight:700; font-size:1rem;">View Membership</a>
+            </div>
+        </div>
+
+        <!-- Members-only login prompt — shown when members toggle is on but user is logged out -->
+        <div id="membersLoginPrompt" style="display:none; margin: 1rem 0 2rem; border-radius: 15px; background: linear-gradient(135deg,#fff5f5,#fff); border: 1.5px solid #fca5a5; padding: 2rem; text-align: center; box-shadow: 0 5px 20px rgba(220,38,38,0.08);">
+            <div style="font-size:2rem; margin-bottom:0.75rem;">🔐</div>
+            <h3 style="font-size:1.2rem; font-weight:700; color:#991b1b; margin-bottom:0.5rem;">Members-only deals are locked</h3>
+            <p style="color:#666; margin-bottom:1.25rem;">You need to be logged in to browse exclusive member perks.</p>
+            <a href="login.html" style="background:linear-gradient(135deg,#dc2626,#991b1b); color:white; text-decoration:none; padding:0.7rem 1.75rem; border-radius:25px; font-weight:700;">Login to unlock →</a>
         </div>
 
     </main>
@@ -699,44 +746,200 @@
 </div>
 
 <script>
-    // Header scroll effect (matches about.html exactly)
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('.header');
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(255,255,255,0.98)';
-            header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-        } else {
-            header.style.background = 'rgba(255,255,255,0.95)';
-            header.style.boxShadow = 'none';
-        }
-    });
+    // ─────────────────────────────────────────────
+    // AUTH STATE — simulated via nav button text.
+    // If the nav shows "Login", user is logged out.
+    // ─────────────────────────────────────────────
+    function isLoggedIn() {
+        const loginLink = document.querySelector('.nav-links .login-btn');
+        // Logged in if the button text is NOT "Login"
+        return loginLink && loginLink.textContent.trim().toLowerCase() !== 'login';
+    }
 
-    // Filter tabs
+    // How many cards to show to logged-out users per section before the wall
+    const GUEST_PREVIEW_COUNT = 3;
+
+    // ─────────────────────────────────────────────
+    // FILTER STATE
+    // ─────────────────────────────────────────────
+    let activeTab    = 'all';   // filter bar tab
+    let membersOnly  = false;   // members toggle
+    let activeCats   = [];      // sidebar category checkboxes
+    let activeTypes  = [];      // sidebar deal-type checkboxes
+    let activeVals   = [];      // sidebar value-range checkboxes
+    let searchQuery  = '';      // search input
+
+    // ─────────────────────────────────────────────
+    // MAIN RENDER — called whenever any filter changes
+    // ─────────────────────────────────────────────
+    function applyFilters() {
+        const loggedIn = isLoggedIn();
+        const cards = Array.from(document.querySelectorAll('.deal-card'));
+
+        // If members-only toggle is ON and user is NOT logged in:
+        // show the login prompt, hide all cards and section rows
+        const membersLoginPrompt = document.getElementById('membersLoginPrompt');
+        if (membersOnly && !loggedIn) {
+            membersLoginPrompt.style.display = 'block';
+            cards.forEach(c => c.style.display = 'none');
+            document.querySelectorAll('.section-row, .deals-grid').forEach(el => el.style.display = 'none');
+            document.getElementById('loginWall').style.display = 'none';
+            return;
+        } else {
+            membersLoginPrompt.style.display = 'none';
+        }
+
+        // Value ranges helper
+        function inValueRange(cardVal) {
+            if (activeVals.length === 0) return true;
+            const v = parseInt(cardVal) || 0;
+            return activeVals.some(range => {
+                const [lo, hi] = range.split('-').map(Number);
+                return v >= lo && v <= hi;
+            });
+        }
+
+        // Determine visibility for each card
+        let visiblePerSection = {};
+
+        cards.forEach(card => {
+            const cat     = card.dataset.cat || '';
+            const members = card.dataset.members === 'true';
+            const type    = card.dataset.type || '';
+            const val     = card.dataset.value || '0';
+            const isNew   = card.dataset.new === 'true';
+            const text    = card.textContent.toLowerCase();
+
+            let show = true;
+
+            // Tab filter
+            if (activeTab === 'new'       && !isNew)                     show = false;
+            if (activeTab === 'software'  && cat !== 'software')          show = false;
+            if (activeTab === 'legal'     && cat !== 'legal')             show = false;
+            if (activeTab === 'marketing' && cat !== 'marketing')         show = false;
+            if (activeTab === 'ai'        && cat !== 'ai')                show = false;
+            if (activeTab === 'travel'    && cat !== 'travel')            show = false;
+            if (activeTab === 'health'    && cat !== 'health')            show = false;
+            if (activeTab === 'education' && cat !== 'education')         show = false;
+
+            // Members-only toggle: when ON, show only members cards
+            if (membersOnly && !members) show = false;
+
+            // Category checkboxes
+            if (activeCats.length > 0 && !activeCats.includes(cat)) show = false;
+
+            // Deal type checkboxes
+            if (activeTypes.length > 0 && !activeTypes.includes(type)) show = false;
+
+            // Value range checkboxes
+            if (!inValueRange(val)) show = false;
+
+            // Search
+            if (searchQuery && !text.includes(searchQuery)) show = false;
+
+            card.style.display = show ? '' : 'none';
+
+            // Track visible counts per section for login wall
+            if (show) {
+                const grid = card.closest('.deals-grid');
+                if (grid) {
+                    const sec = grid.dataset.section || 'other';
+                    visiblePerSection[sec] = (visiblePerSection[sec] || 0) + 1;
+                }
+            }
+        });
+
+        // For logged-out users: cap each section at GUEST_PREVIEW_COUNT visible cards
+        if (!loggedIn) {
+            document.querySelectorAll('.deals-grid').forEach(grid => {
+                const visibleCards = Array.from(grid.querySelectorAll('.deal-card'))
+                    .filter(c => c.style.display !== 'none');
+                visibleCards.forEach((c, i) => {
+                    if (i >= GUEST_PREVIEW_COUNT) c.style.display = 'none';
+                });
+            });
+        }
+
+        // Show/hide section rows based on whether their grid has any visible cards
+        document.querySelectorAll('.section-row').forEach(row => {
+            const sec = row.dataset.section;
+            const grid = document.querySelector(`.deals-grid[data-section="${sec}"]`);
+            if (!grid) return;
+            const anyVisible = Array.from(grid.querySelectorAll('.deal-card')).some(c => c.style.display !== 'none');
+            row.style.display  = anyVisible ? '' : 'none';
+            grid.style.display = anyVisible ? '' : 'none';
+        });
+
+        // Login wall visibility
+        const loginWall = document.getElementById('loginWall');
+        if (!loggedIn) {
+            loginWall.style.display = 'block';
+        } else {
+            loginWall.style.display = 'none';
+        }
+    }
+
+    // ─────────────────────────────────────────────
+    // FILTER BAR TABS
+    // ─────────────────────────────────────────────
     function setTab(el) {
         document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
         el.classList.add('active');
+        activeTab = el.dataset.tab || 'all';
+        applyFilters();
     }
 
-    // Live search
-    function searchDeals(query) {
-        const q = query.toLowerCase();
-        document.querySelectorAll('.deal-card').forEach(card => {
-            card.style.display = card.textContent.toLowerCase().includes(q) ? '' : 'none';
-        });
+    // ─────────────────────────────────────────────
+    // SEARCH
+    // ─────────────────────────────────────────────
+    function searchDeals(val) {
+        searchQuery = val.toLowerCase().trim();
+        applyFilters();
     }
 
-    // Members-only toggle
-    function toggleMembers(el) {
-        document.getElementById('membersToggle').classList.toggle('off');
+    // ─────────────────────────────────────────────
+    // MEMBERS TOGGLE
+    // ─────────────────────────────────────────────
+    function toggleMembers() {
+        membersOnly = !membersOnly;
+        const sw = document.getElementById('membersToggle');
+        sw.classList.toggle('off', !membersOnly);
+        applyFilters();
     }
 
-    // Animated counters (matches about.html pattern)
+    // ─────────────────────────────────────────────
+    // SIDEBAR CHECKBOXES
+    // ─────────────────────────────────────────────
+    function readCheckboxes() {
+        const catAll = document.getElementById('cat_all');
+        if (catAll && catAll.checked) {
+            activeCats = [];
+        } else {
+            activeCats = Array.from(document.querySelectorAll('.cat:checked')).map(c => c.value);
+        }
+        activeTypes = Array.from(document.querySelectorAll('.dtype:checked')).map(c => c.value);
+        activeVals  = Array.from(document.querySelectorAll('.val:checked')).map(c => c.value);
+        applyFilters();
+    }
+
+    // ─────────────────────────────────────────────
+    // HEADER SCROLL EFFECT
+    // ─────────────────────────────────────────────
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.header');
+        header.style.background  = window.scrollY > 100 ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.95)';
+        header.style.boxShadow   = window.scrollY > 100 ? '0 2px 20px rgba(0,0,0,0.1)' : 'none';
+    });
+
+    // ─────────────────────────────────────────────
+    // ANIMATED COUNTERS
+    // ─────────────────────────────────────────────
     function animateCounters() {
         document.querySelectorAll('.stat-number[data-target]').forEach(counter => {
             const target = parseInt(counter.dataset.target);
             const suffix = counter.textContent.replace(/[\d,]/g, '');
-            const increment = target / 80;
             let current = 0;
+            const increment = target / 80;
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= target) {
@@ -748,55 +951,61 @@
             }, 20);
         });
     }
-
-    // Trigger counters on scroll into view
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounters();
-                statsObserver.unobserve(entry.target);
-            }
-        });
+    const statsObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { animateCounters(); statsObserver.unobserve(e.target); } });
     });
     const statsEl = document.querySelector('.stats-bar');
     if (statsEl) statsObserver.observe(statsEl);
 
-    // Hub Perks modal
+    // ─────────────────────────────────────────────
+    // HUB PERKS MODAL
+    // ─────────────────────────────────────────────
     function openDealModal(card) {
-        const partner = card.querySelector('.deal-partner-name')?.textContent || 'Partner';
-        const title   = card.querySelector('.deal-title')?.textContent || 'Perk title';
-        const desc    = card.querySelector('.deal-description')?.textContent || '';
-        const value   = card.dataset.value || '';
-        const members = (card.dataset.members || '0') === '1';
-        const link    = card.dataset.link || '#';
-
-        document.getElementById('ModalPartner').textContent = partner;
-        document.getElementById('ModalTitle').textContent = title;
-        document.getElementById('ModalDesc').textContent = desc;
-        document.getElementById('Modal').textContent = value ? `Value: ${value}` : 'Yorkseed Perk';
-        document.getElementById('ModalMembers').textContent = members ? 'Members-only' : 'Available to all';
-        document.getElementById('ModalRedeem').href = link;
-
-        const modal = document.getElementById('DealModal');
-        modal.style.display = 'flex';
+        document.getElementById('ModalPartner').textContent = card.querySelector('.deal-partner-name')?.textContent || '';
+        document.getElementById('ModalTitle').textContent   = card.querySelector('.deal-title')?.textContent || '';
+        document.getElementById('ModalDesc').textContent    = card.querySelector('.deal-description')?.textContent || '';
+        document.getElementById('Modal').textContent        = card.dataset.value ? `Value: $${card.dataset.value}` : 'Yorkseed Perk';
+        document.getElementById('ModalMembers').textContent = card.dataset.members === 'true' ? 'Members-only' : 'Available to all';
+        document.getElementById('ModalRedeem').href         = card.dataset.link || '#';
+        document.getElementById('DealModal').style.display  = 'flex';
     }
-
     function closeDealModal() {
         document.getElementById('DealModal').style.display = 'none';
     }
-
-    document.addEventListener('click', (e) => {
-        const modal = document.getElementById('DealModal');
-        if (e.target === modal) closeDealModal();
+    document.addEventListener('click', e => {
+        if (e.target === document.getElementById('DealModal')) closeDealModal();
     });
 
+    // ─────────────────────────────────────────────
+    // INIT
+    // ─────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
+        // Wire hub-details buttons
         document.querySelectorAll('.js-hub-details').forEach(btn => {
             btn.addEventListener('click', () => {
                 const card = btn.closest('.deal-card');
                 if (card) openDealModal(card);
             });
         });
+
+        // Wire sidebar checkboxes
+        document.querySelectorAll('.cat, #cat_all, .dtype, .val').forEach(cb => {
+            cb.addEventListener('change', () => {
+                // If "All" is checked, uncheck specific cats; if a specific cat is checked, uncheck "All"
+                if (cb.id === 'cat_all' && cb.checked) {
+                    document.querySelectorAll('.cat').forEach(c => c.checked = false);
+                } else if (cb.classList.contains('cat') && cb.checked) {
+                    document.getElementById('cat_all').checked = false;
+                }
+                readCheckboxes();
+            });
+        });
+
+        // Wire members toggle
+        document.querySelector('.members-only-toggle')?.addEventListener('click', toggleMembers);
+
+        // Run initial render
+        applyFilters();
     });
 </script>
 
