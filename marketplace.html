@@ -835,39 +835,27 @@
     function applyFilters() {
         const loggedIn = isLoggedIn();
         const cards = Array.from(document.querySelectorAll('.deal-card'));
-
-        // If members-only toggle is ON and user is NOT logged in:
-        // show members cards as blurred teasers, hide non-members cards, show prompt banner
         const membersLoginPrompt = document.getElementById('membersLoginPrompt');
-        if (membersOnly && !loggedIn) {
-            membersLoginPrompt.style.display = 'block';
-            document.getElementById('loginWall').style.display = 'none';
 
+        // Always remove teaser first, then re-apply where needed
+        cards.forEach(c => c.classList.remove('members-teaser'));
+
+        // ── Logged-out: always blur members cards ──────────────
+        if (!loggedIn) {
             cards.forEach(card => {
-                const isMembers = card.dataset.members === 'true';
-                if (isMembers) {
-                    card.style.display = '';
+                if (card.dataset.members === 'true') {
                     card.classList.add('members-teaser');
-                } else {
-                    card.style.display = 'none';
-                    card.classList.remove('members-teaser');
                 }
             });
+        }
 
-            // Show/hide section rows based on visible cards
-            document.querySelectorAll('.section-row').forEach(row => {
-                const sec = row.dataset.section;
-                const grid = document.querySelector(`.deals-grid[data-section="${sec}"]`);
-                if (!grid) return;
-                const anyVisible = Array.from(grid.querySelectorAll('.deal-card')).some(c => c.style.display !== 'none');
-                row.style.display  = anyVisible ? '' : 'none';
-                grid.style.display = anyVisible ? '' : 'none';
-            });
-            return;
+        // ── Members-only toggle ────────────────────────────────
+        // When ON: show only members cards (blurred if logged out, clear if logged in)
+        // Show the prompt banner only when toggle is ON and logged out
+        if (membersOnly && !loggedIn) {
+            membersLoginPrompt.style.display = 'block';
         } else {
             membersLoginPrompt.style.display = 'none';
-            // Remove teaser state when toggle is off
-            cards.forEach(c => c.classList.remove('members-teaser'));
         }
 
         // Value ranges helper
@@ -894,14 +882,14 @@
             let show = true;
 
             // Tab filter
-            if (activeTab === 'new'       && !isNew)                     show = false;
-            if (activeTab === 'software'  && cat !== 'software')          show = false;
-            if (activeTab === 'legal'     && cat !== 'legal')             show = false;
-            if (activeTab === 'marketing' && cat !== 'marketing')         show = false;
-            if (activeTab === 'ai'        && cat !== 'ai')                show = false;
-            if (activeTab === 'travel'    && cat !== 'travel')            show = false;
-            if (activeTab === 'health'    && cat !== 'health')            show = false;
-            if (activeTab === 'education' && cat !== 'education')         show = false;
+            if (activeTab === 'new'       && !isNew)            show = false;
+            if (activeTab === 'software'  && cat !== 'software') show = false;
+            if (activeTab === 'legal'     && cat !== 'legal')    show = false;
+            if (activeTab === 'marketing' && cat !== 'marketing')show = false;
+            if (activeTab === 'ai'        && cat !== 'ai')       show = false;
+            if (activeTab === 'travel'    && cat !== 'travel')   show = false;
+            if (activeTab === 'health'    && cat !== 'health')   show = false;
+            if (activeTab === 'education' && cat !== 'education')show = false;
 
             // Members-only toggle: when ON, show only members cards
             if (membersOnly && !members) show = false;
@@ -931,17 +919,18 @@
         });
 
         // For logged-out users: cap each section at GUEST_PREVIEW_COUNT visible cards
+        // Members cards that are visible still show as teasers (not hidden, just blurred)
         if (!loggedIn) {
             document.querySelectorAll('.deals-grid').forEach(grid => {
                 const visibleCards = Array.from(grid.querySelectorAll('.deal-card'))
-                    .filter(c => c.style.display !== 'none');
+                    .filter(c => c.style.display !== 'none' && c.dataset.members !== 'true');
                 visibleCards.forEach((c, i) => {
                     if (i >= GUEST_PREVIEW_COUNT) c.style.display = 'none';
                 });
             });
         }
 
-        // Show/hide section rows based on whether their grid has any visible cards
+        // Show/hide section rows
         document.querySelectorAll('.section-row').forEach(row => {
             const sec = row.dataset.section;
             const grid = document.querySelector(`.deals-grid[data-section="${sec}"]`);
@@ -951,13 +940,8 @@
             grid.style.display = anyVisible ? '' : 'none';
         });
 
-        // Login wall visibility
-        const loginWall = document.getElementById('loginWall');
-        if (!loggedIn) {
-            loginWall.style.display = 'block';
-        } else {
-            loginWall.style.display = 'none';
-        }
+        // Login wall
+        document.getElementById('loginWall').style.display = loggedIn ? 'none' : 'block';
     }
 
     // ─────────────────────────────────────────────
